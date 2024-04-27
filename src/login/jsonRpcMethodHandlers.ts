@@ -1,6 +1,6 @@
 import "scope-extensions-js";
 import {JSONRPC, JSONRPCID, JSONRPCRequest, JSONRPCResponse, JSONRPCServer} from "json-rpc-2.0";
-import endeavorDB, {Admin, Teacher} from "../databases/endeavorDB";
+import endeavorDB, {Admin, Student, Teacher} from "../databases/endeavorDB";
 import {generateJWT} from "../jwt/jwt";
 
 export default new JSONRPCServer().apply(function () {
@@ -63,7 +63,7 @@ function isUserType(userType: any): userType is UserType {
     return ["admin", "teacher", "student"].includes(userType)
 }
 
-function queryUserFromDB(userTable: UserType, username: string, password: string): Promise<Admin[] | Teacher[]> {
+function queryUserFromDB(userTable: UserType, username: string, password: string): Promise<Admin[] | Teacher[] | Student[]> {
     return endeavorDB.selectFrom<UserType>(userTable)
         .selectAll()
         .where("username", "=", username)
