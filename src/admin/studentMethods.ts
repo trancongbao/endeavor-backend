@@ -1,10 +1,10 @@
 import "scope-extensions-js";
 import bcrypt from "bcryptjs";
 import endeavorDB from "../databases/endeavorDB";
-import { StudentTable } from "../databases/endeavorDB";
+import { Student } from "../databases/endeavorDB";
 import { Insertable, Updateable } from "kysely";
 
-export function createStudent(student: Insertable<StudentTable>) {
+export function createStudent(student: Insertable<Student>) {
   bcrypt.hash(student.password, 13, (_, hashedPassword) => {
     student.password = hashedPassword;
   });
@@ -16,7 +16,7 @@ export function readStudent({ username }: { username: string }) {
   return endeavorDB.selectFrom("student").selectAll().where("username", "=", username).executeTakeFirstOrThrow();
 }
 
-export function updateStudent(student: Updateable<StudentTable>) {
+export function updateStudent(student: Updateable<Student>) {
   return endeavorDB
     .updateTable("student")
     .where("username", "=", student.username!!)
