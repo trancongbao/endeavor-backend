@@ -5,9 +5,9 @@ import { Kysely, PostgresDialect, Generated, ColumnType } from "kysely";
 export default new Pool({
   host: "localhost",
   port: 5432,
-  user: "postgres",
-  password: "postgres",
-  database: "endeavor",
+  user: "postgres_user",
+  password: "postgres_password",
+  database: "postgres_db",
   max: 10,
 })
   .let((pool) => new PostgresDialect({ pool }))
