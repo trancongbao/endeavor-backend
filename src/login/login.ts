@@ -1,5 +1,6 @@
 import {JSONRPC, JSONRPCID} from "json-rpc-2.0";
 import endeavorDB, {Admin, Student, Teacher} from "../databases/endeavorDB";
+import {JsonRpcErrorCodes, sendJsonRpcErrorResponse} from "../error/error";
 
 export {login};
 
@@ -8,60 +9,50 @@ function login(request: any, response: any) {
     let userType = jsonRPCRequest.params.userType
 
     if (!isUserType(userType)) {
-        response.json({
-            jsonrpc: JSONRPC,
-            id: jsonRPCRequest.id as JSONRPCID,
-            error: {
-                code: -100,
-                message: `Invalid userType: ${userType}`,
-                data: jsonRPCRequest.params,
-            },
-        });
+        return sendJsonRpcErrorResponse(
+            jsonRPCRequest,
+            response,
+            JsonRpcErrorCodes.Authn.InvalidUserType,
+            `Invalid userType: ${userType}`
+        )
     }
 
     queryUserFromDB(userType, jsonRPCRequest.params.username, jsonRPCRequest.params.password)
         .then((users) => {
                 if (users.length) {
                     const {password, ...userInfo} = users[0]; // Remove the password field
+                    /**
+                     * Add authenticated session data
+                     */
                     request.session.userType = userType
                     request.session.userInfo = userInfo
-                    return {
+
+                    return response.json({
                         jsonrpc: JSONRPC,
                         id: jsonRPCRequest.id as JSONRPCID,
                         result: {
                             userType: userType,
                             userInfo: userInfo
                         },
-                    };
+                    })
                 } else {
-                    console.info("Invalid username or password:", jsonRPCRequest.params);
-                    return {
-                        jsonrpc: JSONRPC,
-                        id: jsonRPCRequest.id as JSONRPCID,
-                        error: {
-                            code: -100,
-                            message: "Invalid username or password.",
-                            data: jsonRPCRequest.params,
-                        },
-                    };
+                    return sendJsonRpcErrorResponse(
+                        jsonRPCRequest,
+                        response,
+                        JsonRpcErrorCodes.Authn.InvalidUserNameOrPassword,
+                        "Invalid username or password."
+                    )
                 }
             }
         )
         .catch((error) => {
-            console.error("An unexpected error occurred:", error);
-            return {
-                jsonrpc: JSONRPC,
-                id: jsonRPCRequest.id as JSONRPCID,
-                error: {
-                    code: -100,
-                    message: `An unexpected error occurred: ${error}`,
-                    data: jsonRPCRequest.params,
-                },
-            };
+            return sendJsonRpcErrorResponse(
+                jsonRPCRequest,
+                response,
+                JsonRpcErrorCodes.Authn.UnexpectedError,
+                `An unexpected error occurred: ${error}`,
+            )
         })
-        .then((jsonRpcResponse) =>
-            response.json(jsonRpcResponse)
-        );
 }
 
 function isUserType(userType: any): userType is UserType {
