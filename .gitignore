@@ -1,0 +1,12 @@
+# IDEs
+.idea
+.vscode
+
+node_modules
+dist
+package-lock.json
+
+# docker-compose data volumes
+docker-compose/postgres/var_lib_pgadmin
+docker-compose/postgres/var_lib_postgresql_data
+docker-compose/redis/root_redis
