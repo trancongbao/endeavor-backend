@@ -15,12 +15,12 @@ export default new Pool({
 
 interface EndeavorDB {
   admin: Admin;
-  teacher: TeacherTable;
-  student: StudentTable;
-  course: CourseTable;
-  lesson: LessonTable;
-  card: CardTable;
-  word: WordTable;
+  teacher: Teacher;
+  student: Student;
+  course: Course;
+  lesson: Lesson;
+  card: Card;
+  word: Word;
 }
 
 export interface Admin {
@@ -35,7 +35,7 @@ export interface Admin {
   avatar?: string;
 }
 
-export interface StudentTable {
+export interface Student {
   username: string;
   password: string;
   surname: string;
@@ -48,7 +48,7 @@ export interface StudentTable {
   proficiency: number;
 }
 
-export interface TeacherTable {
+export interface Teacher {
   username: string;
   password: string;
   surname: string;
@@ -60,7 +60,7 @@ export interface TeacherTable {
   avatar: string;
 }
 
-export interface CourseTable {
+export interface Course {
   id: Generated<number>;
   status: CourseStatus;
   title: string;
@@ -79,7 +79,7 @@ enum CourseStatus {
   ARCHIVED = "ARCHIVED",
 }
 
-export interface LessonTable {
+export interface Lesson {
   id: Generated<number>;
   course_id: number;
   order: number;
@@ -92,14 +92,14 @@ export interface LessonTable {
   updated_at: Date;
 }
 
-export interface CardTable {
+export interface Card {
   id: Generated<number>;
   lesson_id: number;
   front_text?: string;
   front_audio_uri?: string;
 }
 
-export interface WordTable {
+export interface Word {
   id: Generated<number>;
   word: string;
   definition: string;

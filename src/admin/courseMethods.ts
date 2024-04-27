@@ -1,9 +1,9 @@
 import "scope-extensions-js";
 import endeavorDB from "../databases/endeavorDB";
-import { CourseTable } from "../databases/endeavorDB";
+import { Course } from "../databases/endeavorDB";
 import { Insertable, Updateable } from "kysely";
 
-export function createCourse(course: Insertable<CourseTable>) {
+export function createCourse(course: Insertable<Course>) {
   return endeavorDB.insertInto("course").values(course).returningAll().executeTakeFirstOrThrow();
 }
 
@@ -11,7 +11,7 @@ export function readCourse({ id }: { id: number }) {
   return endeavorDB.selectFrom("course").selectAll().where("id", "=", id).executeTakeFirstOrThrow();
 }
 
-export function updateCourse(course: Updateable<CourseTable>) {
+export function updateCourse(course: Updateable<Course>) {
   return endeavorDB
     .updateTable("course")
     .where("id", "=", course.id!!)
