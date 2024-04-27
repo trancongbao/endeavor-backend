@@ -1,0 +1,42 @@
+name: endeavor
+
+services:
+  postgres:
+    container_name: postgres
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres_user
+      POSTGRES_PASSWORD: postgres_password
+      POSTGRES_DB: postgres_db
+    volumes:
+      - ./postgres/var_lib_postgresql_data:/var/lib/postgresql/data
+      - ./postgres/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d/
+    ports:
+      - 5432:5432
+
+  pgadmin:
+    image: dpage/pgadmin4:8.5
+    container_name: pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: pgadmin_default_email@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: pgadmin_default_password
+    volumes:
+      - ./postgres/var_lib_pgadmin:/var/lib/pgadmin
+      - ./postgres/pgadmin4/servers.json:/pgadmin4/servers.json
+      - ./postgres/pgadmin4/preferences.json:/pgadmin4/preferences.json
+    ports:
+      - 5433:80
+
+  redis:
+    image: redis:latest
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - /redis/root_redis:/root/redis
+    environment:
+      - REDIS_PASSWORD=password
+      - REDIS_PORT=6379
+      - REDIS_DATABASES=16
