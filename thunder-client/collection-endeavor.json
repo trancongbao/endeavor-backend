@@ -1,0 +1,314 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "endeavor",
+    "collectionId": "b1ada45e-ea86-4609-b2db-d389683c3c4d",
+    "dateExported": "2024-04-28T03:44:37.954Z",
+    "version": "1.2",
+    "folders": [
+        {
+            "_id": "cb54d439-1c8c-4b4d-99c2-8fab48481bc4",
+            "name": "admin",
+            "containerId": "",
+            "created": "2024-04-28T03:35:49.459Z",
+            "sortNum": 10000
+        },
+        {
+            "_id": "19e411b7-cd20-4e1f-8ca9-a0ac47cc3784",
+            "name": "teach",
+            "containerId": "",
+            "created": "2024-04-28T03:35:49.460Z",
+            "sortNum": 20000
+        },
+        {
+            "_id": "abf92c41-e266-4484-a315-4e6a89d33cea",
+            "name": "login",
+            "containerId": "",
+            "created": "2024-04-28T03:35:49.461Z",
+            "sortNum": 30000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "55573674-1793-4e5f-b9ca-acae40158367",
+            "colId": "b1ada45e-ea86-4609-b2db-d389683c3c4d",
+            "containerId": "cb54d439-1c8c-4b4d-99c2-8fab48481bc4",
+            "name": "/admin createTeacher",
+            "url": "http://localhost:3000/admin",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-04-28T03:35:49.459Z",
+            "modified": "2024-04-28T03:35:49.459Z",
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "name": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkFETUlOIiwidXNlcm5hbWUiOiJ1c2VybmFtZSIsInN1cm5hbWUiOiJzdXJuYW1lIiwiZ2l2ZW5fbmFtZSI6ImdpdmVuX25hbWUiLCJlbWFpbCI6ImVtYWlsIiwicGhvbmUiOiJwaG9uZSIsImRhdGVfb2ZfYmlydGgiOiIxOTg4LTA3LTA2VDE3OjAwOjAwLjAwMFoiLCJhZGRyZXNzIjoiYWRkcmVzcyIsImF2YXRhciI6ImF2YXRhciIsImlhdCI6MTY5Nzk2MDkxMCwiZXhwIjoxNjk3OTcxNzEwfQ.IHaZZFZtPeSri77CIBSgvX1Tl81R_gbN1kUfeBXDceY"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\r\n    \"jsonrpc\": \"2.0\",\r\n    \"method\": \"createTeacher\",\r\n    \"params\": {\r\n        \"username\": \"username6\",\r\n        \"password\": \"password\",\r\n        \"surname\": \"surname\",\r\n        \"given_name\": \"given_name\",\r\n        \"email\": \"email\",\r\n        \"phone\": \"phone\",\r\n        \"date_of_birth\": \"01/01/2000\",\r\n        \"address\": \"address\",\r\n        \"avatar\": \"avatar\"\r\n    },\r\n    \"id\": 1\r\n}"
+            }
+        },
+        {
+            "_id": "aaa11939-d236-4543-a6c1-09d3f17a6798",
+            "colId": "b1ada45e-ea86-4609-b2db-d389683c3c4d",
+            "containerId": "cb54d439-1c8c-4b4d-99c2-8fab48481bc4",
+            "name": "/admin createCourse",
+            "url": "http://localhost:3000/admin",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2024-04-28T03:35:49.461Z",
+            "modified": "2024-04-28T03:35:49.461Z",
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "name": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkFETUlOIiwidXNlcm5hbWUiOiJ1c2VybmFtZSIsInN1cm5hbWUiOiJzdXJuYW1lIiwiZ2l2ZW5fbmFtZSI6ImdpdmVuX25hbWUiLCJlbWFpbCI6ImVtYWlsIiwicGhvbmUiOiJwaG9uZSIsImRhdGVfb2ZfYmlydGgiOiIxOTg4LTA3LTA2VDE3OjAwOjAwLjAwMFoiLCJhZGRyZXNzIjoiYWRkcmVzcyIsImF2YXRhciI6ImF2YXRhciIsImlhdCI6MTY5Nzk2MDkxMCwiZXhwIjoxNjk3OTcxNzEwfQ.IHaZZFZtPeSri77CIBSgvX1Tl81R_gbN1kUfeBXDceY"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\r\n    \"jsonrpc\": \"2.0\",\r\n    \"method\": \"createCourse\",\r\n    \"params\": {\r\n        \"password\": \"password\",\r\n        \"surname\": \"surname\",\r\n        \"given_name\": \"given_name\",\r\n        \"email\": \"email\",\r\n        \"phone\": \"phone\",\r\n        \"date_of_birth\": \"01/01/2000\",\r\n        \"address\": \"address\",\r\n        \"avatar\": \"avatar\"\r\n    },\r\n    \"id\": 1\r\n}"
+            }
+        },
+        {
+            "_id": "69ceb54d-021c-4091-a6bb-465335e1a758",
+            "colId": "b1ada45e-ea86-4609-b2db-d389683c3c4d",
+            "containerId": "cb54d439-1c8c-4b4d-99c2-8fab48481bc4",
+            "name": "/admin createStudent",
+            "url": "http://localhost:3000/admin",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2024-04-28T03:35:49.462Z",
+            "modified": "2024-04-28T03:35:49.462Z",
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "name": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkFETUlOIiwidXNlcm5hbWUiOiJ1c2VybmFtZSIsInN1cm5hbWUiOiJzdXJuYW1lIiwiZ2l2ZW5fbmFtZSI6ImdpdmVuX25hbWUiLCJlbWFpbCI6ImVtYWlsIiwicGhvbmUiOiJwaG9uZSIsImRhdGVfb2ZfYmlydGgiOiIxOTg4LTA3LTA2VDE3OjAwOjAwLjAwMFoiLCJhZGRyZXNzIjoiYWRkcmVzcyIsImF2YXRhciI6ImF2YXRhciIsImlhdCI6MTY5Nzk0NTI4NCwiZXhwIjoxNjk3OTQ4ODg0fQ.3Js-aYRcpf16UjCeDxFgO13VX1xLG5LGWw16C-QrZKY"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\r\n    \"jsonrpc\": \"2.0\",\r\n    \"method\": \"createStudent\",\r\n    \"params\": {\r\n        \"username\": \"username5\",\r\n        \"password\": \"password\",\r\n        \"surname\": \"surname\",\r\n        \"given_name\": \"given_name\",\r\n        \"email\": \"email\",\r\n        \"phone\": \"phone\",\r\n        \"date_of_birth\": \"01/01/2000\",\r\n        \"address\": \"address\",\r\n        \"avatar\": \"avatar\",\r\n        \"proficiency\": 100\r\n    },\r\n    \"id\": 1\r\n}"
+            }
+        },
+        {
+            "_id": "23e40afc-8c33-459e-bbdf-f052ab61bfd7",
+            "colId": "b1ada45e-ea86-4609-b2db-d389683c3c4d",
+            "containerId": "cb54d439-1c8c-4b4d-99c2-8fab48481bc4",
+            "name": "/admin updateStudent",
+            "url": "http://localhost:3000/admin",
+            "method": "POST",
+            "sortNum": 40000,
+            "created": "2024-04-28T03:35:49.463Z",
+            "modified": "2024-04-28T03:35:49.463Z",
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "name": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkFETUlOIiwidXNlcm5hbWUiOiJ1c2VybmFtZSIsInN1cm5hbWUiOiJzdXJuYW1lIiwiZ2l2ZW5fbmFtZSI6ImdpdmVuX25hbWUiLCJlbWFpbCI6ImVtYWlsIiwicGhvbmUiOiJwaG9uZSIsImRhdGVfb2ZfYmlydGgiOiIxOTg4LTA3LTA2VDE3OjAwOjAwLjAwMFoiLCJhZGRyZXNzIjoiYWRkcmVzcyIsImF2YXRhciI6ImF2YXRhciIsImlhdCI6MTY5Nzk0OTY2MywiZXhwIjoxNjk3OTUzMjYzfQ.l6Uy7i-2V3hzMttZMCraGQcWThXcaqOPblptaI6k3Gs"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\r\n    \"jsonrpc\": \"2.0\",\r\n    \"method\": \"updateStudent\",\r\n    \"params\": {\r\n        \"username\": \"username5\",\r\n        \"proficiency\": 1000\r\n    },\r\n    \"id\": 1\r\n}"
+            }
+        },
+        {
+            "_id": "293fa41f-230f-46e5-a9cc-41c2cb234caa",
+            "colId": "b1ada45e-ea86-4609-b2db-d389683c3c4d",
+            "containerId": "cb54d439-1c8c-4b4d-99c2-8fab48481bc4",
+            "name": "/admin readStudent",
+            "url": "http://localhost:3000/admin",
+            "method": "POST",
+            "sortNum": 50000,
+            "created": "2024-04-28T03:35:49.464Z",
+            "modified": "2024-04-28T03:35:49.464Z",
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "name": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkFETUlOIiwidXNlcm5hbWUiOiJ1c2VybmFtZSIsInN1cm5hbWUiOiJzdXJuYW1lIiwiZ2l2ZW5fbmFtZSI6ImdpdmVuX25hbWUiLCJlbWFpbCI6ImVtYWlsIiwicGhvbmUiOiJwaG9uZSIsImRhdGVfb2ZfYmlydGgiOiIxOTg4LTA3LTA2VDE3OjAwOjAwLjAwMFoiLCJhZGRyZXNzIjoiYWRkcmVzcyIsImF2YXRhciI6ImF2YXRhciIsImlhdCI6MTY5Nzk0ODkxMywiZXhwIjoxNjk3OTUyNTEzfQ.iP-_aWkDr2HFoqz5cKX8KNqGok1jMLu87Gd2bsELZQ0"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\r\n    \"jsonrpc\": \"2.0\",\r\n    \"method\": \"readStudent\",\r\n    \"params\": {\r\n        \"username\": \"username5\"\r\n    },\r\n    \"id\": 1\r\n}"
+            }
+        },
+        {
+            "_id": "5402fffa-a836-45d8-87d2-d5991a882029",
+            "colId": "b1ada45e-ea86-4609-b2db-d389683c3c4d",
+            "containerId": "cb54d439-1c8c-4b4d-99c2-8fab48481bc4",
+            "name": "/admin deleteStudent",
+            "url": "http://localhost:3000/admin",
+            "method": "POST",
+            "sortNum": 60000,
+            "created": "2024-04-28T03:35:49.465Z",
+            "modified": "2024-04-28T03:35:49.465Z",
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "name": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkFETUlOIiwidXNlcm5hbWUiOiJ1c2VybmFtZSIsInN1cm5hbWUiOiJzdXJuYW1lIiwiZ2l2ZW5fbmFtZSI6ImdpdmVuX25hbWUiLCJlbWFpbCI6ImVtYWlsIiwicGhvbmUiOiJwaG9uZSIsImRhdGVfb2ZfYmlydGgiOiIxOTg4LTA3LTA2VDE3OjAwOjAwLjAwMFoiLCJhZGRyZXNzIjoiYWRkcmVzcyIsImF2YXRhciI6ImF2YXRhciIsImlhdCI6MTY5Nzk0ODkxMywiZXhwIjoxNjk3OTUyNTEzfQ.iP-_aWkDr2HFoqz5cKX8KNqGok1jMLu87Gd2bsELZQ0"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\r\n    \"jsonrpc\": \"2.0\",\r\n    \"method\": \"readStudent\",\r\n    \"params\": {\r\n        \"username\": \"username5\"\r\n    },\r\n    \"id\": 1\r\n}"
+            }
+        },
+        {
+            "_id": "8f687c31-ca34-489a-8776-67b08d61cc2f",
+            "colId": "b1ada45e-ea86-4609-b2db-d389683c3c4d",
+            "containerId": "19e411b7-cd20-4e1f-8ca9-a0ac47cc3784",
+            "name": "/teach createWord",
+            "url": "http://localhost:3000/teach",
+            "method": "POST",
+            "sortNum": 70000,
+            "created": "2024-04-28T03:35:49.466Z",
+            "modified": "2024-04-28T03:35:49.466Z",
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "name": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkFETUlOIiwidXNlcm5hbWUiOiJ1c2VybmFtZSIsInN1cm5hbWUiOiJzdXJuYW1lIiwiZ2l2ZW5fbmFtZSI6ImdpdmVuX25hbWUiLCJlbWFpbCI6ImVtYWlsIiwicGhvbmUiOiJwaG9uZSIsImRhdGVfb2ZfYmlydGgiOiIxOTg4LTA3LTA2VDE3OjAwOjAwLjAwMFoiLCJhZGRyZXNzIjoiYWRkcmVzcyIsImF2YXRhciI6ImF2YXRhciIsImlhdCI6MTY5Nzk2MDkxMCwiZXhwIjoxNjk3OTcxNzEwfQ.IHaZZFZtPeSri77CIBSgvX1Tl81R_gbN1kUfeBXDceY"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\r\n    \"jsonrpc\": \"2.0\",\r\n    \"method\": \"createWord\",\r\n    \"params\": {\r\n        \"password\": \"password\",\r\n        \"surname\": \"surname\",\r\n        \"given_name\": \"given_name\",\r\n        \"email\": \"email\",\r\n        \"phone\": \"phone\",\r\n        \"date_of_birth\": \"01/01/2000\",\r\n        \"address\": \"address\",\r\n        \"avatar\": \"avatar\"\r\n    },\r\n    \"id\": 1\r\n}"
+            }
+        },
+        {
+            "_id": "90625d86-8c21-4412-8f4e-ddfd4c4048e5",
+            "colId": "b1ada45e-ea86-4609-b2db-d389683c3c4d",
+            "containerId": "abf92c41-e266-4484-a315-4e6a89d33cea",
+            "name": "/login ADMIN",
+            "url": "http://localhost:3000/login",
+            "method": "POST",
+            "sortNum": 80000,
+            "created": "2024-04-28T03:35:49.467Z",
+            "modified": "2024-04-28T03:36:13.179Z",
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"login\",\n  \"params\": {\n    \"userType\": \"admin\", \n    \"username\": \"admin1\", \n    \"password\": \"password1\" \n  },\n  \"id\": 1\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "0313562c-12d4-4acc-bd97-0c62a3a5d01d",
+            "colId": "b1ada45e-ea86-4609-b2db-d389683c3c4d",
+            "containerId": "abf92c41-e266-4484-a315-4e6a89d33cea",
+            "name": "/login TEACHER",
+            "url": "http://localhost:3000/login",
+            "method": "POST",
+            "sortNum": 90000,
+            "created": "2024-04-28T03:35:49.468Z",
+            "modified": "2024-04-28T03:35:49.468Z",
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\r\n  \"jsonrpc\": \"2.0\",\r\n  \"method\": \"login\",\r\n  \"params\": {\r\n    \"userType\": \"teacher\", \r\n    \"username\": \"teacher1\", \r\n    \"password\": \"password1\" \r\n  },\r\n  \"id\": 1\r\n}"
+            }
+        },
+        {
+            "_id": "3652541c-8ee5-4eda-98e4-7e30138d13e5",
+            "colId": "b1ada45e-ea86-4609-b2db-d389683c3c4d",
+            "containerId": "abf92c41-e266-4484-a315-4e6a89d33cea",
+            "name": "/login STUDENT",
+            "url": "http://localhost:3000/login",
+            "method": "POST",
+            "sortNum": 100000,
+            "created": "2024-04-28T03:35:49.469Z",
+            "modified": "2024-04-28T03:35:49.469Z",
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\r\n  \"jsonrpc\": \"2.0\",\r\n  \"method\": \"login\",\r\n  \"params\": {\r\n    \"userType\": \"student\", \r\n    \"username\": \"bao_tran\", \r\n    \"password\": \"password\" \r\n  },\r\n  \"id\": 1\r\n}"
+            }
+        },
+        {
+            "_id": "446a0ac3-e91c-47f6-b822-90d89d066ad6",
+            "colId": "b1ada45e-ea86-4609-b2db-d389683c3c4d",
+            "containerId": "",
+            "name": "/course getCourse",
+            "url": "http://localhost:3000/course",
+            "method": "POST",
+            "sortNum": 110000,
+            "created": "2024-04-28T03:35:49.470Z",
+            "modified": "2024-04-28T03:35:49.470Z",
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\r\n  \"jsonrpc\": \"2.0\",\r\n  \"method\": \"getCourse\",\r\n  \"params\": {\r\n    \"courseId\": 123\r\n  },\r\n  \"id\": 1\r\n}"
+            }
+        },
+        {
+            "_id": "d339831b-2be3-4046-92cd-fa2193319ad4",
+            "colId": "b1ada45e-ea86-4609-b2db-d389683c3c4d",
+            "containerId": "",
+            "name": "http://localhost:3000",
+            "url": "http://localhost:3000/user",
+            "method": "POST",
+            "sortNum": 120000,
+            "created": "2024-04-28T03:35:49.471Z",
+            "modified": "2024-04-28T03:35:49.471Z",
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\r\n  \"jsonrpc\": \"2.0\",\r\n  \"method\": \"login\",\r\n  \"params\": {\r\n    \"userType\": \"student\", \r\n    \"username\": \"bao_tran\", \r\n    \"password\": \"password\" \r\n  },\r\n  \"id\": 1\r\n}"
+            }
+        }
+    ],
+    "ref": "55hLec17HDzsdqTzuDJW0utDVd9hOcLwK9HHjamFyNOCm1rRq0bBOdGnWGtPAjWMnPLNi9rnPWapUmc9VC841Q"
+}
