@@ -7,10 +7,8 @@ import {JSONRPCServer} from "json-rpc-2.0";
 import {isAdmin} from "./admin/isAdmin";
 import {isTeacher} from "./teach/isTeacher";
 import {isStudent} from "./study/isStudent";
-import session from "express-session";
-import IORedis from "ioredis";
-import RedisStore from "connect-redis";
 import {login} from "./login/login";
+import {expressSession} from "./session/session";
 
 express()
     .also((app) => {
@@ -18,14 +16,7 @@ express()
         app.use(express.json());
 
         // Session
-        app.use(session({
-            secret: "session-secret",
-            saveUninitialized: false,
-            resave: false,
-            cookie: {
-                maxAge: 1000 * 60 * 60
-            }
-        }))
+        app.use(expressSession)
 
         // Login
         app.use("/login", login);
@@ -64,6 +55,3 @@ function jsonRpcRouter(jsonRpcMethodHandlers: JSONRPCServer<void>) {
     });
 }
 
-const redisClient = new IORedis(process.env.REDIS_URL || "redis://127.0.0.1:6379");
-
-const redisStore = new RedisStore({client: redisClient});
