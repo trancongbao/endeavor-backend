@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { sendJsonRpcErrorResponse, JsonRpcErrorCodes } from "../error/error";
+import { sendJsonRpcErrorResponseDeprecated, JsonRpcErrorCodesDeprecated } from "../error/error";
 
 export { generateJWT, processJWT };
 
@@ -25,11 +25,11 @@ function processJWT(request: any, response: any, next: any): void {
 
   try {
     if (!authorizationHeader) {
-      sendJsonRpcErrorResponse(response, body.id, JsonRpcErrorCodes.Authorization_AuthorizationHeaderMissing);
+      sendJsonRpcErrorResponseDeprecated(response, body.id, JsonRpcErrorCodesDeprecated.Authorization_AuthorizationHeaderMissing);
     } else {
       let token = authorizationHeader.split(" ")[1];
       if (token === "null" || !token) {
-        sendJsonRpcErrorResponse(response, body.id, JsonRpcErrorCodes.Authorization_JwtTokenMissing);
+        sendJsonRpcErrorResponseDeprecated(response, body.id, JsonRpcErrorCodesDeprecated.Authorization_JwtTokenMissing);
       }
 
       let verifiedUser;
@@ -37,15 +37,15 @@ function processJWT(request: any, response: any, next: any): void {
         verifiedUser = jwt.verify(token, jwtSecret);
       } catch (error: any) {
         if (error.info === "TokenExpiredError") {
-          sendJsonRpcErrorResponse(response, body.id, JsonRpcErrorCodes.Authorization_JwtTokenExpired);
+          sendJsonRpcErrorResponseDeprecated(response, body.id, JsonRpcErrorCodesDeprecated.Authorization_JwtTokenExpired);
         } else {
           console.error("Authorization failed: Unexpected error while verifying JWT token.", error);
-          sendJsonRpcErrorResponse(response, body.id, JsonRpcErrorCodes.Authorization_UnexpectedError);
+          sendJsonRpcErrorResponseDeprecated(response, body.id, JsonRpcErrorCodesDeprecated.Authorization_UnexpectedError);
         }
       }
 
       if (!verifiedUser) {
-        sendJsonRpcErrorResponse(response, body.id, JsonRpcErrorCodes.Authorization_JwtTokenInvalid);
+        sendJsonRpcErrorResponseDeprecated(response, body.id, JsonRpcErrorCodesDeprecated.Authorization_JwtTokenInvalid);
       }
 
       request.user = verifiedUser;
@@ -53,6 +53,6 @@ function processJWT(request: any, response: any, next: any): void {
     }
   } catch (error) {
     console.error("Authorization failed: Unexpected error.", error);
-    sendJsonRpcErrorResponse(response, body.id, JsonRpcErrorCodes.Authorization_UnexpectedError);
+    sendJsonRpcErrorResponseDeprecated(response, body.id, JsonRpcErrorCodesDeprecated.Authorization_UnexpectedError);
   }
 }

@@ -1,11 +1,19 @@
-import { JsonRpcErrorCodes, sendJsonRpcErrorResponse } from "../error/error";
+import {
+    JsonRpcErrorCodes,
+    sendJsonRpcErrorResponse,
+} from "../error/error";
 
-export { isTeacher };
+export {isTeacher};
 
 function isTeacher(request: any, response: any, next: any): void {
-  if (request.user.userType == "TEACHER") {
-    next();
-  } else {
-    sendJsonRpcErrorResponse(response, request.id, JsonRpcErrorCodes.Authorization_TeacherPrivilegeRequired);
-  }
+    if (request.session.userType == "teacher") {
+        next();
+    } else {
+        sendJsonRpcErrorResponse(
+            request.body,
+            response,
+            JsonRpcErrorCodes.Authz.TeacherPrivilegeRequired,
+            "Teacher privilege required."
+        )
+    }
 }
