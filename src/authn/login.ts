@@ -1,22 +1,47 @@
 import {JSONRPC, JSONRPCID} from "json-rpc-2.0";
 import endeavorDB, {Admin, Student, Teacher} from "../databases/endeavorDB";
 import {JsonRpcErrorCodes, sendJsonRpcErrorResponse} from "../error/error";
+import {checkSchema, validationResult} from 'express-validator'
 
-export {login};
+export {validateInput, login};
+
+function validateInput() {
+    return checkSchema(
+        {
+            'params.userType': {
+                custom: {
+                    options: value => ["admin", "teacher", "student"].includes(value)
+                },
+                errorMessage: 'Invalid userType.',
+            },
+            'params.username': {
+                isString: {bail: true},
+                notEmpty: {bail: true},
+                errorMessage: 'Invalid username.'
+            },
+            'params.password': {
+                isString: {bail: true},
+                notEmpty: {bail: true},
+                errorMessage: 'Invalid password.'
+            }
+        },
+        ["body"]
+    )
+}
 
 function login(request: any, response: any) {
     let jsonRPCRequest = request.body
-    let userType = jsonRPCRequest.params.userType
-
-    if (!isUserType(userType)) {
+    let validationError = validationResult(request).array()[0]
+    if (validationError) {
         return sendJsonRpcErrorResponse(
             jsonRPCRequest,
             response,
-            JsonRpcErrorCodes.Authn.InvalidUserType,
-            `Invalid userType: ${userType}`
+            JsonRpcErrorCodes.Authn.InputValidationError,
+            validationError.msg
         )
     }
 
+    let userType = jsonRPCRequest.params.userType
     queryUserFromDB(userType, jsonRPCRequest.params.username, jsonRPCRequest.params.password)
         .then((users) => {
                 if (users.length) {
@@ -53,10 +78,6 @@ function login(request: any, response: any) {
                 `An unexpected error occurred: ${error}`,
             )
         })
-}
-
-function isUserType(userType: any): userType is UserType {
-    return ["admin", "teacher", "student"].includes(userType)
 }
 
 function queryUserFromDB(userTable: UserType, username: string, password: string): Promise<Admin[] | Teacher[] | Student[]> {
