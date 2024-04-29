@@ -21,13 +21,13 @@ function validateInput() {
 
 function login(request: any, response: any) {
     let jsonRPCRequest = request.body
-    let validation = validationResult(request)
-    if (!validation.isEmpty()) {
+    let validationError = validationResult(request).array()[0]
+    if (validationError) {
         return sendJsonRpcErrorResponse(
             jsonRPCRequest,
             response,
             JsonRpcErrorCodes.Authn.InputValidationError,
-            validation.array()[0].msg
+            validationError.msg
         )
     }
 
