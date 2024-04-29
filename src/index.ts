@@ -7,8 +7,9 @@ import {JSONRPCServer} from "json-rpc-2.0";
 import {isAdmin} from "./admin/isAdmin";
 import {isTeacher} from "./teach/isTeacher";
 import {isStudent} from "./study/isStudent";
-import {login} from "./login/login";
+import {login} from "./authn/login";
 import {expressSession} from "./session/session";
+import {logout} from "./authn/logout";
 
 express()
     .also((app) => {
@@ -19,6 +20,7 @@ express()
         app.use(expressSession)
 
         // Login
+        app.use("/logout", logout);
         app.use("/login", login);
 
         app.use("/study", isStudent, jsonRpcRouter(studyJsonRpcMethodHandlers));
@@ -32,15 +34,6 @@ express()
 function jsonRpcRouter(jsonRpcMethodHandlers: JSONRPCServer<void>) {
     return express.Router().let((router) => {
         return router.post("/", (request, response) => {
-            console.log(request.session)
-            request.sessionStore.get(request.session.id, (err: any, sessionData: any) => {
-                if (err) {
-                    console.log(err)
-                } else {
-                    console.log("sessionData: ")
-                    console.log(sessionData)
-                }
-            })
             jsonRpcMethodHandlers.receive(request.body).then((jsonRpcResponse) => {
                 if (jsonRpcResponse) {
                     response.json(jsonRpcResponse);
