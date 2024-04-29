@@ -8,7 +8,7 @@ function sendJsonRpcErrorResponse(jsonRPCRequest: any, response: any, code: numb
 
 const JsonRpcErrorCodes = {
     Authn: {
-        InvalidUserType: -33000,
+        InputValidationError: -33000,
         InvalidUserNameOrPassword: -33001,
         UnexpectedError: -33002
     },

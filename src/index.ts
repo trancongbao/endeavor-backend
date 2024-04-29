@@ -19,7 +19,7 @@ express()
         // Session
         app.use(expressSession)
 
-        // Login
+        // Authentication
         app.use("/logout", logout);
         app.use("/login", validateInput(), login);
 

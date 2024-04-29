@@ -9,8 +9,9 @@ function validateInput() {
     return checkSchema(
         {
             'params.userType': {
-                isString: true,
-                notEmpty: true,
+                custom: {
+                    options: value => ["admin", "teacher", "student"].includes(value)
+                },
                 errorMessage: 'Invalid userType.',
             }
         },
@@ -19,21 +20,18 @@ function validateInput() {
 }
 
 function login(request: any, response: any) {
-    let validation = validationResult(request)
-    console.log(validation)
-
     let jsonRPCRequest = request.body
-    let userType = jsonRPCRequest.params.userType
-
-    if (!isUserType(userType)) {
+    let validation = validationResult(request)
+    if (!validation.isEmpty()) {
         return sendJsonRpcErrorResponse(
             jsonRPCRequest,
             response,
-            JsonRpcErrorCodes.Authn.InvalidUserType,
-            `Invalid userType: ${userType}`
+            JsonRpcErrorCodes.Authn.InputValidationError,
+            validation.array()[0].msg
         )
     }
 
+    let userType = jsonRPCRequest.params.userType
     queryUserFromDB(userType, jsonRPCRequest.params.username, jsonRPCRequest.params.password)
         .then((users) => {
                 if (users.length) {
@@ -70,10 +68,6 @@ function login(request: any, response: any) {
                 `An unexpected error occurred: ${error}`,
             )
         })
-}
-
-function isUserType(userType: any): userType is UserType {
-    return ["admin", "teacher", "student"].includes(userType)
 }
 
 function queryUserFromDB(userTable: UserType, username: string, password: string): Promise<Admin[] | Teacher[] | Student[]> {
