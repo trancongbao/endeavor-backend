@@ -1,10 +1,27 @@
 import {JSONRPC, JSONRPCID} from "json-rpc-2.0";
 import endeavorDB, {Admin, Student, Teacher} from "../databases/endeavorDB";
 import {JsonRpcErrorCodes, sendJsonRpcErrorResponse} from "../error/error";
+import {checkSchema, validationResult} from 'express-validator'
 
-export {login};
+export {validateInput, login};
+
+function validateInput() {
+    return checkSchema(
+        {
+            'params.userType': {
+                isString: true,
+                notEmpty: true,
+                errorMessage: 'Invalid userType.',
+            }
+        },
+        ["body"]
+    )
+}
 
 function login(request: any, response: any) {
+    let validation = validationResult(request)
+    console.log(validation)
+
     let jsonRPCRequest = request.body
     let userType = jsonRPCRequest.params.userType
 
