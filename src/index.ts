@@ -34,15 +34,6 @@ express()
 function jsonRpcRouter(jsonRpcMethodHandlers: JSONRPCServer<void>) {
     return express.Router().let((router) => {
         return router.post("/", (request, response) => {
-            console.log(request.session)
-            request.sessionStore.get(request.session.id, (err: any, sessionData: any) => {
-                if (err) {
-                    console.log(err)
-                } else {
-                    console.log("sessionData: ")
-                    console.log(sessionData)
-                }
-            })
             jsonRpcMethodHandlers.receive(request.body).then((jsonRpcResponse) => {
                 if (jsonRpcResponse) {
                     response.json(jsonRpcResponse);
