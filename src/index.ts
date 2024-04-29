@@ -9,6 +9,7 @@ import {isTeacher} from "./teach/isTeacher";
 import {isStudent} from "./study/isStudent";
 import {login} from "./login/login";
 import {expressSession} from "./session/session";
+import {logout} from "./login/logout";
 
 express()
     .also((app) => {
@@ -19,6 +20,7 @@ express()
         app.use(expressSession)
 
         // Login
+        app.use("/logout", logout);
         app.use("/login", login);
 
         app.use("/study", isStudent, jsonRpcRouter(studyJsonRpcMethodHandlers));
