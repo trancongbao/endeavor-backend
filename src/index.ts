@@ -7,9 +7,9 @@ import {JSONRPCServer} from "json-rpc-2.0";
 import {isAdmin} from "./admin/isAdmin";
 import {isTeacher} from "./teach/isTeacher";
 import {isStudent} from "./study/isStudent";
-import {login} from "./login/login";
+import {login} from "./authn/login";
 import {expressSession} from "./session/session";
-import {logout} from "./login/logout";
+import {logout} from "./authn/logout";
 
 express()
     .also((app) => {
