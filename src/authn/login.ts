@@ -15,13 +15,11 @@ function validateInput() {
                 errorMessage: 'Invalid userType.',
             },
             'params.username': {
-                exists: {bail: true},
                 isString: {bail: true},
                 notEmpty: {bail: true},
                 errorMessage: 'Invalid username.'
             },
             'params.password': {
-                exists: {bail: true},
                 isString: {bail: true},
                 notEmpty: {bail: true},
                 errorMessage: 'Invalid password.'
