@@ -6,20 +6,23 @@ import {Codes, sendErrorResponse} from "../response/error";
 export {validateBody, validateParams, auth};
 
 async function validateBody(request: any, response: any, next: any) {
-    await checkSchema({
+    const schema = {
         method: {
             isString: true,
             errorMessage: "Invalid method."
         }
-    }, ["body"]).run(request)
-    let validationError = validationResult(request).array()[0]
-    validationError ? sendErrorResponse(response, Codes.InvalidMethod, validationError.msg) : next();
+    }
+    await validate(request, response, next, schema, Codes.InvalidMethod)
 }
 
 async function validateParams(request: any, response: any, next: any) {
-    await checkSchema(methods[request.body.method as Method].schema, ["body"]).run(request)
+    await validate(request, response, next, methods[request.body.method as Method].schema, Codes.Auth.InputValidationError)
+}
+
+async function validate(request: any, response: any, next: any, schema: Schema, errorCode: string) {
+    await checkSchema(schema, ["body"]).run(request)
     let validationError = validationResult(request).array()[0]
-    validationError ? sendErrorResponse(response, Codes.Auth.InputValidationError, validationError.msg) : next();
+    validationError ? sendErrorResponse(response, errorCode, validationError.msg) : next();
 }
 
 function auth(request: { body: { method: Method } }, response: any) {
