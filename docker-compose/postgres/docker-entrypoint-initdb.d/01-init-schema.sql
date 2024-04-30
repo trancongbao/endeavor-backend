@@ -70,7 +70,7 @@ CREATE TABLE LESSON
 (
     id          SERIAL PRIMARY KEY,                 -- Unique identifier for the lesson, auto-incremented
     course_id   INTEGER REFERENCES COURSE (id),     -- Foreign key referencing the course that the lesson belongs to
-    order_in_course     INTEGER      NOT NULL,      -- Order of the lesson within the course, cannot be null
+    position    INTEGER      NOT NULL,              -- Order of the lesson within the course, cannot be null
     title       VARCHAR(255) NOT NULL,              -- Title of the lesson, cannot be null
     audio       VARCHAR(255) NOT NULL,              -- Path to the audio file for the lesson, cannot be null
     summary     TEXT,                               -- Summary of the lesson
@@ -78,5 +78,5 @@ CREATE TABLE LESSON
     thumbnail   VARCHAR(255),                       -- Path to the thumbnail image for the lesson
     content     TEXT,                               -- Content of the lesson
     updated_at  timestamp default current_timestamp,-- Timestamp of the last update
-    CONSTRAINT unique_course_id_order UNIQUE (course_id, order_in_course)
+    CONSTRAINT unique_course_id_order UNIQUE (course_id, position)
 );
