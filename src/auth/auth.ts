@@ -4,7 +4,7 @@ import {Schema} from 'express-validator'
 import {Codes} from "../response/error";
 import {validate} from "../validation/validation";
 
-export {validateBody, validateParams, auth};
+export {methods, validateBody, validateParams, auth};
 
 async function validateBody(request: any, response: any, next: any) {
     const schema = {

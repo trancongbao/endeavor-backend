@@ -1,5 +1,7 @@
 import {checkSchema, Schema, validationResult} from 'express-validator'
 import {Codes, sendErrorResponse} from "../response/error";
+import {methods} from "../auth/auth";
+
 export {validate, validateBody};
 
 async function validate(request: any, response: any, next: any, schema: Schema, errorCode: string) {
@@ -9,11 +11,17 @@ async function validate(request: any, response: any, next: any, schema: Schema, 
 }
 
 async function validateBody(request: any, response: any, next: any) {
-    const baseUrl: Path = request.url
+    const paths: Record<Path, any> = {
+        "/auth": methods,
+        "/admin": methods,
+        "/teach": methods,
+        "/study": methods
+    }
+
     const schema = {
         method: {
             custom: {
-                options: (value: string) => paths[baseUrl].includes(value)
+                options: (value: string) => Object.keys(paths[request.url as Path]).includes(value)
             },
             errorMessage: "Invalid method."
         }
@@ -22,10 +30,3 @@ async function validateBody(request: any, response: any, next: any) {
 }
 
 type Path = "/auth" | "/admin" | "/teach" | "/study"
-
-const paths: Record<Path, string[]> = {
-    "/auth": ["login", "logout"],
-    "/admin": [],
-    "/teach": [],
-    "/study": []
-}
