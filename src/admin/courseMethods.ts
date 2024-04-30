@@ -48,6 +48,21 @@ function deleteCourse({id}: {
 
 function assignCourse(request: any, response: any) {
     const {teacher, course} = request.body.params
+    endeavorDB
+        .insertInto("teacher_course")
+        .values({
+            ...request.body.params,
+            status: CourseStatus.DRAFT
+        })
+        .returningAll()
+        .execute()
+        .then(course => {
+            sendSuccessResponse(response, course)
+        })
+        .catch(error => {
+            console.log(error)
+            sendErrorResponse(response, Codes.MethodInvocationError, error.message)
+        })
 }
 
 function publishCourse() {

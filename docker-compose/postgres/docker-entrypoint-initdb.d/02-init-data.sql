@@ -40,7 +40,7 @@ VALUES
     ('student5', 'password5', 'Smith', 'Jake', 'jake.smith@example.com', '+3322114455', '2000-01-30', '202 Walnut St, City, Country', 'https://example.com/avatar15.jpg', 3);
 
 -- Seed data for TEACHER_COURSE table
-INSERT INTO TEACHER_COURSE (course_id, username)
+INSERT INTO TEACHER_COURSE (course_id, teacher_username)
 VALUES
     (1, 'teacher1'),  -- Introduction to Programming taught by teacher1
     (2, 'teacher2'),  -- Web Development Fundamentals taught by teacher2

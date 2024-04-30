@@ -19,6 +19,7 @@ interface EndeavorDB {
     admin: Admin;
     teacher: Teacher;
     student: Student;
+    teacher_course: TeacherCourse;
     course: Course;
     lesson: Lesson;
     card: Card;
@@ -60,6 +61,11 @@ interface Teacher {
     date_of_birth: Date;
     address: string;
     avatar: string;
+}
+
+interface TeacherCourse {
+    teacher_username: string;
+    course_id: number
 }
 
 interface Course {
