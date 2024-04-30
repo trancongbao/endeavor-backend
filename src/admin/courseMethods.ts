@@ -8,7 +8,8 @@ import {Codes, sendErrorResponse} from "../response/error";
 export {paramsSchema, createCourse, readCourse, updateCourse, deleteCourse, assignCourse, publishCourse}
 
 function createCourse(request: any, response: any) {
-    endeavorDB.insertInto("course")
+    endeavorDB
+        .insertInto("course")
         .values({
             ...request.body.params,
             status: CourseStatus.DRAFT
