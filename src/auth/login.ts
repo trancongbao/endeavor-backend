@@ -42,7 +42,7 @@ function login(request: any, response: any) {
             } else {
                 return sendErrorResponse(
                     response,
-                    Codes.Authn.InvalidUserNameOrPassword,
+                    Codes.Auth.Login.InvalidUserNameOrPassword,
                     "Invalid username or password."
                 )
             }
@@ -50,7 +50,7 @@ function login(request: any, response: any) {
         .catch((error) => {
             return sendErrorResponse(
                 response,
-                Codes.Authn.UnexpectedError,
+                Codes.Auth.Login.UnexpectedError,
                 `An unexpected error occurred: ${error}`,
             )
         })

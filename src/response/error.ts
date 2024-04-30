@@ -11,10 +11,18 @@ function sendErrorResponse(response: any, code: string, message?: string, data?:
 }
 
 const Codes = {
-    Authn: {
-        InputValidationError: "Authn.InputValidationError",
-        InvalidUserNameOrPassword: "Authn.InvalidUserNameOrPassword",
-        UnexpectedError: "Authn.UnexpectedError",
+    Auth: {
+        InputValidationError: "Auth.InputValidationError",
+        Login: {
+            InvalidUserNameOrPassword: "Auth.Login.InvalidUserNameOrPassword",
+            UnexpectedError: "Auth.Login.UnexpectedError",
+        },
+        Logout: {
+            UnexpectedError: "Auth.Logout.UnexpectedError"
+        }
+    },
+    Admin: {
+        AdminPrivilegeMissing: "Admin.AdminPrivilegeMissing"
     },
     Authz: {
         AdminPrivilegeRequired: "Authz.AdminPrivilegeRequired",
