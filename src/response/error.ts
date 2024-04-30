@@ -11,8 +11,8 @@ function sendErrorResponse(response: any, code: string, message?: string, data?:
 }
 
 const Codes = {
-    MethodInvocationError: "MethodInvocationError",
-    InvalidMethod: "InvalidMethod",
+    RpcMethodInvocationError: "RpcMethodInvocationError",
+    InvalidRpcMethod: "InvalidRpcMethod",
     Auth: {
         InputValidationError: "Auth.InputValidationError",
         Login: {

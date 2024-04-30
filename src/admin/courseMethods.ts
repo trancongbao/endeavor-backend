@@ -1,11 +1,11 @@
 import "scope-extensions-js";
 import {Course, CourseStatus, endeavorDB} from "../databases/endeavorDB";
-import {Insertable, Selectable, Updateable} from "kysely";
+import {Updateable} from "kysely";
 import {Schema} from "express-validator";
 import {sendSuccessResponse} from "../response/success";
 import {Codes, sendErrorResponse} from "../response/error";
 
-export {courseRpcParamsSchema, createCourse, readCourse, updateCourse, deleteCourse, assignCourse, publishCourse}
+export {courseRpcParamsSchemas, createCourse, readCourse, updateCourse, deleteCourse, assignCourse, publishCourse}
 
 function createCourse(request: any, response: any) {
     endeavorDB
@@ -21,7 +21,7 @@ function createCourse(request: any, response: any) {
         })
         .catch(error => {
             console.log(error)
-            sendErrorResponse(response, Codes.MethodInvocationError, error.message)
+            sendErrorResponse(response, Codes.RpcMethodInvocationError, error.message)
         })
 }
 
@@ -57,16 +57,16 @@ function assignCourse(request: any, response: any) {
         })
         .catch(error => {
             console.log(error)
-            sendErrorResponse(response, Codes.MethodInvocationError, error.message)
+            sendErrorResponse(response, Codes.RpcMethodInvocationError, error.message)
         })
 }
 
 function publishCourse() {
 }
 
-type Method = "createCourse" | "readCourse" | "assignCourse";
+type RpcMethodNames = "createCourse" | "readCourse" | "assignCourse";
 
-const courseRpcParamsSchema: Record<Method, Schema> = {
+const courseRpcParamsSchemas: Record<RpcMethodNames, Schema> = {
     "createCourse": {
         'params.level': {
             isInt: {
