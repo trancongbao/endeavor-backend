@@ -1,6 +1,6 @@
 import {checkSchema, Schema, validationResult} from 'express-validator'
 import {Codes, sendErrorResponse} from "../response/error";
-import {methods} from "../auth/auth";
+import {methods as authMethods} from "../auth/auth";
 
 export {validate, validateBody};
 
@@ -12,10 +12,10 @@ async function validate(request: any, response: any, next: any, schema: Schema, 
 
 async function validateBody(request: any, response: any, next: any) {
     const paths: Record<Path, any> = {
-        "/auth": methods,
-        "/admin": methods,
-        "/teach": methods,
-        "/study": methods
+        "/auth": authMethods,
+        "/admin": authMethods,
+        "/teach": authMethods,
+        "/study": authMethods
     }
 
     const schema = {
