@@ -80,3 +80,36 @@ CREATE TABLE LESSON
     updated_at  timestamp default current_timestamp,-- Timestamp of the last update
     CONSTRAINT unique_course_id_order UNIQUE (course_id, position)
 );
+
+-- Table definition for CARD
+CREATE TABLE CARD
+(
+    id              INTEGER PRIMARY KEY,           -- Unique identifier for the card
+    lesson_id       INTEGER,                       -- Foreign key referencing lesson
+    front_text      TEXT,                          -- Text on the front side of the card
+    front_audio_uri TEXT,                          -- URI for audio associated with the front side
+    FOREIGN KEY (lesson_id) REFERENCES LESSON (id) -- Reference to lesson table
+);
+
+-- Table definition for WORD
+CREATE TABLE WORD
+(
+    id             INTEGER PRIMARY KEY, -- Unique identifier for the word
+    word           TEXT,                -- The word itself
+    definition     TEXT,                -- Definition of the word
+    phonetic       TEXT,                -- Phonetic pronunciation of the word
+    part_of_speech TEXT,                -- Part of speech of the word
+    audio_uri      TEXT,                -- URI for audio associated with the word
+    image_uri      TEXT                 -- URI for image associated with the word
+);
+
+-- Table definition for CARD_WORD
+CREATE TABLE CARD_WORD
+(
+    card_id    INTEGER,                         -- Foreign key referencing card
+    word_id    INTEGER,                         -- Foreign key referencing word
+    word_order INTEGER,                         -- Relative order of the word in the card
+    PRIMARY KEY (card_id, word_id),             -- Composite primary key
+    FOREIGN KEY (card_id) REFERENCES CARD (id), -- Reference to card table
+    FOREIGN KEY (word_id) REFERENCES WORD (id)  -- Reference to word table
+);
