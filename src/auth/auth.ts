@@ -1,6 +1,7 @@
 import {login} from "./login";
 import {logout} from "./logout";
 import {checkSchema, Schema, validationResult} from 'express-validator'
+import {JsonRpcErrorCodes, sendJsonRpcErrorResponse1} from "../error/error";
 
 export {validateInput, auth};
 
@@ -19,14 +20,7 @@ async function validateInput(request: any, response: any, next: any) {
     await checkSchema(schemas[request.body.method as Method], ["body"]).run(request)
     let validationError = validationResult(request).array()[0]
     if (validationError) {
-        //TODO: rpc response
-        console.log(validationError.msg)
-        response.json(
-            {
-                code: "your_error_code_here",
-                message: validationError.msg,
-            }
-        )
+        sendJsonRpcErrorResponse1(response, JsonRpcErrorCodes.Authn.InputValidationError, validationError.msg)
     } else {
         next()
     }
