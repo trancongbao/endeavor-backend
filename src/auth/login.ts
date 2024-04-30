@@ -1,7 +1,5 @@
-import {JSONRPC, JSONRPCID} from "json-rpc-2.0";
 import {endeavorDB, Admin, Student, Teacher} from "../databases/endeavorDB";
 import {Codes, sendErrorResponse} from "../response/error";
-import {validationResult} from 'express-validator'
 
 export {schema, login};
 
@@ -25,9 +23,9 @@ const schema = {
 }
 
 function login(request: any, response: any) {
-    let jsonRPCRequest = request.body
-    let userType = jsonRPCRequest.params.userType
-    queryUserFromDB(userType, jsonRPCRequest.params.username, jsonRPCRequest.params.password)
+    let body = request.body
+    let userType = body.params.userType
+    queryUserFromDB(userType, body.params.username, body.params.password)
         .then((users) => {
                 if (users.length) {
                     const {password, ...userInfo} = users[0]; // Remove the password field
@@ -38,16 +36,14 @@ function login(request: any, response: any) {
                     request.session.userInfo = userInfo
 
                     return response.json({
-                        jsonrpc: JSONRPC,
-                        id: jsonRPCRequest.id as JSONRPCID,
                         result: {
                             userType: userType,
                             userInfo: userInfo
-                        },
+                        }
                     })
                 } else {
                     return sendErrorResponse(
-                        jsonRPCRequest,
+                        body,
                         response,
                         Codes.Authn.InvalidUserNameOrPassword,
                         "Invalid username or password."
@@ -57,7 +53,7 @@ function login(request: any, response: any) {
         )
         .catch((error) => {
             return sendErrorResponse(
-                jsonRPCRequest,
+                body,
                 response,
                 Codes.Authn.UnexpectedError,
                 `An unexpected error occurred: ${error}`,
