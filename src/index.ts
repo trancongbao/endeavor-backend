@@ -19,7 +19,7 @@ app.use(express.json());
 // Session
 app.use(expressSession)
 
-// Validate body
+// Validate request body
 app.use(validateBody)
 
 // Authentication
