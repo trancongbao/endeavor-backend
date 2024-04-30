@@ -1,6 +1,5 @@
 import "scope-extensions-js";
 import express from "express";
-import {default as adminJsonRpcMethodHandlers} from "./admin/jsonRpcMethodHandlers";
 import {default as teachJsonRpcMethodHandlers} from "./teach/jsonRpcMethodHandlers";
 import {default as studyJsonRpcMethodHandlers} from "./study/jsonRpcMethodHandlers";
 import {JSONRPCServer} from "json-rpc-2.0";
