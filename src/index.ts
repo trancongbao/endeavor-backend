@@ -9,22 +9,17 @@ import {isTeacher} from "./teach/isTeacher";
 import {isStudent} from "./study/isStudent";
 import {auth, validateInput} from "./auth/auth";
 import {expressSession} from "./session/session";
-import {logout} from "./auth/logout";
 
 const app = express()
 
-// JSON-RPC is used so the json body must always be parsed
+// All apis use a json body (similar to json-rpc)
 app.use(express.json());
 
 // Session
 app.use(expressSession)
 
-// Json RPC
-//app.use(jsonRpc)
-
 // Authentication
 app.use("/auth", validateInput, auth);
-app.use("/logout", logout);
 
 app.use("/study", isStudent, jsonRpcRouter(studyJsonRpcMethodHandlers));
 app.use("/teach", isTeacher, jsonRpcRouter(teachJsonRpcMethodHandlers));
