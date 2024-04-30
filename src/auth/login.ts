@@ -23,9 +23,8 @@ const schema = {
 }
 
 function login(request: any, response: any) {
-    let body = request.body
-    let userType = body.params.userType
-    queryUserFromDB(userType, body.params.username, body.params.password)
+    const {userType, username, password} = request.body.params
+    queryUserFromDB(userType, username, password)
         .then((users) => {
                 if (users.length) {
                     const {password, ...userInfo} = users[0]; // Remove the password field
@@ -43,7 +42,6 @@ function login(request: any, response: any) {
                     })
                 } else {
                     return sendErrorResponse(
-                        body,
                         response,
                         Codes.Authn.InvalidUserNameOrPassword,
                         "Invalid username or password."
@@ -53,7 +51,6 @@ function login(request: any, response: any) {
         )
         .catch((error) => {
             return sendErrorResponse(
-                body,
                 response,
                 Codes.Authn.UnexpectedError,
                 `An unexpected error occurred: ${error}`,
