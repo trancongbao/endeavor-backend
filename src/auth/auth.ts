@@ -1,4 +1,4 @@
-import {schema as loginSchema, login} from "./login";
+import {paramsSchema as loginParamsSchema, login} from "./login";
 import {logout} from "./logout";
 import {checkSchema, Schema, validationResult} from 'express-validator'
 import {Codes, sendErrorResponse} from "../response/error";
@@ -18,7 +18,7 @@ function auth(request: { body: { method: Method } }, response: any) {
 const methods: Record<Method, { method: CallableFunction, schema: Schema }> = {
     "login": {
         method: login,
-        schema: loginSchema
+        schema: loginParamsSchema
     },
     "logout": {
         method: logout,

@@ -1,9 +1,9 @@
 import {endeavorDB, Admin, Student, Teacher} from "../databases/endeavorDB";
 import {Codes, sendErrorResponse} from "../response/error";
 
-export {schema, login};
+export {paramsSchema, login};
 
-const schema = {
+const paramsSchema = {
     'params.userType': {
         custom: {
             options: (value: string) => ["admin", "teacher", "student"].includes(value)
