@@ -16,12 +16,16 @@ async function validateInput(request: any, response: any, next: any) {
 }
 
 function auth(request: { body: { method: Method } }, response: any) {
-    methods[request.body.method](request, response)
+    methods[request.body.method].method(request, response)
 }
 
-const methods: Record<Method, CallableFunction> = {
-    "login": login,
-    "logout": logout
+const methods: Record<Method, any> = {
+    "login": {
+        method: login,
+    },
+    "logout": {
+        method: logout,
+    }
 }
 
 const schemas: Record<Method, Schema> = {
