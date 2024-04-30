@@ -1,32 +1,27 @@
 import {JSONRPC, JSONRPCID} from "json-rpc-2.0";
 import {endeavorDB, Admin, Student, Teacher} from "../databases/endeavorDB";
 import {Codes, sendErrorResponse} from "../response/error";
-import {checkSchema, validationResult} from 'express-validator'
+import {validationResult} from 'express-validator'
 
-export {validateParams, login};
+export {schema, login};
 
-function validateParams() {
-    return checkSchema(
-        {
-            'params.userType': {
-                custom: {
-                    options: value => ["admin", "teacher", "student"].includes(value)
-                },
-                errorMessage: 'Invalid userType.',
-            },
-            'params.username': {
-                isString: {bail: true},
-                notEmpty: {bail: true},
-                errorMessage: 'Invalid username.'
-            },
-            'params.password': {
-                isString: {bail: true},
-                notEmpty: {bail: true},
-                errorMessage: 'Invalid password.'
-            }
+const schema = {
+    'params.userType': {
+        custom: {
+            options: (value: string) => ["admin", "teacher", "student"].includes(value)
         },
-        ["body"]
-    )
+        errorMessage: 'Invalid userType.',
+    },
+    'params.username': {
+        isString: {bail: true},
+        notEmpty: {bail: true},
+        errorMessage: 'Invalid username.'
+    },
+    'params.password': {
+        isString: {bail: true},
+        notEmpty: {bail: true},
+        errorMessage: 'Invalid password.'
+    }
 }
 
 function login(request: any, response: any) {

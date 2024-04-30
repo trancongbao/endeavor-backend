@@ -21,7 +21,7 @@ const methods: Record<Method, { method: CallableFunction, schema: Schema }> = {
         schema: {
             'params.userType': {
                 custom: {
-                    options: (value: any) => ["admin", "teacher", "student"].includes(value)
+                    options: (value: string) => ["admin", "teacher", "student"].includes(value)
                 },
                 errorMessage: 'Invalid userType.',
             },
