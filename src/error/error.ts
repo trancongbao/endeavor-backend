@@ -1,6 +1,6 @@
-export {sendJsonRpcErrorResponse, Codes};
+export {sendErrorResponse, Codes};
 
-function sendJsonRpcErrorResponse(response: any, code: string, message?: string, data?: any) {
+function sendErrorResponse(response: any, code: string, message?: string, data?: any) {
     response.json({
         error: {
             code: code,

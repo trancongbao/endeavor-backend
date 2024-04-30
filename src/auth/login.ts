@@ -1,6 +1,6 @@
 import {JSONRPC, JSONRPCID} from "json-rpc-2.0";
 import {endeavorDB, Admin, Student, Teacher} from "../databases/endeavorDB";
-import {Codes, sendJsonRpcErrorResponse} from "../error/error";
+import {Codes, sendErrorResponse} from "../error/error";
 import {checkSchema, validationResult} from 'express-validator'
 
 export {validateParams, login};
@@ -33,7 +33,7 @@ function login(request: any, response: any) {
     let jsonRPCRequest = request.body
     let validationError = validationResult(request).array()[0]
     if (validationError) {
-        return sendJsonRpcErrorResponse(
+        return sendErrorResponse(
             response,
             Codes.Authn.InputValidationError,
             validationError.msg
@@ -60,7 +60,7 @@ function login(request: any, response: any) {
                         },
                     })
                 } else {
-                    return sendJsonRpcErrorResponse(
+                    return sendErrorResponse(
                         jsonRPCRequest,
                         response,
                         Codes.Authn.InvalidUserNameOrPassword,
@@ -70,7 +70,7 @@ function login(request: any, response: any) {
             }
         )
         .catch((error) => {
-            return sendJsonRpcErrorResponse(
+            return sendErrorResponse(
                 jsonRPCRequest,
                 response,
                 Codes.Authn.UnexpectedError,

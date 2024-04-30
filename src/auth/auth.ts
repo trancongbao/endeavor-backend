@@ -1,7 +1,7 @@
 import {login} from "./login";
 import {logout} from "./logout";
 import {checkSchema, Schema, validationResult} from 'express-validator'
-import {Codes, sendJsonRpcErrorResponse} from "../error/error";
+import {Codes, sendErrorResponse} from "../error/error";
 
 export {validateInput, auth};
 
@@ -9,7 +9,7 @@ async function validateInput(request: any, response: any, next: any) {
     await checkSchema(schemas[request.body.method as Method], ["body"]).run(request)
     let validationError = validationResult(request).array()[0]
     if (validationError) {
-        sendJsonRpcErrorResponse(response, Codes.Authn.InputValidationError, validationError.msg)
+        sendErrorResponse(response, Codes.Authn.InputValidationError, validationError.msg)
     } else {
         next()
     }
