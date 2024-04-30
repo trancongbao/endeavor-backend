@@ -59,7 +59,9 @@ CREATE TABLE COURSE
 
 CREATE TABLE TEACHER_COURSE
 (
-    course_id   INT          NOT NULL,              -- Id of the course
-    username    VARCHAR(255) NOT NULL,              -- Unique identifier of the teacher
-    CONSTRAINT unique_teacher_id_course_id UNIQUE (course_id, username)
+    course_id        INT          NOT NULL,         -- Id of the course
+    teacher_username VARCHAR(255) NOT NULL,         -- Unique identifier of the teacher
+    CONSTRAINT fk_course FOREIGN KEY (course_id) REFERENCES COURSE (id),
+    CONSTRAINT fk_teacher FOREIGN KEY (teacher_username) REFERENCES TEACHER (username),
+    CONSTRAINT unique_teacher_id_course_id UNIQUE (course_id, teacher_username)
 );
