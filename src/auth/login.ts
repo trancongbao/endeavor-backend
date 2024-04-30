@@ -26,15 +26,6 @@ const schema = {
 
 function login(request: any, response: any) {
     let jsonRPCRequest = request.body
-    let validationError = validationResult(request).array()[0]
-    if (validationError) {
-        return sendErrorResponse(
-            response,
-            Codes.Authn.InputValidationError,
-            validationError.msg
-        )
-    }
-
     let userType = jsonRPCRequest.params.userType
     queryUserFromDB(userType, jsonRPCRequest.params.username, jsonRPCRequest.params.password)
         .then((users) => {
