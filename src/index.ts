@@ -7,8 +7,9 @@ import {JSONRPCServer} from "json-rpc-2.0";
 import {isAdmin} from "./admin/isAdmin";
 import {isTeacher} from "./teach/isTeacher";
 import {isStudent} from "./study/isStudent";
-import {auth, validateBody, validateParams} from "./auth/auth";
+import {auth, validateParams} from "./auth/auth";
 import {expressSession} from "./session/session";
+import {validateBody} from "./validation/validation";
 
 const app = express()
 
@@ -18,12 +19,15 @@ app.use(express.json());
 // Session
 app.use(expressSession)
 
-// Authentication
-app.use("/auth", validateBody, validateParams, auth);
+// Session
+app.use(validateBody)
 
-app.use("/study", isStudent, jsonRpcRouter(studyJsonRpcMethodHandlers));
-app.use("/teach", isTeacher, jsonRpcRouter(teachJsonRpcMethodHandlers));
+// Authentication
+app.use("/auth", validateParams, auth);
+
 app.use("/admin", isAdmin, jsonRpcRouter(adminJsonRpcMethodHandlers));
+app.use("/teach", isTeacher, jsonRpcRouter(teachJsonRpcMethodHandlers));
+app.use("/study", isStudent, jsonRpcRouter(studyJsonRpcMethodHandlers));
 app.listen(3000, () => {
     console.log("Express server started on port 3000.");
 });
