@@ -1,11 +1,11 @@
 import "scope-extensions-js";
 import {Course, CourseStatus, endeavorDB} from "../databases/endeavorDB";
-import {Insertable, Selectable, Updateable} from "kysely";
+import {Updateable} from "kysely";
 import {Schema} from "express-validator";
 import {sendSuccessResponse} from "../response/success";
 import {Codes, sendErrorResponse} from "../response/error";
 
-export {paramsSchema, createCourse, readCourse, updateCourse, deleteCourse, assignCourse, publishCourse}
+export {courseRpcParamsSchemas, createCourse, readCourse, updateCourse, deleteCourse, assignCourse, publishCourse}
 
 function createCourse(request: any, response: any) {
     endeavorDB
@@ -21,7 +21,7 @@ function createCourse(request: any, response: any) {
         })
         .catch(error => {
             console.log(error)
-            sendErrorResponse(response, Codes.MethodInvocationError, error.message)
+            sendErrorResponse(response, Codes.RpcMethodInvocationError, error.message)
         })
 }
 
@@ -46,15 +46,27 @@ function deleteCourse({id}: {
     return endeavorDB.deleteFrom("course").where("id", "=", id).returningAll().executeTakeFirstOrThrow();
 }
 
-function assignCourse() {
+function assignCourse(request: any, response: any) {
+    endeavorDB
+        .insertInto("teacher_course")
+        .values(request.body.params)
+        .returningAll()
+        .execute()
+        .then(course => {
+            sendSuccessResponse(response, course)
+        })
+        .catch(error => {
+            console.log(error)
+            sendErrorResponse(response, Codes.RpcMethodInvocationError, error.message)
+        })
 }
 
 function publishCourse() {
 }
 
-type Method = "createCourse" | "readCourse";
+type RpcMethodNames = "createCourse" | "readCourse" | "assignCourse";
 
-const paramsSchema: Record<Method, Schema> = {
+const courseRpcParamsSchemas: Record<RpcMethodNames, Schema> = {
     "createCourse": {
         'params.level': {
             isInt: {
@@ -135,4 +147,5 @@ const paramsSchema: Record<Method, Schema> = {
             errorMessage: 'Invalid thumbnail. Thumbnail (if provided) must be a non-empty string.'
         }
     },
+    "assignCourse": {}
 };

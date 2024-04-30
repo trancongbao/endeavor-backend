@@ -1,28 +1,32 @@
-import {paramsSchema as createCourseParamsSchema, createCourse} from "./courseMethods";
+import {courseRpcParamsSchemas, createCourse, assignCourse} from "./courseMethods";
 import {paramsSchema as createTeacherParamsSchema, createTeacher} from "./teacherMethods";
 import {Schema} from 'express-validator'
 import {Codes} from "../response/error";
 import {validate} from "../validation/validation";
 
-export {methods, validateParams, admin};
+export {rpcMethods, validateParams, admin};
 
-const methods: Record<Method, { method: CallableFunction, schema: Schema }> = {
+const rpcMethods: Record<RpcMethodName, { rpcMethod: CallableFunction, rpcMethodParamsSchema: Schema }> = {
     "createTeacher": {
-        method: createTeacher,
-        schema: createTeacherParamsSchema
+        rpcMethod: createTeacher,
+        rpcMethodParamsSchema: createTeacherParamsSchema
     },
     "createCourse": {
-        method: createCourse,
-        schema: createCourseParamsSchema
+        rpcMethod: createCourse,
+        rpcMethodParamsSchema: courseRpcParamsSchemas["createCourse"]
+    },
+    "assignCourse": {
+        rpcMethod: assignCourse,
+        rpcMethodParamsSchema: courseRpcParamsSchemas["assignCourse"]
     }
 }
 
 async function validateParams(request: any, response: any, next: any) {
-    await validate(request, response, next, methods[request.body.method as Method].schema, Codes.Auth.InputValidationError)
+    await validate(request, response, next, rpcMethods[request.body.method as RpcMethodName].rpcMethodParamsSchema, Codes.Auth.InputValidationError)
 }
 
-function admin(request: { body: { method: Method } }, response: any) {
-    methods[request.body.method].method(request, response)
+function admin(request: { body: { method: RpcMethodName } }, response: any) {
+    rpcMethods[request.body.method].rpcMethod(request, response)
 }
 
-type Method = "createTeacher" | "createCourse";
+type RpcMethodName = "createTeacher" | "createCourse" | "assignCourse";

@@ -1,7 +1,7 @@
 import {checkSchema, Schema, validationResult} from 'express-validator'
 import {Codes, sendErrorResponse} from "../response/error";
 import {methods as authMethods} from "../auth/auth";
-import {methods as adminMethods} from "../admin/admin";
+import {rpcMethods as adminMethods} from "../admin/admin";
 
 export {validate, validateBody};
 
@@ -27,7 +27,7 @@ async function validateBody(request: any, response: any, next: any) {
             errorMessage: "Invalid method."
         }
     }
-    await validate(request, response, next, schema, Codes.InvalidMethod)
+    await validate(request, response, next, schema, Codes.InvalidRpcMethod)
 }
 
 type Path = "/auth" | "/admin" | "/teach" | "/study"

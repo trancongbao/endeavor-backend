@@ -38,3 +38,17 @@ VALUES
     ('student3', 'password3', 'Chen', 'Wei', 'wei.chen@example.com', '+6655443322', '1999-05-10', '789 Elm St, City, Country', 'https://example.com/avatar13.jpg', 1),
     ('student4', 'password4', 'Ali', 'Fatima', 'fatima.ali@example.com', '+5544332211', '1996-12-05', '101 Maple St, City, Country', 'https://example.com/avatar14.jpg', 2),
     ('student5', 'password5', 'Smith', 'Jake', 'jake.smith@example.com', '+3322114455', '2000-01-30', '202 Walnut St, City, Country', 'https://example.com/avatar15.jpg', 3);
+
+-- Seed data for TEACHER_COURSE table
+INSERT INTO TEACHER_COURSE (course_id, teacher_username)
+VALUES
+    (1, 'teacher1'),  -- Introduction to Programming taught by teacher1
+    (2, 'teacher2'),  -- Web Development Fundamentals taught by teacher2
+    (3, 'teacher3'),  -- Data Science Essentials taught by teacher3
+    (4, 'teacher4'),  -- Mobile App Development taught by teacher4
+    (5, 'teacher5'),  -- Database Management taught by teacher5
+    (6, 'teacher1'),  -- Machine Learning Fundamentals taught by teacher1
+    (7, 'teacher2'),  -- Graphic Design Basics taught by teacher2
+    (8, 'teacher3'),  -- Digital Marketing Fundamentals taught by teacher3
+    (9, 'teacher4'),  -- Blockchain Fundamentals taught by teacher4
+    (10, 'teacher5'); -- English Language Basics taught by teacher5
