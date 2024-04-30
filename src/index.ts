@@ -11,25 +11,24 @@ import {validateInput, login} from "./authn/login";
 import {expressSession} from "./session/session";
 import {logout} from "./authn/logout";
 
-express()
-    .also((app) => {
-        // JSON-RPC is used so the json body must always be parsed
-        app.use(express.json());
+const app = express()
 
-        // Session
-        app.use(expressSession)
+// JSON-RPC is used so the json body must always be parsed
+app.use(express.json());
 
-        // Authentication
-        app.use("/logout", logout);
-        app.use("/login", validateInput(), login);
+// Session
+app.use(expressSession)
 
-        app.use("/study", isStudent, jsonRpcRouter(studyJsonRpcMethodHandlers));
-        app.use("/teach", isTeacher, jsonRpcRouter(teachJsonRpcMethodHandlers));
-        app.use("/admin", isAdmin, jsonRpcRouter(adminJsonRpcMethodHandlers));
-    })
-    .listen(3000, () => {
-        console.log("Express server started on port 3000.");
-    });
+// Authentication
+app.use("/logout", logout);
+app.use("/login", validateInput(), login);
+
+app.use("/study", isStudent, jsonRpcRouter(studyJsonRpcMethodHandlers));
+app.use("/teach", isTeacher, jsonRpcRouter(teachJsonRpcMethodHandlers));
+app.use("/admin", isAdmin, jsonRpcRouter(adminJsonRpcMethodHandlers));
+app.listen(3000, () => {
+    console.log("Express server started on port 3000.");
+});
 
 function jsonRpcRouter(jsonRpcMethodHandlers: JSONRPCServer<void>) {
     return express.Router().let((router) => {
