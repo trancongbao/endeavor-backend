@@ -1,9 +1,9 @@
 import "scope-extensions-js";
 import {Course, CourseStatus, endeavorDB} from "../databases/endeavorDB";
 import {Insertable, Selectable, Updateable} from "kysely";
-import {checkSchema, Schema} from "express-validator";
+import {Schema} from "express-validator";
 
-export {createCourse, readCourse, updateCourse, deleteCourse, assignCourse, publishCourse}
+export {paramsSchema, createCourse, readCourse, updateCourse, deleteCourse, assignCourse, publishCourse}
 
 function createCourse(course: Insertable<Course>): Promise<Selectable<Course>> {
     return endeavorDB.insertInto("course")
@@ -44,7 +44,7 @@ function publishCourse() {
 
 type Method = "createCourse" | "readCourse";
 
-const validationSchemas: Record<Method, Schema> = {
+const paramsSchema: Record<Method, Schema> = {
     "createCourse": {
         'params.level': {
             isInt: {
