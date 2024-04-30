@@ -26,29 +26,28 @@ function login(request: any, response: any) {
     const {userType, username, password} = request.body.params
     queryUserFromDB(userType, username, password)
         .then((users) => {
-                if (users.length) {
-                    const {password, ...userInfo} = users[0]; // Remove the password field
-                    /**
-                     * Add authenticated session data
-                     */
-                    request.session.userType = userType
-                    request.session.userInfo = userInfo
+            if (users.length) {
+                const {password, ...userInfo} = users[0]; // Remove the password field
+                /**
+                 * Add authenticated session data
+                 */
+                request.session.userType = userType
+                request.session.userInfo = userInfo
 
-                    return response.json({
-                        result: {
-                            userType: userType,
-                            userInfo: userInfo
-                        }
-                    })
-                } else {
-                    return sendErrorResponse(
-                        response,
-                        Codes.Authn.InvalidUserNameOrPassword,
-                        "Invalid username or password."
-                    )
-                }
+                return response.json({
+                    result: {
+                        userType: userType,
+                        userInfo: userInfo
+                    }
+                })
+            } else {
+                return sendErrorResponse(
+                    response,
+                    Codes.Authn.InvalidUserNameOrPassword,
+                    "Invalid username or password."
+                )
             }
-        )
+        })
         .catch((error) => {
             return sendErrorResponse(
                 response,
