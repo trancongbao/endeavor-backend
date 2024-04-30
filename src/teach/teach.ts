@@ -2,15 +2,20 @@ import {courseRpcParamsSchemas, listAllCourses} from "./courseMethods";
 import {Schema} from 'express-validator'
 import {Codes} from "../response/error";
 import {validate} from "../validation/validation";
+import {createLesson, lessonRpcParamsSchemas} from "./lessonMethods";
 
 export {rpcMethods, validateParams, teach};
 
-type RpcMethodName = "listAllCourses";
+type RpcMethodName = "listAllCourses" | "createLesson";
 
 const rpcMethods: Record<RpcMethodName, { rpcMethod: CallableFunction, rpcMethodParamsSchema: Schema }> = {
     "listAllCourses": {
         rpcMethod: listAllCourses,
         rpcMethodParamsSchema: courseRpcParamsSchemas["listAllCourses"]
+    },
+    "createLesson": {
+        rpcMethod: createLesson,
+        rpcMethodParamsSchema: lessonRpcParamsSchemas["createLesson"]
     }
 }
 

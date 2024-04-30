@@ -52,3 +52,11 @@ VALUES
     (8, 'teacher3'),  -- Digital Marketing Fundamentals taught by teacher3
     (9, 'teacher4'),  -- Blockchain Fundamentals taught by teacher4
     (10, 'teacher5'); -- English Language Basics taught by teacher5
+
+-- Seed data for LESSON table
+INSERT INTO LESSON (course_id, position, title, audio, summary, description, thumbnail, content, updated_at)
+VALUES
+    (1, 1, 'Introduction to SQL', 'audio/intro_sql.mp3', 'This lesson introduces SQL basics', 'A brief overview of SQL fundamentals', 'thumbnails/sql_intro.png', 'Content of SQL introduction lesson', current_timestamp),
+    (1, 2, 'Advanced SQL Queries', 'audio/advanced_sql.mp3', 'This lesson covers advanced SQL topics', 'In-depth discussion on complex SQL queries', 'thumbnails/advanced_sql.png', 'Content of advanced SQL queries lesson', current_timestamp),
+    (2, 1, 'Introduction to Python', 'audio/intro_python.mp3', 'This lesson introduces Python basics', 'An overview of Python programming language', 'thumbnails/python_intro.png', 'Content of Python introduction lesson', current_timestamp),
+    (2, 2, 'Python Data Structures', 'audio/python_data_structures.mp3', 'This lesson covers Python data structures', 'Detailed explanation of Python data structures', 'thumbnails/python_data_structures.png', 'Content of Python data structures lesson', current_timestamp);

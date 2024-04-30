@@ -97,7 +97,7 @@ interface Lesson {
     description?: string;
     thumbnail?: string;
     content?: string;
-    updated_at: Date;
+    updated_at: ColumnType<Date, string | undefined, never>;
 }
 
 interface Card {
