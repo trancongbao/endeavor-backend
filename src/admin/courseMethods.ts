@@ -47,13 +47,9 @@ function deleteCourse({id}: {
 }
 
 function assignCourse(request: any, response: any) {
-    const {teacher_userame, course_id} = request.body.params
     endeavorDB
         .insertInto("teacher_course")
-        .values({
-            teacher_username: teacher_userame,
-            course_id: course_id
-        })
+        .values(request.body.params)
         .returningAll()
         .execute()
         .then(course => {
