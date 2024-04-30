@@ -7,9 +7,9 @@ import {JSONRPCServer} from "json-rpc-2.0";
 import {isAdmin} from "./admin/isAdmin";
 import {isTeacher} from "./teach/isTeacher";
 import {isStudent} from "./study/isStudent";
-import {validateInput, login} from "./authn/login";
+import {auth} from "./auth/auth";
 import {expressSession} from "./session/session";
-import {logout} from "./authn/logout";
+import {logout} from "./auth/logout";
 
 const app = express()
 
@@ -19,9 +19,12 @@ app.use(express.json());
 // Session
 app.use(expressSession)
 
+// Json RPC
+//app.use(jsonRpc)
+
 // Authentication
+app.use("/auth", auth);
 app.use("/logout", logout);
-app.use("/login", validateInput(), login);
 
 app.use("/study", isStudent, jsonRpcRouter(studyJsonRpcMethodHandlers));
 app.use("/teach", isTeacher, jsonRpcRouter(teachJsonRpcMethodHandlers));
