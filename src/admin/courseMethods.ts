@@ -46,7 +46,8 @@ function deleteCourse({id}: {
     return endeavorDB.deleteFrom("course").where("id", "=", id).returningAll().executeTakeFirstOrThrow();
 }
 
-function assignCourse() {
+function assignCourse(request: any, response: any) {
+    const {teacher, course} = request.body.params
 }
 
 function publishCourse() {
