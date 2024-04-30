@@ -4,25 +4,7 @@ import {Schema} from 'express-validator'
 import {Codes} from "../response/error";
 import {validate} from "../validation/validation";
 
-export {methods, validateBody, validateParams, auth};
-
-async function validateBody(request: any, response: any, next: any) {
-    const schema = {
-        method: {
-            isString: true,
-            errorMessage: "Invalid method."
-        }
-    }
-    await validate(request, response, next, schema, Codes.InvalidMethod)
-}
-
-async function validateParams(request: any, response: any, next: any) {
-    await validate(request, response, next, methods[request.body.method as Method].schema, Codes.Auth.InputValidationError)
-}
-
-function auth(request: { body: { method: Method } }, response: any) {
-    methods[request.body.method].method(request, response)
-}
+export {methods, validateParams, auth};
 
 const methods: Record<Method, { method: CallableFunction, schema: Schema }> = {
     "login": {
@@ -33,6 +15,14 @@ const methods: Record<Method, { method: CallableFunction, schema: Schema }> = {
         method: logout,
         schema: logoutParamsSchema
     }
+}
+
+async function validateParams(request: any, response: any, next: any) {
+    await validate(request, response, next, methods[request.body.method as Method].schema, Codes.Auth.InputValidationError)
+}
+
+function auth(request: { body: { method: Method } }, response: any) {
+    methods[request.body.method].method(request, response)
 }
 
 type Method = "login" | "logout";
