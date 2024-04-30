@@ -15,12 +15,31 @@ function auth(request: { body: { method: Method } }, response: any) {
     methods[request.body.method].method(request, response)
 }
 
-const methods: Record<Method, any> = {
+const methods: Record<Method, { method: CallableFunction, schema: Schema }> = {
     "login": {
         method: login,
+        schema: {
+            'params.userType': {
+                custom: {
+                    options: (value: any) => ["admin", "teacher", "student"].includes(value)
+                },
+                errorMessage: 'Invalid userType.',
+            },
+            'params.username': {
+                isString: {bail: true},
+                notEmpty: {bail: true},
+                errorMessage: 'Invalid username.'
+            },
+            'params.password': {
+                isString: {bail: true},
+                notEmpty: {bail: true},
+                errorMessage: 'Invalid password.'
+            }
+        }
     },
     "logout": {
         method: logout,
+        schema: {}
     }
 }
 
