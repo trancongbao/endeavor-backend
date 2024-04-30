@@ -11,7 +11,7 @@ function isStudent(request: any, response: any, next: any): void {
     } else {
         sendErrorResponse(
             response,
-            Codes.Authz.StudentPrivilegeRequired,
+            Codes.Study.StudentPrivilegeMissing,
             "Student privilege required."
         )
     }

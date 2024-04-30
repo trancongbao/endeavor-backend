@@ -24,9 +24,10 @@ const Codes = {
     Admin: {
         AdminPrivilegeMissing: "Admin.AdminPrivilegeMissing"
     },
-    Authz: {
-        AdminPrivilegeRequired: "Authz.AdminPrivilegeRequired",
-        TeacherPrivilegeRequired: "Authz.TeacherPrivilegeRequired",
-        StudentPrivilegeRequired: "Authz.StudentPrivilegeRequired",
+    Teach: {
+        TeacherPrivilegeMissing: "Teach.TeacherPrivilegeMissing"
+    },
+    Study: {
+        StudentPrivilegeMissing: "Study.StudentPrivilegeMissing"
     }
 }

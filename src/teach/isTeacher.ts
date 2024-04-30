@@ -11,7 +11,7 @@ function isTeacher(request: any, response: any, next: any): void {
     } else {
         sendErrorResponse(
             response,
-            Codes.Authz.TeacherPrivilegeRequired,
+            Codes.Teach.TeacherPrivilegeMissing,
             "Teacher privilege required."
         )
     }

@@ -11,7 +11,7 @@ function isAdmin(request: any, response: any, next: any): void {
     } else {
         sendErrorResponse(
             response,
-            Codes.Authz.AdminPrivilegeRequired,
+            Codes.Admin.AdminPrivilegeMissing,
             "Admin privilege required."
         )
     }
