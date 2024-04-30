@@ -5,17 +5,6 @@ import {JsonRpcErrorCodes, sendJsonRpcErrorResponse1} from "../error/error";
 
 export {validateInput, auth};
 
-export interface JsonRpcResponse {
-    result?: any;
-    error?: JsonRpcError
-}
-
-export interface JsonRpcError {
-    code: string;
-    message?: string;
-    data?: any;
-}
-
 async function validateInput(request: any, response: any, next: any) {
     await checkSchema(schemas[request.body.method as Method], ["body"]).run(request)
     let validationError = validationResult(request).array()[0]

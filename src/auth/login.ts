@@ -36,7 +36,7 @@ function login(request: any, response: any) {
         return sendJsonRpcErrorResponse(
             jsonRPCRequest,
             response,
-            JsonRpcErrorCodes.Authn.InputValidationError,
+            100,
             validationError.msg
         )
     }
