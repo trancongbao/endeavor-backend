@@ -1,14 +1,11 @@
 import {login} from "./login";
 import {logout} from "./logout";
 import {checkSchema, Schema, validationResult} from 'express-validator'
-import {ResultWithContext} from "express-validator/src/chain/context-runner";
 
 export {validateInput, auth};
 
 async function validateInput(request: any, response: any, next: any) {
-    const results: ResultWithContext[] = await checkSchema(schemas[request.body.method as Method], ["body"]).run(request)
-    console.log(results)
-
+    await checkSchema(schemas[request.body.method as Method], ["body"]).run(request)
     let validationError = validationResult(request).array()[0]
     if (validationError) {
         console.log(validationError.msg)
