@@ -1,4 +1,4 @@
-import {login} from "./login";
+import {schema as loginSchema, login} from "./login";
 import {logout} from "./logout";
 import {checkSchema, Schema, validationResult} from 'express-validator'
 import {Codes, sendErrorResponse} from "../response/error";
@@ -18,24 +18,7 @@ function auth(request: { body: { method: Method } }, response: any) {
 const methods: Record<Method, { method: CallableFunction, schema: Schema }> = {
     "login": {
         method: login,
-        schema: {
-            'params.userType': {
-                custom: {
-                    options: (value: string) => ["admin", "teacher", "student"].includes(value)
-                },
-                errorMessage: 'Invalid userType.',
-            },
-            'params.username': {
-                isString: {bail: true},
-                notEmpty: {bail: true},
-                errorMessage: 'Invalid username.'
-            },
-            'params.password': {
-                isString: {bail: true},
-                notEmpty: {bail: true},
-                errorMessage: 'Invalid password.'
-            }
-        }
+        schema: loginSchema
     },
     "logout": {
         method: logout,
