@@ -1,7 +1,8 @@
 import {checkSchema, Schema, validationResult} from 'express-validator'
 import {Codes, sendErrorResponse} from "../response/error";
 import {methods as authMethods} from "../auth/auth";
-import {rpcMethods as adminMethods} from "../admin/admin";
+import {rpcMethods as adminRpcMethods} from "../admin/admin";
+import {rpcMethods as teachRpcMethods} from "../teach/teach";
 
 export {validate, validateBody};
 
@@ -14,8 +15,8 @@ async function validate(request: any, response: any, next: any, schema: Schema, 
 async function validateBody(request: any, response: any, next: any) {
     const paths: Record<Path, any> = {
         "/auth": authMethods,
-        "/admin": adminMethods,
-        "/teach": authMethods,
+        "/admin": adminRpcMethods,
+        "/teach": teachRpcMethods,
         "/study": authMethods
     }
 
