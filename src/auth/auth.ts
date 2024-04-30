@@ -1,7 +1,7 @@
 import {login} from "./login";
 import {logout} from "./logout";
 import {checkSchema, Schema, validationResult} from 'express-validator'
-import {Codes, sendErrorResponse} from "../error/error";
+import {Codes, sendErrorResponse} from "../response/error";
 
 export {validateInput, auth};
 

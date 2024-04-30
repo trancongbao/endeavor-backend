@@ -1,7 +1,7 @@
 import {
     Codes,
     sendErrorResponse,
-} from "../error/error";
+} from "../response/error";
 
 export {isAdmin};
 

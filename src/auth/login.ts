@@ -1,6 +1,6 @@
 import {JSONRPC, JSONRPCID} from "json-rpc-2.0";
 import {endeavorDB, Admin, Student, Teacher} from "../databases/endeavorDB";
-import {Codes, sendErrorResponse} from "../error/error";
+import {Codes, sendErrorResponse} from "../response/error";
 import {checkSchema, validationResult} from 'express-validator'
 
 export {validateParams, login};
