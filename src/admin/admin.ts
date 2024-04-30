@@ -1,5 +1,5 @@
 import {paramsSchema as createCourseParamsSchema, createCourse} from "./courseMethods";
-import {paramsSchema as loginParamsSchema, createTeacher} from "./teacherMethods";
+import {paramsSchema as createTeacherParamsSchema, createTeacher} from "./teacherMethods";
 import {Schema} from 'express-validator'
 import {Codes} from "../response/error";
 import {validate} from "../validation/validation";
@@ -9,7 +9,7 @@ export {methods, validateParams, admin};
 const methods: Record<Method, { method: CallableFunction, schema: Schema }> = {
     "createTeacher": {
         method: createTeacher,
-        schema: loginParamsSchema
+        schema: createTeacherParamsSchema
     },
     "createCourse": {
         method: createCourse,
