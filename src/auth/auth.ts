@@ -1,11 +1,13 @@
 import {login} from "./login";
 import {logout} from "./logout";
-import {checkSchema, validationResult} from 'express-validator'
+import {checkSchema, Schema, validationResult} from 'express-validator'
 import {ResultWithContext} from "express-validator/src/chain/context-runner";
 
 export {validateInput, auth};
 
 async function validateInput(request: any, response: any, next: any) {
+    const method = request.body.method
+
     const results: ResultWithContext[] = await checkSchema(
         {
             'params.userType': {
@@ -27,16 +29,14 @@ async function validateInput(request: any, response: any, next: any) {
         },
         ["body"]
     ).run(request)
-
-    let validationError = validationResult(request).array()[0]
-
-    if (!results[0].isEmpty()) {
-
-    }
-
     console.log(results)
 
-    next()
+    let validationError = validationResult(request).array()[0]
+    if (validationError) {
+        console.log(validationError.msg)
+    } else {
+        next()
+    }
 }
 
 function auth(request: { body: { method: Method } }, response: any) {
@@ -46,6 +46,28 @@ function auth(request: { body: { method: Method } }, response: any) {
 const methods: Record<Method, CallableFunction> = {
     "login": login,
     "logout": logout
+}
+
+const schemas: Record<Method, Schema> = {
+    "login": {
+        'params.userType': {
+            custom: {
+                options: value => ["admin", "teacher", "student"].includes(value)
+            },
+            errorMessage: 'Invalid userType.',
+        },
+        'params.username': {
+            isString: {bail: true},
+            notEmpty: {bail: true},
+            errorMessage: 'Invalid username.'
+        },
+        'params.password': {
+            isString: {bail: true},
+            notEmpty: {bail: true},
+            errorMessage: 'Invalid password.'
+        }
+    },
+    "logout": {}
 }
 
 type Method = "login" | "logout";
