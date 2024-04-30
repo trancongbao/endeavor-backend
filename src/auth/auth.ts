@@ -3,7 +3,7 @@ import {paramsSchema as logoutParamsSchema, logout} from "./logout";
 import {checkSchema, Schema, validationResult} from 'express-validator'
 import {Codes, sendErrorResponse} from "../response/error";
 
-export {validateBody, validateInput, auth};
+export {validateBody, validateParams, auth};
 
 async function validateBody(request: any, response: any, next: any) {
     await checkSchema({
@@ -16,7 +16,7 @@ async function validateBody(request: any, response: any, next: any) {
     validationError ? sendErrorResponse(response, Codes.InvalidMethod, validationError.msg) : next();
 }
 
-async function validateInput(request: any, response: any, next: any) {
+async function validateParams(request: any, response: any, next: any) {
     await checkSchema(methods[request.body.method as Method].schema, ["body"]).run(request)
     let validationError = validationResult(request).array()[0]
     validationError ? sendErrorResponse(response, Codes.Auth.InputValidationError, validationError.msg) : next();
