@@ -1,5 +1,5 @@
 import {
-    JsonRpcErrorCodes,
+    Codes,
     sendJsonRpcErrorResponse,
 } from "../error/error";
 
@@ -12,7 +12,7 @@ function isAdmin(request: any, response: any, next: any): void {
         sendJsonRpcErrorResponse(
             request.body,
             response,
-            JsonRpcErrorCodes.Authz.AdminPrivilegeRequired,
+            Codes.Authz.AdminPrivilegeRequired,
             "Admin privilege required."
         )
     }

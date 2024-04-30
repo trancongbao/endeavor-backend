@@ -1,5 +1,5 @@
 import {
-    JsonRpcErrorCodes,
+    Codes,
     sendJsonRpcErrorResponse,
 } from "../error/error";
 
@@ -12,7 +12,7 @@ function isStudent(request: any, response: any, next: any): void {
         sendJsonRpcErrorResponse(
             request.body,
             response,
-            JsonRpcErrorCodes.Authz.StudentPrivilegeRequired,
+            Codes.Authz.StudentPrivilegeRequired,
             "Student privilege required."
         )
     }

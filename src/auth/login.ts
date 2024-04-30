@@ -1,6 +1,6 @@
 import {JSONRPC, JSONRPCID} from "json-rpc-2.0";
 import {endeavorDB, Admin, Student, Teacher} from "../databases/endeavorDB";
-import {JsonRpcErrorCodes, sendJsonRpcErrorResponse} from "../error/error";
+import {Codes, sendJsonRpcErrorResponse} from "../error/error";
 import {checkSchema, validationResult} from 'express-validator'
 
 export {validateInput, login};
@@ -64,7 +64,7 @@ function login(request: any, response: any) {
                     return sendJsonRpcErrorResponse(
                         jsonRPCRequest,
                         response,
-                        JsonRpcErrorCodes.Authn.InvalidUserNameOrPassword,
+                        Codes.Authn.InvalidUserNameOrPassword,
                         "Invalid username or password."
                     )
                 }
@@ -74,7 +74,7 @@ function login(request: any, response: any) {
             return sendJsonRpcErrorResponse(
                 jsonRPCRequest,
                 response,
-                JsonRpcErrorCodes.Authn.UnexpectedError,
+                Codes.Authn.UnexpectedError,
                 `An unexpected error occurred: ${error}`,
             )
         })

@@ -1,6 +1,6 @@
 import {createJSONRPCErrorResponse} from "json-rpc-2.0";
 
-export {sendJsonRpcErrorResponse, JsonRpcErrorCodes, sendJsonRpcErrorResponse1};
+export {sendJsonRpcErrorResponse, Codes, sendJsonRpcErrorResponse1};
 
 function sendJsonRpcErrorResponse(jsonRPCRequest: any, response: any, code: number, message: string, data?: any) {
     response.json(createJSONRPCErrorResponse(jsonRPCRequest.id, code, message, data !== undefined ? data : jsonRPCRequest.params));
@@ -16,7 +16,7 @@ function sendJsonRpcErrorResponse1(response: any, code: string, message?: string
     })
 }
 
-const JsonRpcErrorCodes = {
+const Codes = {
     Authn: {
         InputValidationError: "Authn.InputValidationError",
         InvalidUserNameOrPassword: -33001,
