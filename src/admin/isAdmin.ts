@@ -1,7 +1,7 @@
 import {
-    JsonRpcErrorCodes,
-    sendJsonRpcErrorResponse,
-} from "../error/error";
+    Codes,
+    sendErrorResponse,
+} from "../response/error";
 
 export {isAdmin};
 
@@ -9,10 +9,9 @@ function isAdmin(request: any, response: any, next: any): void {
     if (request.session.userType == "admin") {
         next();
     } else {
-        sendJsonRpcErrorResponse(
-            request.body,
+        sendErrorResponse(
             response,
-            JsonRpcErrorCodes.Authz.AdminPrivilegeRequired,
+            Codes.Admin.AdminPrivilegeMissing,
             "Admin privilege required."
         )
     }

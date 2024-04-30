@@ -2,7 +2,7 @@
     "clientName": "Thunder Client",
     "collectionName": "endeavor",
     "collectionId": "03abc8a1-d450-473a-9521-7a47847bfdc9",
-    "dateExported": "2024-04-29T04:48:39.846Z",
+    "dateExported": "2024-04-30T07:57:16.578Z",
     "version": "1.2",
     "folders": [
         {
@@ -21,7 +21,7 @@
         },
         {
             "_id": "658310a2-dc80-4691-9b17-9ed5fe6b7bf9",
-            "name": "auth",
+            "name": "/auth",
             "containerId": "",
             "created": "2024-04-28T03:45:01.344Z",
             "sortNum": 30000
@@ -63,7 +63,7 @@
             "method": "POST",
             "sortNum": 20000,
             "created": "2024-04-28T03:45:01.343Z",
-            "modified": "2024-04-28T08:06:32.669Z",
+            "modified": "2024-04-30T03:29:23.034Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -76,7 +76,7 @@
             ],
             "body": {
                 "type": "json",
-                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"createCourse\",\n    \"params\": {\n        \"password\": \"password\",\n        \"surname\": \"surname\",\n        \"given_name\": \"given_name\",\n        \"email\": \"email\",\n        \"phone\": \"phone\",\n        \"date_of_birth\": \"01/01/2000\",\n        \"address\": \"address\",\n        \"avatar\": \"avatar\"\n    },\n    \"id\": 1\n}",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"createCourse\",\n    \"params\": {\n        \"title\": \"title4\",\n        \"level\": 1,\n        \"summary\": \"summary\",\n        \"description\": \"description\",\n        \"thumbnail\": \"thumbnail\"\n    },\n    \"id\": 1\n}",
                 "form": []
             }
         },
@@ -211,12 +211,12 @@
             "_id": "8b7f4020-c274-4ec4-a383-8422aa8043e6",
             "colId": "03abc8a1-d450-473a-9521-7a47847bfdc9",
             "containerId": "658310a2-dc80-4691-9b17-9ed5fe6b7bf9",
-            "name": "/login ADMIN",
-            "url": "http://localhost:3000/login",
+            "name": "login admin",
+            "url": "http://localhost:3000/auth",
             "method": "POST",
             "sortNum": 80000,
             "created": "2024-04-28T03:45:01.349Z",
-            "modified": "2024-04-28T03:45:01.349Z",
+            "modified": "2024-04-30T07:42:41.960Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -225,7 +225,7 @@
             ],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"login\",\n  \"params\": {\n    \"userType\": \"admin\", \n    \"username\": \"admin1\", \n    \"password\": \"password1\" \n  },\n  \"id\": 1\n}",
+                "raw": "{\n  \"id\": 1,\n  \"method\": \"login\",\n  \"params\": {\n    \"userType\": \"admin\",\n    \"username\": \"admin1\",\n    \"password\": \"password1\"\n  }\n}",
                 "form": []
             }
         },
@@ -233,12 +233,12 @@
             "_id": "6cc13e1f-2a06-47e9-9361-124c0f37e55d",
             "colId": "03abc8a1-d450-473a-9521-7a47847bfdc9",
             "containerId": "658310a2-dc80-4691-9b17-9ed5fe6b7bf9",
-            "name": "/login TEACHER",
-            "url": "http://localhost:3000/login",
+            "name": "login teacher",
+            "url": "http://localhost:3000/auth",
             "method": "POST",
             "sortNum": 90000,
             "created": "2024-04-28T03:45:01.350Z",
-            "modified": "2024-04-28T09:13:47.132Z",
+            "modified": "2024-04-30T07:50:59.231Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -247,7 +247,7 @@
             ],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"login\",\n  \"params\": {\n    \"userType\": \"teacher\", \n    \"username\": \"teacher1\", \n    \"password\": \"password1\" \n  },\n  \"id\": 1\n}",
+                "raw": "{\n  \"method\": \"login\",\n  \"params\": {\n    \"userType\": \"teacher\", \n    \"username\": \"teacher1\", \n    \"password\": \"password1\" \n  }\n}",
                 "form": []
             }
         },
@@ -255,12 +255,12 @@
             "_id": "e22f8ebd-96c1-4eb4-8a07-b0341de1e285",
             "colId": "03abc8a1-d450-473a-9521-7a47847bfdc9",
             "containerId": "658310a2-dc80-4691-9b17-9ed5fe6b7bf9",
-            "name": "/login STUDENT",
-            "url": "http://localhost:3000/login",
+            "name": "login student",
+            "url": "http://localhost:3000/auth",
             "method": "POST",
             "sortNum": 100000,
             "created": "2024-04-28T03:45:01.351Z",
-            "modified": "2024-04-28T03:45:01.351Z",
+            "modified": "2024-04-30T07:50:53.678Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -269,7 +269,8 @@
             ],
             "body": {
                 "type": "json",
-                "raw": "{\r\n  \"jsonrpc\": \"2.0\",\r\n  \"method\": \"login\",\r\n  \"params\": {\r\n    \"userType\": \"student\", \r\n    \"username\": \"bao_tran\", \r\n    \"password\": \"password\" \r\n  },\r\n  \"id\": 1\r\n}"
+                "raw": "{\n  \"method\": \"login\",\n  \"params\": {\n    \"userType\": \"student\", \n    \"username\": \"bao_tran\", \n    \"password\": \"password\" \n  }\n}",
+                "form": []
             }
         },
         {
@@ -297,18 +298,23 @@
             "_id": "1acc2864-6e13-44dc-97a6-0abef88e5f06",
             "colId": "03abc8a1-d450-473a-9521-7a47847bfdc9",
             "containerId": "658310a2-dc80-4691-9b17-9ed5fe6b7bf9",
-            "name": "/logout",
-            "url": "http://localhost:3000/logout",
+            "name": "logout",
+            "url": "http://localhost:3000/auth",
             "method": "POST",
             "sortNum": 110000,
             "created": "2024-04-29T04:37:13.891Z",
-            "modified": "2024-04-29T04:37:55.648Z",
+            "modified": "2024-04-30T07:49:45.322Z",
             "headers": [
                 {
                     "name": "Content-Type",
                     "value": "application/json"
                 }
-            ]
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id\": 1,\n  \"method\": \"logout\",\n  \"params\": {}\n}",
+                "form": []
+            }
         },
         {
             "_id": "737b1cd0-c838-4506-91b7-36c944b30c41",
@@ -332,5 +338,5 @@
             }
         }
     ],
-    "ref": "CgWBUScMLFsidF4zufo-TZq4LWAk96KnafYR6J9j2RyLsOkjNftcuwqMu2rQVvDCzveWQFsZAFGnOvc95T2ldw"
+    "ref": "CgWBUScMLFsidF4zufo-TZD-I2p5nC_sw7NccXxWWJKjRvnxPp1Lr2480h_Y3mws-gqaNal27rjy1kF6eUEHmw"
 }
