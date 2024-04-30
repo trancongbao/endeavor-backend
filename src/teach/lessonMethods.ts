@@ -4,8 +4,11 @@ import {Lesson} from "../databases/endeavorDB";
 import {Updateable} from "kysely";
 import {sendSuccessResponse} from "../response/success";
 import {Codes, sendErrorResponse} from "../response/error";
+import {Schema} from "express-validator";
 
-export function createLesson(request: any, response: any) {
+export {lessonRpcParamsSchemas, createLesson}
+
+function createLesson(request: any, response: any) {
     return endeavorDB
         .insertInto("lesson")
         .values(request.body.params)
@@ -36,3 +39,9 @@ export function updateLesson(lesson: Updateable<Lesson>) {
 export function deleteLesson({id}: { id: number }) {
     return endeavorDB.deleteFrom("lesson").where("id", "=", id).returningAll().executeTakeFirstOrThrow();
 }
+
+type RpcMethodNames = "createLesson";
+
+const lessonRpcParamsSchemas: Record<RpcMethodNames, Schema> = {
+    "createLesson": {}
+};
