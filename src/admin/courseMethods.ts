@@ -2,17 +2,22 @@ import "scope-extensions-js";
 import {Course, CourseStatus, endeavorDB} from "../databases/endeavorDB";
 import {Insertable, Selectable, Updateable} from "kysely";
 import {Schema} from "express-validator";
+import {sendSuccessResponse} from "../response/success";
 
 export {paramsSchema, createCourse, readCourse, updateCourse, deleteCourse, assignCourse, publishCourse}
 
-function createCourse(course: Insertable<Course>): Promise<Selectable<Course>> {
-    return endeavorDB.insertInto("course")
-        .values({
-            ...course,
-            status: CourseStatus.DRAFT
-        })
-        .returningAll()
-        .executeTakeFirstOrThrow();
+// function createCourse(request: any, response: any): Promise<Selectable<Course>> {
+//     return endeavorDB.insertInto("course")
+//         .values({
+//             ...course,
+//             status: CourseStatus.DRAFT
+//         })
+//         .returningAll()
+//         .executeTakeFirstOrThrow();
+// }
+
+function createCourse(request: any, response: any) {
+    sendSuccessResponse(response, {})
 }
 
 function readCourse({id}: {

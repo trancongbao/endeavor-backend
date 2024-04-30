@@ -10,6 +10,7 @@ import {isStudent} from "./study/isStudent";
 import {auth, validateParams} from "./auth/auth";
 import {expressSession} from "./session/session";
 import {validateBody} from "./validation/validation";
+import {admin} from "./admin/admin";
 
 const app = express()
 
@@ -25,7 +26,7 @@ app.use(validateBody)
 // Authentication
 app.use("/auth", validateParams, auth);
 
-app.use("/admin", isAdmin, jsonRpcRouter(adminJsonRpcMethodHandlers));
+app.use("/admin", isAdmin, admin);
 app.use("/teach", isTeacher, jsonRpcRouter(teachJsonRpcMethodHandlers));
 app.use("/study", isStudent, jsonRpcRouter(studyJsonRpcMethodHandlers));
 app.listen(3000, () => {
