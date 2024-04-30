@@ -11,6 +11,7 @@ function sendErrorResponse(response: any, code: string, message?: string, data?:
 }
 
 const Codes = {
+    InvalidMethod: "InvalidMethod",
     Auth: {
         InputValidationError: "Auth.InputValidationError",
         Login: {

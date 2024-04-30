@@ -3,7 +3,18 @@ import {paramsSchema as logoutParamsSchema, logout} from "./logout";
 import {checkSchema, Schema, validationResult} from 'express-validator'
 import {Codes, sendErrorResponse} from "../response/error";
 
-export {validateInput, auth};
+export {validateBody, validateInput, auth};
+
+async function validateBody(request: any, response: any, next: any) {
+    await checkSchema({
+        method: {
+            isString: true,
+            errorMessage: "Invalid method."
+        }
+    }, ["body"]).run(request)
+    let validationError = validationResult(request).array()[0]
+    validationError ? sendErrorResponse(response, Codes.InvalidMethod, validationError.msg) : next();
+}
 
 async function validateInput(request: any, response: any, next: any) {
     await checkSchema(methods[request.body.method as Method].schema, ["body"]).run(request)
