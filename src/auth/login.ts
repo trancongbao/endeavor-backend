@@ -3,9 +3,9 @@ import {endeavorDB, Admin, Student, Teacher} from "../databases/endeavorDB";
 import {Codes, sendJsonRpcErrorResponse} from "../error/error";
 import {checkSchema, validationResult} from 'express-validator'
 
-export {validateInput, login};
+export {validateParams, login};
 
-function validateInput() {
+function validateParams() {
     return checkSchema(
         {
             'params.userType': {
@@ -34,9 +34,8 @@ function login(request: any, response: any) {
     let validationError = validationResult(request).array()[0]
     if (validationError) {
         return sendJsonRpcErrorResponse(
-            jsonRPCRequest,
             response,
-            100,
+            Codes.Authn.InputValidationError,
             validationError.msg
         )
     }

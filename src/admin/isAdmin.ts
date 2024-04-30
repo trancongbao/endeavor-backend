@@ -10,7 +10,6 @@ function isAdmin(request: any, response: any, next: any): void {
         next();
     } else {
         sendJsonRpcErrorResponse(
-            request.body,
             response,
             Codes.Authz.AdminPrivilegeRequired,
             "Admin privilege required."

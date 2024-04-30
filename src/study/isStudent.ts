@@ -10,7 +10,6 @@ function isStudent(request: any, response: any, next: any): void {
         next();
     } else {
         sendJsonRpcErrorResponse(
-            request.body,
             response,
             Codes.Authz.StudentPrivilegeRequired,
             "Student privilege required."
