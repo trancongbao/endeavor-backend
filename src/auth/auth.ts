@@ -1,7 +1,8 @@
 import {paramsSchema as loginParamsSchema, login} from "./login";
 import {paramsSchema as logoutParamsSchema, logout} from "./logout";
-import {checkSchema, Schema, validationResult} from 'express-validator'
-import {Codes, sendErrorResponse} from "../response/error";
+import {Schema} from 'express-validator'
+import {Codes} from "../response/error";
+import {validate} from "../validation/validation";
 
 export {validateBody, validateParams, auth};
 
@@ -17,12 +18,6 @@ async function validateBody(request: any, response: any, next: any) {
 
 async function validateParams(request: any, response: any, next: any) {
     await validate(request, response, next, methods[request.body.method as Method].schema, Codes.Auth.InputValidationError)
-}
-
-async function validate(request: any, response: any, next: any, schema: Schema, errorCode: string) {
-    await checkSchema(schema, ["body"]).run(request)
-    let validationError = validationResult(request).array()[0]
-    validationError ? sendErrorResponse(response, errorCode, validationError.msg) : next();
 }
 
 function auth(request: { body: { method: Method } }, response: any) {
