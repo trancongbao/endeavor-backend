@@ -5,7 +5,7 @@ import {Schema} from "express-validator";
 import {sendSuccessResponse} from "../response/success";
 import {Codes, sendErrorResponse} from "../response/error";
 
-export {paramsSchema, createCourse, readCourse, updateCourse, deleteCourse, assignCourse, publishCourse}
+export {courseRpcParamsSchema, createCourse, readCourse, updateCourse, deleteCourse, assignCourse, publishCourse}
 
 function createCourse(request: any, response: any) {
     endeavorDB
@@ -47,12 +47,12 @@ function deleteCourse({id}: {
 }
 
 function assignCourse(request: any, response: any) {
-    const {teacher, course} = request.body.params
+    const {teacher_userame, course_id} = request.body.params
     endeavorDB
         .insertInto("teacher_course")
         .values({
-            ...request.body.params,
-            status: CourseStatus.DRAFT
+            teacher_username: teacher_userame,
+            course_id: course_id
         })
         .returningAll()
         .execute()
@@ -68,9 +68,9 @@ function assignCourse(request: any, response: any) {
 function publishCourse() {
 }
 
-type Method = "createCourse" | "readCourse";
+type Method = "createCourse" | "readCourse" | "assignCourse";
 
-const paramsSchema: Record<Method, Schema> = {
+const courseRpcParamsSchema: Record<Method, Schema> = {
     "createCourse": {
         'params.level': {
             isInt: {
@@ -151,4 +151,5 @@ const paramsSchema: Record<Method, Schema> = {
             errorMessage: 'Invalid thumbnail. Thumbnail (if provided) must be a non-empty string.'
         }
     },
+    "assignCourse": {}
 };

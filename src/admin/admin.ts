@@ -1,4 +1,4 @@
-import {paramsSchema as createCourseParamsSchema, createCourse} from "./courseMethods";
+import {courseRpcParamsSchema, createCourse, assignCourse} from "./courseMethods";
 import {paramsSchema as createTeacherParamsSchema, createTeacher} from "./teacherMethods";
 import {Schema} from 'express-validator'
 import {Codes} from "../response/error";
@@ -13,7 +13,11 @@ const methods: Record<Method, { method: CallableFunction, schema: Schema }> = {
     },
     "createCourse": {
         method: createCourse,
-        schema: createCourseParamsSchema
+        schema: courseRpcParamsSchema["createCourse"]
+    },
+    "assignCourse": {
+        method: assignCourse,
+        schema: courseRpcParamsSchema["assignCourse"]
     }
 }
 
@@ -25,4 +29,4 @@ function admin(request: { body: { method: Method } }, response: any) {
     methods[request.body.method].method(request, response)
 }
 
-type Method = "createTeacher" | "createCourse";
+type Method = "createTeacher" | "createCourse" | "assignCourse";
