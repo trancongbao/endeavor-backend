@@ -1,5 +1,6 @@
 import {endeavorDB, Admin, Student, Teacher} from "../databases/endeavorDB";
 import {Codes, sendErrorResponse} from "../response/error";
+import {sendSuccessResponse} from "../response/success";
 
 export {paramsSchema, login};
 
@@ -34,11 +35,9 @@ function login(request: any, response: any) {
                 request.session.userType = userType
                 request.session.userInfo = userInfo
 
-                return response.json({
-                    result: {
-                        userType: userType,
-                        userInfo: userInfo
-                    }
+                sendSuccessResponse(response,{
+                    userType: userType,
+                    userInfo: userInfo
                 })
             } else {
                 return sendErrorResponse(

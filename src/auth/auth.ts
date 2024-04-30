@@ -1,5 +1,5 @@
 import {paramsSchema as loginParamsSchema, login} from "./login";
-import {logout} from "./logout";
+import {paramsSchema as logoutParamsSchema, logout} from "./logout";
 import {checkSchema, Schema, validationResult} from 'express-validator'
 import {Codes, sendErrorResponse} from "../response/error";
 
@@ -22,7 +22,7 @@ const methods: Record<Method, { method: CallableFunction, schema: Schema }> = {
     },
     "logout": {
         method: logout,
-        schema: {}
+        schema: logoutParamsSchema
     }
 }
 

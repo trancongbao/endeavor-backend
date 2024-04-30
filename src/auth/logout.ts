@@ -1,4 +1,6 @@
-export {logout}
+export {paramsSchema, logout}
+
+const paramsSchema = {}
 
 function logout(req: any, res: any) {
     req.session.destroy((err: any) => {
