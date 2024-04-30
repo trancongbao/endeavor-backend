@@ -2,7 +2,7 @@
     "clientName": "Thunder Client",
     "collectionName": "endeavor",
     "collectionId": "03abc8a1-d450-473a-9521-7a47847bfdc9",
-    "dateExported": "2024-04-30T16:19:21.424Z",
+    "dateExported": "2024-04-30T16:23:36.893Z",
     "version": "1.2",
     "folders": [
         {
@@ -264,7 +264,7 @@
             "method": "POST",
             "sortNum": 80000,
             "created": "2024-04-30T16:18:01.586Z",
-            "modified": "2024-04-30T16:18:01.586Z",
+            "modified": "2024-04-30T16:20:39.812Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -277,7 +277,8 @@
             ],
             "body": {
                 "type": "json",
-                "raw": "{\r\n    \"jsonrpc\": \"2.0\",\r\n    \"method\": \"createWord\",\r\n    \"params\": {\r\n        \"password\": \"password\",\r\n        \"surname\": \"surname\",\r\n        \"given_name\": \"given_name\",\r\n        \"email\": \"email\",\r\n        \"phone\": \"phone\",\r\n        \"date_of_birth\": \"01/01/2000\",\r\n        \"address\": \"address\",\r\n        \"avatar\": \"avatar\"\r\n    },\r\n    \"id\": 1\r\n}"
+                "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"listAllCourses\",\n  \"params\": {},\n  \"id\": 1\n}",
+                "form": []
             }
         },
         {
@@ -347,5 +348,5 @@
             }
         }
     ],
-    "ref": "CgWBUScMLFsidF4zufo-TZD-I2p5nC_sw7NccXxWWJIH-c9AcJUkUrMhYg39_78eQH2waGouYTs3LOO8ibZi6g"
+    "ref": "CgWBUScMLFsidF4zufo-TZD-I2p5nC_sw7NccXxWWJJanMGEbBUoYl4kRh6kahFDIGUiVXTLHH92qIVtjfuMoA"
 }
