@@ -3,6 +3,7 @@ import {Course, CourseStatus, endeavorDB} from "../databases/endeavorDB";
 import {Insertable, Selectable, Updateable} from "kysely";
 import {Schema} from "express-validator";
 import {sendSuccessResponse} from "../response/success";
+import {Codes, sendErrorResponse} from "../response/error";
 
 export {paramsSchema, createCourse, readCourse, updateCourse, deleteCourse, assignCourse, publishCourse}
 
@@ -16,6 +17,10 @@ function createCourse(request: any, response: any) {
         .execute()
         .then(course => {
             sendSuccessResponse(response, course)
+        })
+        .catch(error => {
+            console.log(error)
+            sendErrorResponse(response, Codes.MethodInvocationError, error.message)
         })
 }
 
