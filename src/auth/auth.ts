@@ -6,29 +6,9 @@ import {ResultWithContext} from "express-validator/src/chain/context-runner";
 export {validateInput, auth};
 
 async function validateInput(request: any, response: any, next: any) {
-    const method = request.body.method
+    const method = request.body.method as Method
 
-    const results: ResultWithContext[] = await checkSchema(
-        {
-            'params.userType': {
-                custom: {
-                    options: value => ["admin", "teacher", "student"].includes(value)
-                },
-                errorMessage: 'Invalid userType.',
-            },
-            'params.username': {
-                isString: {bail: true},
-                notEmpty: {bail: true},
-                errorMessage: 'Invalid username.'
-            },
-            'params.password': {
-                isString: {bail: true},
-                notEmpty: {bail: true},
-                errorMessage: 'Invalid password.'
-            }
-        },
-        ["body"]
-    ).run(request)
+    const results: ResultWithContext[] = await checkSchema(schemas[method], ["body"]).run(request)
     console.log(results)
 
     let validationError = validationResult(request).array()[0]
