@@ -47,11 +47,12 @@ CREATE TYPE COURSE_STATUS AS ENUM ('DRAFT', 'IN_REVIEW', 'APPROVED', 'PUBLISHED'
 CREATE TABLE COURSE
 (
     id          SERIAL PRIMARY KEY,                 -- Unique identifier for the course
-    status      COURSE_STATUS,                      -- Status of the course
-    title       VARCHAR(255) NOT NULL,              -- Title of the course
     level       INT          NOT NULL,              -- Level of the course
+    title       VARCHAR(255) NOT NULL,              -- Title of the course
+    status      COURSE_STATUS,                      -- Status of the course
     summary     VARCHAR(255),                       -- Summary of the course
     description TEXT,                               -- Detailed description of the course
     thumbnail   VARCHAR(255),                       -- URL/path to the course thumbnail
-    updated_at  timestamp default current_timestamp -- Timestamp of the last update
+    updated_at  timestamp default current_timestamp,-- Timestamp of the last update
+    CONSTRAINT unique_status_title_level UNIQUE (status, title, level)
 );
