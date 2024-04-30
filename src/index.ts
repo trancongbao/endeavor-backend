@@ -7,7 +7,7 @@ import {JSONRPCServer} from "json-rpc-2.0";
 import {isAdmin} from "./admin/isAdmin";
 import {isTeacher} from "./teach/isTeacher";
 import {isStudent} from "./study/isStudent";
-import {auth} from "./auth/auth";
+import {auth, validateInput} from "./auth/auth";
 import {expressSession} from "./session/session";
 import {logout} from "./auth/logout";
 
@@ -23,7 +23,7 @@ app.use(expressSession)
 //app.use(jsonRpc)
 
 // Authentication
-app.use("/auth", auth);
+app.use("/auth", validateInput, auth);
 app.use("/logout", logout);
 
 app.use("/study", isStudent, jsonRpcRouter(studyJsonRpcMethodHandlers));
