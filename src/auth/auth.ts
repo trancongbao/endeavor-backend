@@ -8,11 +8,7 @@ export {validateInput, auth};
 async function validateInput(request: any, response: any, next: any) {
     await checkSchema(schemas[request.body.method as Method], ["body"]).run(request)
     let validationError = validationResult(request).array()[0]
-    if (validationError) {
-        sendErrorResponse(response, Codes.Authn.InputValidationError, validationError.msg)
-    } else {
-        next()
-    }
+    validationError ? sendErrorResponse(response, Codes.Authn.InputValidationError, validationError.msg) : next();
 }
 
 function auth(request: { body: { method: Method } }, response: any) {
