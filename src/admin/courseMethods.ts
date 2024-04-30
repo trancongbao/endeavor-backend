@@ -6,18 +6,17 @@ import {sendSuccessResponse} from "../response/success";
 
 export {paramsSchema, createCourse, readCourse, updateCourse, deleteCourse, assignCourse, publishCourse}
 
-// function createCourse(request: any, response: any): Promise<Selectable<Course>> {
-//     return endeavorDB.insertInto("course")
-//         .values({
-//             ...course,
-//             status: CourseStatus.DRAFT
-//         })
-//         .returningAll()
-//         .executeTakeFirstOrThrow();
-// }
-
 function createCourse(request: any, response: any) {
-    sendSuccessResponse(response, {})
+    endeavorDB.insertInto("course")
+        .values({
+            ...request.body.params,
+            status: CourseStatus.DRAFT
+        })
+        .returningAll()
+        .execute()
+        .then(course => {
+            sendSuccessResponse(response, course)
+        })
 }
 
 function readCourse({id}: {
