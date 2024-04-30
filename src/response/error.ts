@@ -11,6 +11,8 @@ function sendErrorResponse(response: any, code: string, message?: string, data?:
 }
 
 const Codes = {
+    GenericError: "GenericError",
+    InvalidMethod: "InvalidMethod",
     Auth: {
         InputValidationError: "Auth.InputValidationError",
         Login: {
