@@ -81,7 +81,7 @@ VALUES (1, 'teacher1'), -- Introduction to Programming taught by teacher1
 -- English Language Basics taught by teacher5
 
 -- Seed data for LESSON table
-INSERT INTO LESSON (course_id, position, title, audio, summary, description, thumbnail, content, updated_at)
+INSERT INTO LESSON (course_id, lesson_order, title, audio, summary, description, thumbnail, content, updated_at)
 VALUES (1, 1, 'Introduction to SQL', 'audio/intro_sql.mp3', 'This lesson introduces SQL basics',
         'A brief overview of SQL fundamentals', 'thumbnails/sql_intro.png', 'Content of SQL introduction lesson',
         current_timestamp),
