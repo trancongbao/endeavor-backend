@@ -24,6 +24,7 @@ interface EndeavorDB {
     lesson: Lesson;
     card: Card;
     word: Word;
+    card_word: CardWord
 }
 
 interface Admin {
@@ -116,4 +117,9 @@ interface Word {
     part_of_speech: string;
     audio_uri: string;
     image_uri: string;
+}
+
+interface CardWord {
+    card_id: number
+    word_id: number;
 }

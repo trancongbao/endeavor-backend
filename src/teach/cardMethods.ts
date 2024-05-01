@@ -6,7 +6,7 @@ import {Schema} from "express-validator";
 import {sendSuccessResponse} from "../response/success";
 import {Codes, sendErrorResponse} from "../response/error";
 
-export {cardRpcParamsSchemas, createCard}
+export {cardRpcParamsSchemas, createCard, addWordToCard}
 
 function createCard(request: any, response: any) {
     return endeavorDB
@@ -35,8 +35,24 @@ function deleteCard({id}: { id: number }) {
     return endeavorDB.deleteFrom("card").where("id", "=", id).returningAll().executeTakeFirstOrThrow();
 }
 
-type RpcMethodNames = "createCard";
+function addWordToCard(request: any, response: any) {
+    return endeavorDB
+        .insertInto("card_word")
+        .values(request.body.params)
+        .returningAll()
+        .execute()
+        .then(course => {
+            sendSuccessResponse(response, course)
+        })
+        .catch(error => {
+            console.log(error)
+            sendErrorResponse(response, Codes.RpcMethodInvocationError, error.message)
+        })
+}
+
+type RpcMethodNames = "createCard" | "addWordToCard";
 
 const cardRpcParamsSchemas: Record<RpcMethodNames, Schema> = {
-    "createCard": {}
+    "createCard": {},
+    "addWordToCard": {}
 };
