@@ -86,8 +86,8 @@ CREATE TABLE CARD
     lesson_id       INTEGER REFERENCES LESSON (id),     -- Foreign key referencing lesson
     card_order      INTEGER         NOT NULL,           -- Relative order of the word in the card
     front_text      TEXT            NOT NULL,           -- Text on the front side of the card
-    front_audio_uri TEXT                                -- URI for audio associated with the front side
-    CONSTRAINT unique_lesson_id_card_order UNIQUE (course_id, lesson_order)
+    front_audio_uri TEXT,                               -- URI for audio associated with the front side
+    CONSTRAINT unique_lesson_id_card_order UNIQUE (lesson_id, card_order)
 );
 
 -- Table definition for WORD
