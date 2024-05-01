@@ -2,11 +2,12 @@ import {courseRpcParamsSchemas, listAllCourses} from "./courseMethods";
 import {Schema} from 'express-validator'
 import {Codes} from "../response/error";
 import {validate} from "../validation/validation";
-import {createLesson, lessonRpcParamsSchemas} from "./lessonMethods";
+import {lessonRpcParamsSchemas, createLesson} from "./lessonMethods";
+import {wordRpcParamsSchemas, createWord} from "./wordMethods";
 
 export {rpcMethods, validateParams, teach};
 
-type RpcMethodName = "listAllCourses" | "createLesson";
+type RpcMethodName = "listAllCourses" | "createLesson" | "createWord";
 
 const rpcMethods: Record<RpcMethodName, { rpcMethod: CallableFunction, rpcMethodParamsSchema: Schema }> = {
     "listAllCourses": {
@@ -16,6 +17,10 @@ const rpcMethods: Record<RpcMethodName, { rpcMethod: CallableFunction, rpcMethod
     "createLesson": {
         rpcMethod: createLesson,
         rpcMethodParamsSchema: lessonRpcParamsSchemas["createLesson"]
+    },
+    "createWord": {
+        rpcMethod: createWord,
+        rpcMethodParamsSchema: wordRpcParamsSchemas["createWord"]
     }
 }
 
