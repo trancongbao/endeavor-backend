@@ -95,10 +95,10 @@ VALUES (1, 1, 'Introduction to SQL', 'audio/intro_sql.mp3', 'This lesson introdu
         'Content of Python data structures lesson', current_timestamp);
 
 -- Sample data for CARD table
-INSERT INTO CARD (id, lesson_id, front_text, front_audio_uri)
-VALUES (1, 1, 'Hello', 'audio/hello.mp3'),
-       (2, 1, 'Goodbye', 'audio/goodbye.mp3'),
-       (3, 2, 'Cat', 'audio/cat.mp3');
+INSERT INTO CARD (id, lesson_id, card_order, front_text, front_audio_uri)
+VALUES (1, 1, 1, 'Hello', 'audio/hello.mp3'),
+       (2, 1, 2, 'Goodbye', 'audio/goodbye.mp3'),
+       (3, 2, 1, 'Cat', 'audio/cat.mp3');
 
 -- Sample data for WORD table
 INSERT INTO WORD (id, word, definition, phonetic, part_of_speech, audio_uri, image_uri)
