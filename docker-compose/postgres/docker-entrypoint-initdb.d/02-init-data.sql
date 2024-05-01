@@ -77,8 +77,7 @@ VALUES (1, 'teacher1'), -- Introduction to Programming taught by teacher1
        (7, 'teacher2'), -- Graphic Design Basics taught by teacher2
        (8, 'teacher3'), -- Digital Marketing Fundamentals taught by teacher3
        (9, 'teacher4'), -- Blockchain Fundamentals taught by teacher4
-       (10, 'teacher5');
--- English Language Basics taught by teacher5
+       (10, 'teacher5');-- English Language Basics taught by teacher5
 
 -- Seed data for LESSON table
 INSERT INTO LESSON (course_id, lesson_order, title, audio, summary, description, thumbnail, content, updated_at)
