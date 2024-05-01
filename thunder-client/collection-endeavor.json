@@ -2,7 +2,7 @@
     "clientName": "Thunder Client",
     "collectionName": "endeavor",
     "collectionId": "03abc8a1-d450-473a-9521-7a47847bfdc9",
-    "dateExported": "2024-05-01T05:05:27.656Z",
+    "dateExported": "2024-05-01T07:46:53.123Z",
     "version": "1.2",
     "folders": [
         {
@@ -379,6 +379,32 @@
             }
         },
         {
+            "_id": "4c52d3d1-9daf-4355-9229-d1c724431608",
+            "colId": "03abc8a1-d450-473a-9521-7a47847bfdc9",
+            "containerId": "829fed55-370c-4ee2-8e5d-e460bc88e30b",
+            "name": "addWordToCard",
+            "url": "http://localhost:3000/teach",
+            "method": "POST",
+            "sortNum": 100000,
+            "created": "2024-05-01T07:43:31.242Z",
+            "modified": "2024-05-01T07:44:08.757Z",
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "name": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkFETUlOIiwidXNlcm5hbWUiOiJ1c2VybmFtZSIsInN1cm5hbWUiOiJzdXJuYW1lIiwiZ2l2ZW5fbmFtZSI6ImdpdmVuX25hbWUiLCJlbWFpbCI6ImVtYWlsIiwicGhvbmUiOiJwaG9uZSIsImRhdGVfb2ZfYmlydGgiOiIxOTg4LTA3LTA2VDE3OjAwOjAwLjAwMFoiLCJhZGRyZXNzIjoiYWRkcmVzcyIsImF2YXRhciI6ImF2YXRhciIsImlhdCI6MTY5Nzk2MDkxMCwiZXhwIjoxNjk3OTcxNzEwfQ.IHaZZFZtPeSri77CIBSgvX1Tl81R_gbN1kUfeBXDceY"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"addWordToCard\",\n  \"params\": {\n    \"card_id\": 1,\n    \"word_id\": 1\n  },\n  \"id\": 1\n}",
+                "form": []
+            }
+        },
+        {
             "_id": "1acc2864-6e13-44dc-97a6-0abef88e5f06",
             "colId": "03abc8a1-d450-473a-9521-7a47847bfdc9",
             "containerId": "658310a2-dc80-4691-9b17-9ed5fe6b7bf9",
@@ -401,5 +427,5 @@
             }
         }
     ],
-    "ref": "CgWBUScMLFsidF4zufo-TSa9qKtWCXRZ-jNR1NIIic0yuBF1CQ2peVEb7tbi-cAZQqpXAqOmwmqNFSIsKZF_Zw"
+    "ref": "CgWBUScMLFsidF4zufo-TRjv5EKZkudU81zGpgJwn2LuR66BpIGU2FSkdB7UBOfuhf70RwV2anE4UgCP_AoTHw"
 }
