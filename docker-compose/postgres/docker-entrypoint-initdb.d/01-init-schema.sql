@@ -82,7 +82,7 @@ CREATE TABLE LESSON
 -- Table definition for CARD
 CREATE TABLE CARD
 (
-    id              INTEGER PRIMARY KEY,                -- Unique identifier for the card
+    id              SERIAL          PRIMARY KEY,        -- Unique identifier for the card
     lesson_id       INTEGER REFERENCES LESSON (id),     -- Foreign key referencing lesson
     front_text      TEXT,                               -- Text on the front side of the card
     front_audio_uri TEXT                                -- URI for audio associated with the front side
