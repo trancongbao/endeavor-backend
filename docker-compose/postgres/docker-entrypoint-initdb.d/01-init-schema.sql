@@ -1,15 +1,15 @@
 -- Define table structure for administrators
 CREATE TABLE ADMIN
 (
-    username      VARCHAR(255) PRIMARY KEY, -- Unique identifier for the administrator
-    password      VARCHAR(255) NOT NULL,    -- Password for the administrator
-    surname       VARCHAR(255) NOT NULL,    -- Surname of the administrator
-    given_name    VARCHAR(255) NOT NULL,    -- Given name of the administrator
-    email         VARCHAR(255) NOT NULL,    -- Email of the administrator
-    phone         VARCHAR(255) NOT NULL,    -- Phone number of the administrator
-    date_of_birth DATE         NOT NULL,    -- Date of birth of the administrator
-    address       TEXT         NOT NULL,    -- Address of the administrator
-    avatar        VARCHAR(255)              -- URL/path to the administrator's avatar
+    username      VARCHAR(255) PRIMARY KEY,             -- Unique identifier for the administrator
+    password      VARCHAR(255) NOT NULL,                -- Password for the administrator
+    surname       VARCHAR(255) NOT NULL,                -- Surname of the administrator
+    given_name    VARCHAR(255) NOT NULL,                -- Given name of the administrator
+    email         VARCHAR(255) NOT NULL,                -- Email of the administrator
+    phone         VARCHAR(255) NOT NULL,                -- Phone number of the administrator
+    date_of_birth DATE         NOT NULL,                -- Date of birth of the administrator
+    address       TEXT         NOT NULL,                -- Address of the administrator
+    avatar        VARCHAR(255)                          -- URL/path to the administrator's avatar
 );
 
 -- Define table structure for teachers
