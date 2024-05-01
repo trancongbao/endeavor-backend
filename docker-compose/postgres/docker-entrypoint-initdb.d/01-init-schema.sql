@@ -76,7 +76,7 @@ CREATE TABLE LESSON
     thumbnail       VARCHAR(255),                       -- Path to the thumbnail image for the lesson
     content         TEXT,                               -- Content of the lesson
     updated_at      timestamp default current_timestamp,-- Timestamp of the last update
-    CONSTRAINT unique_course_id_order UNIQUE (course_id, lesson_order)
+    CONSTRAINT unique_course_id_lesson_order UNIQUE (course_id, lesson_order)
 );
 
 -- Table definition for CARD
@@ -84,8 +84,10 @@ CREATE TABLE CARD
 (
     id              SERIAL          PRIMARY KEY,        -- Unique identifier for the card
     lesson_id       INTEGER REFERENCES LESSON (id),     -- Foreign key referencing lesson
-    front_text      TEXT,                               -- Text on the front side of the card
+    card_order      INTEGER         NOT NULL,           -- Relative order of the word in the card
+    front_text      TEXT            NOT NULL,           -- Text on the front side of the card
     front_audio_uri TEXT                                -- URI for audio associated with the front side
+    CONSTRAINT unique_lesson_id_card_order UNIQUE (course_id, lesson_order)
 );
 
 -- Table definition for WORD

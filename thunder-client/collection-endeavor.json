@@ -2,7 +2,7 @@
     "clientName": "Thunder Client",
     "collectionName": "endeavor",
     "collectionId": "03abc8a1-d450-473a-9521-7a47847bfdc9",
-    "dateExported": "2024-05-01T04:07:44.638Z",
+    "dateExported": "2024-05-01T05:05:27.656Z",
     "version": "1.2",
     "folders": [
         {
@@ -339,7 +339,7 @@
             "method": "POST",
             "sortNum": 90000,
             "created": "2024-05-01T04:03:16.465Z",
-            "modified": "2024-05-01T04:07:24.125Z",
+            "modified": "2024-05-01T05:05:25.007Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -352,7 +352,7 @@
             ],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"createCard\",\n  \"params\": {\n    \"lesson_id\": 1,\n    \"front_text\": \"People who set realistic goals are more likely to keep at their endeavor.\",\n    \"front_audio_uri\": \"front_audio_uri\"\n  },\n  \"id\": 1\n}",
+                "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"createCard\",\n  \"params\": {\n    \"lesson_id\": 1,\n    \"card_order\": 1,\n    \"front_text\": \"People who set realistic goals are more likely to keep at their endeavor.\",\n    \"front_audio_uri\": \"front_audio_uri\"\n  },\n  \"id\": 1\n}",
                 "form": []
             }
         },
@@ -401,5 +401,5 @@
             }
         }
     ],
-    "ref": "CgWBUScMLFsidF4zufo-TSa9qKtWCXRZ-jNR1NIIic0ObR_PHZMgFh5izOGTBW-tZpeFnY6Xj88Sgyew_I49Ug"
+    "ref": "CgWBUScMLFsidF4zufo-TSa9qKtWCXRZ-jNR1NIIic0yuBF1CQ2peVEb7tbi-cAZQqpXAqOmwmqNFSIsKZF_Zw"
 }
