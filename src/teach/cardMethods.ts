@@ -35,6 +35,21 @@ function deleteCard({id}: { id: number }) {
     return endeavorDB.deleteFrom("card").where("id", "=", id).returningAll().executeTakeFirstOrThrow();
 }
 
+function addWordToCard(request: any, response: any) {
+    return endeavorDB
+        .insertInto("card_word")
+        .values(request.body.params)
+        .returningAll()
+        .execute()
+        .then(course => {
+            sendSuccessResponse(response, course)
+        })
+        .catch(error => {
+            console.log(error)
+            sendErrorResponse(response, Codes.RpcMethodInvocationError, error.message)
+        })
+}
+
 type RpcMethodNames = "createCard";
 
 const cardRpcParamsSchemas: Record<RpcMethodNames, Schema> = {
