@@ -6,7 +6,7 @@ import {Schema} from "express-validator";
 import {sendSuccessResponse} from "../response/success";
 import {Codes, sendErrorResponse} from "../response/error";
 
-export {cardRpcParamsSchemas, createCard}
+export {cardRpcParamsSchemas, createCard, addWordToCard}
 
 function createCard(request: any, response: any) {
     return endeavorDB
@@ -50,8 +50,9 @@ function addWordToCard(request: any, response: any) {
         })
 }
 
-type RpcMethodNames = "createCard";
+type RpcMethodNames = "createCard" | "addWordToCard";
 
 const cardRpcParamsSchemas: Record<RpcMethodNames, Schema> = {
-    "createCard": {}
+    "createCard": {},
+    "addWordToCard": {}
 };
