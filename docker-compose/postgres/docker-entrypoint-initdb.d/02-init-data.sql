@@ -123,6 +123,10 @@ VALUES (1, 'there are', 'có', null, null, null, null),
 
 -- Sample data for CARD_WORD table
 INSERT INTO CARD_WORD (card_id, word_id, word_order)
-VALUES (1, 1, 1), -- Hello
-       (2, 2, 1), -- Goodbye
-       (3, 3, 1); -- Cat
+VALUES (1, 1, 1),
+       (1, 2, 2),
+       (2, 1, 1),
+       (3, 3, 1),
+       (3, 4, 2),
+       (4, 5, 1),
+       (4, 5, 1);
