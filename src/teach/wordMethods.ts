@@ -1,12 +1,19 @@
 import "scope-extensions-js";
 import {endeavorDB} from "../databases/endeavorDB";
 import {Word} from "../databases/endeavorDB";
-import {Insertable, Updateable} from "kysely";
+import {Insertable, sql, Updateable} from "kysely";
 import {Schema} from "express-validator";
 import {sendSuccessResponse} from "../response/success";
 import {Codes, sendErrorResponse} from "../response/error";
 
-export {wordRpcParamsSchemas, createWord}
+export {wordRpcParamsSchemas, createWord, searchWord}
+
+type RpcMethodNames = "createWord" | "searchWord";
+
+const wordRpcParamsSchemas: Record<RpcMethodNames, Schema> = {
+    "createWord": {},
+    "searchWord": {}
+};
 
 function createWord(request: any, response: any) {
     return endeavorDB
@@ -14,8 +21,28 @@ function createWord(request: any, response: any) {
         .values(request.body.params)
         .returningAll()
         .execute()
-        .then(course => {
-            sendSuccessResponse(response, course)
+        .then(word => {
+            sendSuccessResponse(response, word)
+        })
+        .catch(error => {
+            console.log(error)
+            sendErrorResponse(response, Codes.RpcMethodInvocationError, error.message)
+        })
+}
+
+async function searchWord(request: any, response: any) {
+    return endeavorDB
+        .selectFrom("word")
+        .selectAll()
+        .where(
+            sql`to_tsvector(word)`,
+            "@@",
+            sql`to_tsquery(${request.body.params.searchTerm})`
+        )
+        .execute()
+        .then(word => {
+            console.log(word)
+            sendSuccessResponse(response, word)
         })
         .catch(error => {
             console.log(error)
@@ -42,8 +69,3 @@ function deleteWord({id}: {
 function findWord() {
 }
 
-type RpcMethodNames = "createWord";
-
-const wordRpcParamsSchemas: Record<RpcMethodNames, Schema> = {
-    "createWord": {}
-};
