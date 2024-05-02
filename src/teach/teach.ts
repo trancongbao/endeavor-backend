@@ -4,11 +4,11 @@ import {Codes} from "../response/error";
 import {validate} from "../validation/validation";
 import {lessonRpcParamsSchemas, createLesson} from "./lessonMethods";
 import {wordRpcParamsSchemas, createWord, searchWord} from "./wordMethods";
-import {addWordToCard, cardRpcParamsSchemas, createCard} from "./cardMethods";
+import {addWordsToCard, cardRpcParamsSchemas, createCard} from "./cardMethods";
 
 export {rpcMethods, validateParams, teach};
 
-type RpcMethodName = "listAllCourses" | "createLesson" | "createWord" | "searchWord"| "createCard" | "addWordToCard";
+type RpcMethodName = "listAllCourses" | "createLesson" | "createWord" | "searchWord"| "createCard" | "addWordsToCard";
 
 const rpcMethods: Record<RpcMethodName, { rpcMethod: CallableFunction, rpcMethodParamsSchema: Schema }> = {
     "listAllCourses": {
@@ -31,9 +31,9 @@ const rpcMethods: Record<RpcMethodName, { rpcMethod: CallableFunction, rpcMethod
         rpcMethod: createCard,
         rpcMethodParamsSchema: cardRpcParamsSchemas["createCard"]
     },
-    "addWordToCard": {
-        rpcMethod: addWordToCard,
-        rpcMethodParamsSchema: cardRpcParamsSchemas["addWordToCard"]
+    "addWordsToCard": {
+        rpcMethod: addWordsToCard,
+        rpcMethodParamsSchema: cardRpcParamsSchemas["addWordsToCard"]
     }
 }
 
