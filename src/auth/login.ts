@@ -25,6 +25,7 @@ const paramsSchema = {
 
 function login(request: any, response: any) {
     const {userType, username, password} = request.body.params
+
     if (userType === "admin") {
         if ((username === process.env.ADMIN_USERNAME) && (password === process.env.ADMIN_PASSWORD)) {
             const userInfo = {
