@@ -1,16 +1,3 @@
--- Seed data for ADMIN table
-INSERT INTO ADMIN (username, password, surname, given_name, email, phone, date_of_birth, address, avatar)
-VALUES ('admin1', 'password1', 'Doe', 'John', 'john.doe@example.com', '+1234567890', '1990-01-01',
-        '123 Main St, City, Country', 'https://example.com/avatar1.jpg'),
-       ('admin2', 'password2', 'Smith', 'Alice', 'alice.smith@example.com', '+0987654321', '1985-05-15',
-        '456 Elm St, City, Country', 'https://example.com/avatar2.jpg'),
-       ('admin3', 'password3', 'Brown', 'Emma', 'emma.brown@example.com', '+1122334455', '1988-10-20',
-        '789 Oak St, City, Country', 'https://example.com/avatar3.jpg'),
-       ('admin4', 'password4', 'Wilson', 'David', 'david.wilson@example.com', '+5544332211', '1975-03-08',
-        '101 Pine St, City, Country', 'https://example.com/avatar4.jpg'),
-       ('admin5', 'password5', 'Johnson', 'Sarah', 'sarah.johnson@example.com', '+6677889900', '1995-12-25',
-        '202 Cedar St, City, Country', 'https://example.com/avatar5.jpg');
-
 -- Seed data for TEACHER table
 INSERT INTO TEACHER (username, password, surname, given_name, email, phone, date_of_birth, address, avatar)
 VALUES ('teacher1', 'password1', 'Garcia', 'Carlos', 'carlos.garcia@example.com', '+1112223333', '1980-07-10',
