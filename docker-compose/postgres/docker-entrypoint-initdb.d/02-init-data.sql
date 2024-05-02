@@ -107,18 +107,19 @@ VALUES (1, 0, 'Introduction', 'audio/intro_sql.mp3', null, null, null,
 
 -- Sample data for CARD table
 INSERT INTO CARD (id, lesson_id, card_order, front_text, front_audio_uri)
-VALUES (1, 1, 1, '#There are# #schools# #all around the world#.', null),
+VALUES (1, 1, 1, '#There are# schools #all around the world#.', null),
        (2, 1, 2, '#There are# big schools and little schools, new schools and old schools.', null),
        (3, 1, 3, 'Is your school #big# or #little#?', null),
        (4, 1, 4, 'Is your school #new# or #old#?', null);
 
 -- Sample data for WORD table
 INSERT INTO WORD (id, word, definition, phonetic, part_of_speech, audio_uri, image_uri)
-VALUES (1, 'hello', 'a common greeting', '[həˈloʊ]', 'Noun', 'audio/hello_word.mp3', 'images/hello.png'),
-       (2, 'goodbye', 'a common parting phrase', '[ɡʊdˈbaɪ]', 'Noun', 'audio/goodbye_word.mp3', 'images/goodbye.png'),
-       (3, 'cat', 'a small domesticated carnivorous mammal', '[kat]', 'Noun', 'audio/cat_word.mp3', 'images/cat.png'),
-       (4, 'satisfy', 'to make (someone) happy or contented.', '[ˈsæt.ɪs.faɪ]', 'Verb', 'audio/satisfy_word.mp3',
-        'images/satisfy.png');
+VALUES (1, 'there are', 'có', null, null, null, null),
+       (2, 'all the around the word', 'khắp thế giới', null, null, null, null),
+       (3, 'big', 'to, lớn', null, null, null, null),
+       (4, 'little', 'nhỏ', null, null, null, null),
+       (5, 'new', 'mới', null, null, null, null),
+       (6, 'old', 'cũ', null, null, null, null);
 
 -- Sample data for CARD_WORD table
 INSERT INTO CARD_WORD (card_id, word_id, word_order)
