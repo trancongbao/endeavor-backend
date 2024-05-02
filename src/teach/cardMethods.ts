@@ -38,7 +38,14 @@ function deleteCard({id}: { id: number }) {
 function addWordsToCard(request: any, response: any) {
     return endeavorDB
         .insertInto("card_word")
-        .values(request.body.params)
+        .values(
+            request.body.params.word_ids.map((word_id: any) => {
+                return {
+                    card_id: request.body.params.card_id,
+                    word_id: word_id
+                }
+            })
+        )
         .returningAll()
         .execute()
         .then(course => {
