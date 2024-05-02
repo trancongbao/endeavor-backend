@@ -25,6 +25,30 @@ const paramsSchema = {
 
 function login(request: any, response: any) {
     const {userType, username, password} = request.body.params
+    if (userType === "admin") {
+        if ((username === process.env.ADMIN_USERNAME) && (password === process.env.ADMIN_PASSWORD)) {
+            const userInfo = {
+                username: username,
+                password: password
+            }
+            /**
+             * Add authenticated session data
+             */
+            request.session.userType = userType
+            request.session.userInfo = userInfo
+            return sendSuccessResponse(response, {
+                userType: userType,
+                userInfo: userInfo
+            })
+        } else {
+            return sendErrorResponse(
+                response,
+                Codes.Auth.Login.InvalidUserNameOrPassword,
+                "Invalid username or password."
+            )
+        }
+    }
+
     queryUserFromDB(userType, username, password)
         .then((users) => {
             if (users.length) {
@@ -35,7 +59,7 @@ function login(request: any, response: any) {
                 request.session.userType = userType
                 request.session.userInfo = userInfo
 
-                sendSuccessResponse(response,{
+                sendSuccessResponse(response, {
                     userType: userType,
                     userInfo: userInfo
                 })

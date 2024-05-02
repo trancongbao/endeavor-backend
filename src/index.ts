@@ -8,6 +8,11 @@ import {expressSession} from "./session/session";
 import {validateBody} from "./validation/validation";
 import {admin} from "./admin/admin";
 import {teach} from "./teach/teach";
+import dotenv from "dotenv";
+
+if (process.env.NODE_ENV === "LOCAL") {
+    dotenv.config()
+}
 
 const app = express()
 
