@@ -77,7 +77,8 @@ VALUES (1, 'teacher1'), -- Introduction to Programming taught by teacher1
        (7, 'teacher2'), -- Graphic Design Basics taught by teacher2
        (8, 'teacher3'), -- Digital Marketing Fundamentals taught by teacher3
        (9, 'teacher4'), -- Blockchain Fundamentals taught by teacher4
-       (10, 'teacher5');-- English Language Basics taught by teacher5
+       (10, 'teacher5');
+-- English Language Basics taught by teacher5
 
 -- Seed data for LESSON table
 INSERT INTO LESSON (course_id, lesson_order, title, audio, summary, description, thumbnail, content, updated_at)
@@ -102,9 +103,11 @@ VALUES (1, 1, 1, 'Hello', 'audio/hello.mp3'),
 
 -- Sample data for WORD table
 INSERT INTO WORD (id, word, definition, phonetic, part_of_speech, audio_uri, image_uri)
-VALUES (1, 'Hello', 'A common greeting', '[həˈloʊ]', 'Noun', 'audio/hello_word.mp3', 'images/hello.png'),
-       (2, 'Goodbye', 'A common parting phrase', '[ɡʊdˈbaɪ]', 'Noun', 'audio/goodbye_word.mp3', 'images/goodbye.png'),
-       (3, 'Cat', 'A small domesticated carnivorous mammal', '[kat]', 'Noun', 'audio/cat_word.mp3', 'images/cat.png');
+VALUES (1, 'hello', 'a common greeting', '[həˈloʊ]', 'Noun', 'audio/hello_word.mp3', 'images/hello.png'),
+       (2, 'goodbye', 'a common parting phrase', '[ɡʊdˈbaɪ]', 'Noun', 'audio/goodbye_word.mp3', 'images/goodbye.png'),
+       (3, 'cat', 'a small domesticated carnivorous mammal', '[kat]', 'Noun', 'audio/cat_word.mp3', 'images/cat.png'),
+       (4, 'satisfy', 'to make (someone) happy or contented.', '[ˈsæt.ɪs.faɪ]', 'Verb', 'audio/satisfy_word.mp3',
+        'images/satisfy.png');
 
 -- Sample data for CARD_WORD table
 INSERT INTO CARD_WORD (card_id, word_id, word_order)
