@@ -59,33 +59,50 @@ VALUES (1, 'teacher1'),
 
 -- Seed data for LESSON table
 INSERT INTO LESSON (course_id, lesson_order, title, audio, summary, description, thumbnail, content, updated_at)
-VALUES (1, 1, 'Introduction', 'audio/intro_sql.mp3', null, null, null,
+VALUES (1, 0, 'Introduction', 'audio/intro_sql.mp3', null, null, null,
         'There are schools all around the world. There are big schools and little schools, new schools and old schools.
         Is your school big or little?
         Is your school new or old?
         *** Discover
         Now read and discover more about school!',
         current_timestamp),
-       (1, 2, 'Introduction', 'audio/intro_sql.mp3', null, null, null,
-        'There are schools all around the world. There are big schools and little schools, new schools and old schools.
-        Is your school big or little?
-        Is your school new or old?
-        *** Discover
-        Now read and discover more about school!',
+       (1, 1, 'Chapter 1: Let''s Go to School ', 'audio/intro_sql.mp3', null, null, null,
+        'All around the world, students go to school.
+        Some students walk to school, and some go by bus or by train.
+        Some students go by bicycle, and some go by car.
+        These students are in the USA.
+        They go to school by bus.
+        In the snow in Canada, some students go to school by sled.
+        In India, some students go to school by rickshaw.
+        How do you go to school?
+        ',
         current_timestamp),
-       (1, 3, 'Introduction', 'audio/intro_sql.mp3', null, null, null,
-        'There are schools all around the world. There are big schools and little schools, new schools and old schools.
-        Is your school big or little?
-        Is your school new or old?
+       (1, 2, 'Chapter 2: Buildings', 'audio/intro_sql.mp3', null, null, null,
+        'Let''s look at school buildings around the world.
+        This school is in Australia.
+        It''s in the countryside.
+        It''s a little school, but many schools in Australia are big.
+        Here''s a big school in a city.
+        Many students go to this school.
+        It has a big school playground.
+        This school is in South Korea.
         *** Discover
-        Now read and discover more about school!',
+        For these students in Nepal, the countryside is their school!',
         current_timestamp),
-       (1, 4, 'Introduction', 'audio/intro_sql.mp3', null, null, null,
-        'There are schools all around the world. There are big schools and little schools, new schools and old schools.
-        Is your school big or little?
-        Is your school new or old?
+       (1, 3, 'Chapter 3: At School', 'audio/intro_sql.mp3', null, null, null,
+        'These students are at school.
+        They meet their friends.
+        They talk and they are happy.
+        Listen! That''s the bell.
+        Let''s go to the classroom.
+        The students stand in the hallway by the door.
+        The teacher says, ‘Hello, everyone’.
+        These students have books and notebooks.
+        Can you see them?
+        No, you can''t.
+        They are in their bags.
         *** Discover
-        Now read and discover more about school!',
+        One school in China is in a cave.',
         current_timestamp);
 
 -- Sample data for CARD table
