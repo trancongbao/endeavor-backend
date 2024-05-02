@@ -107,9 +107,10 @@ VALUES (1, 0, 'Introduction', 'audio/intro_sql.mp3', null, null, null,
 
 -- Sample data for CARD table
 INSERT INTO CARD (id, lesson_id, card_order, front_text, front_audio_uri)
-VALUES (1, 1, 1, 'Hello', 'audio/hello.mp3'),
-       (2, 1, 2, 'Goodbye', 'audio/goodbye.mp3'),
-       (3, 2, 1, 'Cat', 'audio/cat.mp3');
+VALUES (1, 1, 1, '#There are# #schools# #all around the world#.', null),
+       (2, 1, 2, '#There are# big schools and little schools, new schools and old schools.', null),
+       (3, 1, 3, 'Is your school #big# or #little#?', null),
+       (4, 1, 4, 'Is your school #new# or #old#?', null);
 
 -- Sample data for WORD table
 INSERT INTO WORD (id, word, definition, phonetic, part_of_speech, audio_uri, image_uri)
