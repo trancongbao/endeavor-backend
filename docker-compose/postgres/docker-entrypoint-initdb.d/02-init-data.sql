@@ -1,32 +1,3 @@
--- Seed data for COURSE table
-INSERT INTO COURSE (status, title, level, summary, description, thumbnail)
-VALUES ('PUBLISHED', 'Introduction to Programming', 1, 'Learn the basics of programming',
-        'This course covers fundamental programming concepts such as variables, loops, and functions.',
-        'https://example.com/thumbnail1.jpg'),
-       ('APPROVED', 'Web Development Fundamentals', 2, 'Introduction to web development technologies',
-        'Explore HTML, CSS, and JavaScript to build interactive websites.', 'https://example.com/thumbnail2.jpg'),
-       ('PUBLISHED', 'Data Science Essentials', 3, 'Introduction to data science techniques',
-        'Learn data analysis, visualization, and machine learning basics using Python.',
-        'https://example.com/thumbnail3.jpg'),
-       ('DRAFT', 'Mobile App Development', 2, 'Building apps for iOS and Android',
-        'Explore mobile app development using frameworks like React Native and Flutter.',
-        'https://example.com/thumbnail4.jpg'),
-       ('IN_REVIEW', 'Database Management', 3, 'Understanding database concepts and SQL',
-        'Learn about database design, normalization, and SQL queries.', 'https://example.com/thumbnail5.jpg'),
-       ('PUBLISHED', 'Machine Learning Fundamentals', 3, 'Introduction to machine learning algorithms',
-        'Cover basic machine learning concepts such as regression, classification, and clustering.',
-        'https://example.com/thumbnail6.jpg'),
-       ('APPROVED', 'Graphic Design Basics', 2, 'Introduction to graphic design principles',
-        'Learn about color theory, typography, and layout design.', 'https://example.com/thumbnail7.jpg'),
-       ('PUBLISHED', 'Digital Marketing Fundamentals', 2, 'Introduction to digital marketing strategies',
-        'Explore topics like SEO, SEM, social media marketing, and email marketing.',
-        'https://example.com/thumbnail8.jpg'),
-       ('DRAFT', 'Blockchain Fundamentals', 3, 'Understanding blockchain technology',
-        'Learn about blockchain architecture, consensus mechanisms, and smart contracts.',
-        'https://example.com/thumbnail9.jpg'),
-       ('APPROVED', 'English Language Basics', 1, 'Introduction to English language skills',
-        'Cover basic grammar, vocabulary, and conversation skills in English.', 'https://example.com/thumbnail10.jpg');
-
 -- Seed data for ADMIN table
 INSERT INTO ADMIN (username, password, surname, given_name, email, phone, date_of_birth, address, avatar)
 VALUES ('admin1', 'password1', 'Doe', 'John', 'john.doe@example.com', '+1234567890', '1990-01-01',
@@ -66,23 +37,29 @@ VALUES ('student1', 'password1', 'Nguyen', 'Hoa', 'hoa.nguyen@example.com', '+11
        ('student5', 'password5', 'Smith', 'Jake', 'jake.smith@example.com', '+3322114455', '2000-01-30',
         '202 Walnut St, City, Country', 'https://example.com/avatar15.jpg', 3);
 
+-- Seed data for COURSE table
+INSERT INTO COURSE (status, title, level, summary, description, thumbnail)
+VALUES ('PUBLISHED', 'School', 1, null, null, null),
+       ('PUBLISHED', 'In the Sky', 1, null, null, null),
+       ('PUBLISHED', 'Fruit', 1, null, null, null),
+       ('PUBLISHED', 'Trees', 1, null, null, null),
+       ('PUBLISHED', 'Young Animals', 1, null, null, null);
+
 -- Seed data for TEACHER_COURSE table
 INSERT INTO TEACHER_COURSE (course_id, teacher_username)
-VALUES (1, 'teacher1'), -- Introduction to Programming taught by teacher1
-       (2, 'teacher2'), -- Web Development Fundamentals taught by teacher2
-       (3, 'teacher3'), -- Data Science Essentials taught by teacher3
-       (4, 'teacher4'), -- Mobile App Development taught by teacher4
-       (5, 'teacher5'), -- Database Management taught by teacher5
-       (6, 'teacher1'), -- Machine Learning Fundamentals taught by teacher1
-       (7, 'teacher2'), -- Graphic Design Basics taught by teacher2
-       (8, 'teacher3'), -- Digital Marketing Fundamentals taught by teacher3
-       (9, 'teacher4'), -- Blockchain Fundamentals taught by teacher4
-       (10, 'teacher5');
--- English Language Basics taught by teacher5
+VALUES (1, 'teacher1'),
+       (2, 'teacher1'),
+       (3, 'teacher1'),
+       (4, 'teacher1'),
+       (5, 'teacher1'),
+       (2, 'teacher2'),
+       (3, 'teacher3'),
+       (4, 'teacher4'),
+       (5, 'teacher5');
 
 -- Seed data for LESSON table
 INSERT INTO LESSON (course_id, lesson_order, title, audio, summary, description, thumbnail, content, updated_at)
-VALUES (1, 1, 'Introduction to SQL', 'audio/intro_sql.mp3', 'This lesson introduces SQL basics',
+VALUES (1, 1, 'Introduction', 'audio/intro_sql.mp3', 'This lesson introduces SQL basics',
         'A brief overview of SQL fundamentals', 'thumbnails/sql_intro.png', 'Content of SQL introduction lesson',
         current_timestamp),
        (1, 2, 'Advanced SQL Queries', 'audio/advanced_sql.mp3', 'This lesson covers advanced SQL topics',
