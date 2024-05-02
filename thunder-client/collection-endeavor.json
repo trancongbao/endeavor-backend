@@ -2,7 +2,7 @@
     "clientName": "Thunder Client",
     "collectionName": "endeavor",
     "collectionId": "03abc8a1-d450-473a-9521-7a47847bfdc9",
-    "dateExported": "2024-05-02T14:52:16.269Z",
+    "dateExported": "2024-05-02T14:58:46.805Z",
     "version": "1.2",
     "folders": [
         {
@@ -379,32 +379,6 @@
             }
         },
         {
-            "_id": "4c52d3d1-9daf-4355-9229-d1c724431608",
-            "colId": "03abc8a1-d450-473a-9521-7a47847bfdc9",
-            "containerId": "829fed55-370c-4ee2-8e5d-e460bc88e30b",
-            "name": "addWordToCard",
-            "url": "http://localhost:3000/teach",
-            "method": "POST",
-            "sortNum": 100000,
-            "created": "2024-05-01T07:43:31.242Z",
-            "modified": "2024-05-01T07:44:08.757Z",
-            "headers": [
-                {
-                    "name": "Content-Type",
-                    "value": "application/json"
-                },
-                {
-                    "name": "Authorization",
-                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkFETUlOIiwidXNlcm5hbWUiOiJ1c2VybmFtZSIsInN1cm5hbWUiOiJzdXJuYW1lIiwiZ2l2ZW5fbmFtZSI6ImdpdmVuX25hbWUiLCJlbWFpbCI6ImVtYWlsIiwicGhvbmUiOiJwaG9uZSIsImRhdGVfb2ZfYmlydGgiOiIxOTg4LTA3LTA2VDE3OjAwOjAwLjAwMFoiLCJhZGRyZXNzIjoiYWRkcmVzcyIsImF2YXRhciI6ImF2YXRhciIsImlhdCI6MTY5Nzk2MDkxMCwiZXhwIjoxNjk3OTcxNzEwfQ.IHaZZFZtPeSri77CIBSgvX1Tl81R_gbN1kUfeBXDceY"
-                }
-            ],
-            "body": {
-                "type": "json",
-                "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"addWordToCard\",\n  \"params\": {\n    \"card_id\": 1,\n    \"word_id\": 1\n  },\n  \"id\": 1\n}",
-                "form": []
-            }
-        },
-        {
             "_id": "68db5139-7d28-46be-a7d7-a2855ce6ed9b",
             "colId": "03abc8a1-d450-473a-9521-7a47847bfdc9",
             "containerId": "829fed55-370c-4ee2-8e5d-e460bc88e30b",
@@ -413,7 +387,7 @@
             "method": "POST",
             "sortNum": 100000,
             "created": "2024-05-02T14:24:19.512Z",
-            "modified": "2024-05-02T14:52:04.052Z",
+            "modified": "2024-05-02T14:55:27.049Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -426,7 +400,7 @@
             ],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 1,\n  \"method\": \"addWordsToCard\",\n  \"params\": {\n    \"card_id\": 1,\n    \"words\": [\n      {\n        \"id\": 3,\n        \"order\": 3\n      },\n      {\n        \"id\": 3,\n        \"order\": 4\n      }\n    ]\n  }\n}",
+                "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 1,\n  \"method\": \"addWordsToCard\",\n  \"params\": {\n    \"card_id\": 1,\n    \"words\": [\n      {\n        \"id\": 3,\n        \"order\": 3\n      },\n      {\n        \"id\": 4,\n        \"order\": 4\n      }\n    ]\n  }\n}",
                 "form": []
             }
         },
@@ -479,5 +453,5 @@
             }
         }
     ],
-    "ref": "CgWBUScMLFsidF4zufo-TXwczuGtxm4Y2hrekbpmAyQiATWnWVkUcOZmVeS1RnC96ov9Cu8J11m3o-U88Otrcg"
+    "ref": "CgWBUScMLFsidF4zufo-TbDf9Ff9Jc9nZOFiBuy67ZSbTh5DeclXvGvlfdt7CsrlG6ozCffo9agtMVZfYlrDLw"
 }
