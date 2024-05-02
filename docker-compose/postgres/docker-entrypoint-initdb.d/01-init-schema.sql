@@ -93,6 +93,6 @@ CREATE TABLE CARD_WORD
 (
     card_id         INTEGER REFERENCES CARD (id),       -- Foreign key referencing card
     word_id         INTEGER REFERENCES WORD (id),       -- Foreign key referencing word
-    word_order      INTEGER,                            -- Relative order of the word in the card
+    word_order      INTEGER NOT NULL,                   -- Relative order of the word in the card
     PRIMARY KEY (card_id, word_id)                      -- Composite primary key
 );
