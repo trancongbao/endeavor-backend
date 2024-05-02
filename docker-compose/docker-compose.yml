@@ -16,8 +16,8 @@ services:
       - 5432:5432
 
   pgadmin:
-    image: dpage/pgadmin4:8.5
     container_name: pgadmin4
+    image: dpage/pgadmin4:8.5
     restart: always
     environment:
       PGADMIN_DEFAULT_EMAIL: pgadmin_default_email@gmail.com
@@ -30,6 +30,7 @@ services:
       - 5433:80
 
   redis:
+    container_name: redis
     image: redis:latest
     restart: always
     ports:
