@@ -96,8 +96,8 @@ CREATE TABLE WORD
     id              SERIAL          PRIMARY KEY,        -- Unique identifier for the word
     word            VARCHAR(255)    NOT NULL,           -- The word itself
     definition      TEXT            NOT NULL,           -- Definition of the word
-    phonetic        VARCHAR(255)    NOT NULL,           -- Phonetic pronunciation of the word
-    part_of_speech  VARCHAR(255)    NOT NULL,           -- Part of speech of the word
+    phonetic        VARCHAR(255),                       -- Phonetic pronunciation of the word
+    part_of_speech  VARCHAR(255),                       -- Part of speech of the word
     audio_uri       TEXT,                               -- URI for audio associated with the word
     image_uri       TEXT                                -- URI for image associated with the word
 );
