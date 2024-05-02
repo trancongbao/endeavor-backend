@@ -6,7 +6,7 @@ export {expressSession}
 
 const expressSession = session({
     store: new RedisStore({
-        client: new IORedis(process.env.REDIS_URL || "redis://127.0.0.1:6379")
+        client: new IORedis(process.env.REDIS_URL as string)
     }),
     secret: "session-secret",
     saveUninitialized: false,
