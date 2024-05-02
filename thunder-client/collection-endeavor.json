@@ -2,7 +2,7 @@
     "clientName": "Thunder Client",
     "collectionName": "endeavor",
     "collectionId": "03abc8a1-d450-473a-9521-7a47847bfdc9",
-    "dateExported": "2024-05-02T14:42:18.926Z",
+    "dateExported": "2024-05-02T14:52:16.269Z",
     "version": "1.2",
     "folders": [
         {
@@ -408,12 +408,12 @@
             "_id": "68db5139-7d28-46be-a7d7-a2855ce6ed9b",
             "colId": "03abc8a1-d450-473a-9521-7a47847bfdc9",
             "containerId": "829fed55-370c-4ee2-8e5d-e460bc88e30b",
-            "name": "addCard",
+            "name": "addWordsToCard",
             "url": "http://localhost:3000/teach",
             "method": "POST",
             "sortNum": 100000,
             "created": "2024-05-02T14:24:19.512Z",
-            "modified": "2024-05-02T14:42:15.149Z",
+            "modified": "2024-05-02T14:52:04.052Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -426,7 +426,7 @@
             ],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 1,\n  \"method\": \"addWordsToCard\",\n  \"params\": {\n    \"card_id\": 1,\n    \"word_ids\": [3, 4]\n  }\n}",
+                "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 1,\n  \"method\": \"addWordsToCard\",\n  \"params\": {\n    \"card_id\": 1,\n    \"words\": [\n      {\n        \"id\": 3,\n        \"order\": 3\n      },\n      {\n        \"id\": 3,\n        \"order\": 4\n      }\n    ]\n  }\n}",
                 "form": []
             }
         },
@@ -479,5 +479,5 @@
             }
         }
     ],
-    "ref": "CgWBUScMLFsidF4zufo-TXwczuGtxm4Y2hrekbpmAyTNgYeElvdNLVhEUqWH9HJDyGfz6pOBsHv5P4hmclCkEw"
+    "ref": "CgWBUScMLFsidF4zufo-TXwczuGtxm4Y2hrekbpmAyQiATWnWVkUcOZmVeS1RnC96ov9Cu8J11m3o-U88Otrcg"
 }
