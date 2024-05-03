@@ -9,12 +9,18 @@ import {validateBody} from "./validation/validation";
 import {admin} from "./admin/admin";
 import {teach} from "./teach/teach";
 import dotenv from "dotenv";
+import cors from "cors"
 
 if (process.env.NODE_ENV === "LOCAL") {
     dotenv.config()
 }
 
 const app = express()
+
+//CORS
+app.use(cors({
+    origin: "http://localhost:3001"
+}))
 
 // All apis use a json body (similar to json-rpc)
 app.use(express.json());
