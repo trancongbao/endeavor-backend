@@ -5,10 +5,12 @@ import {Updateable} from "kysely";
 import {Schema} from "express-validator";
 import {sendSuccessResponse} from "../response/success";
 import {Codes, sendErrorResponse} from "../response/error";
+import {encode} from 'html-entities';
 
 export {cardRpcParamsSchemas, createCard, addWordsToCard}
 
 function createCard(request: any, response: any) {
+    request.body.params.front_text = encode(request.body.params.front_text)
     return endeavorDB
         .insertInto("card")
         .values(request.body.params)
