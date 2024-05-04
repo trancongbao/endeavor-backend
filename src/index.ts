@@ -17,9 +17,10 @@ if (process.env.NODE_ENV === "LOCAL") {
 
 const app = express()
 
-//CORS
+// Cors
 app.use(cors({
-    origin: "http://localhost:3001"
+    origin: "http://localhost:3001",
+    credentials: true
 }))
 
 // All apis use a json body (similar to json-rpc)
