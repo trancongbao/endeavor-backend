@@ -47,7 +47,7 @@ function getMyDecks(request: any, response: any) {
         .selectFrom("teacher_course")
         .innerJoin("course", "course.id", "teacher_course.course_id")
         .innerJoin("lesson", "lesson.course_id", "course.id")
-        .select(["course.level as course_level", "course.title as course_title", "lesson.title as lesson_title", "lesson.lesson_order"])
+        .select(["course.id as course_id", "course.level as course_level", "course.title as course_title", "lesson.id as lesson_id", "lesson.lesson_order", "lesson.title as lesson_title"])
         .where("teacher_course.teacher_username", "=", username)
         .execute()
         .then(course => {
