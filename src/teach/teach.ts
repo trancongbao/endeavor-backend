@@ -1,4 +1,4 @@
-import {courseRpcParamsSchemas, listAllCourses} from "./courseMethods";
+import {courseRpcParamsSchemas, listAllCourses, getMyDecks} from "./courseMethods";
 import {Schema} from 'express-validator'
 import {Codes} from "../response/error";
 import {validate} from "../validation/validation";
@@ -8,12 +8,16 @@ import {addWordsToCard, cardRpcParamsSchemas, createCard} from "./cardMethods";
 
 export {rpcMethods, validateParams, teach};
 
-type RpcMethodName = "listAllCourses" | "createLesson" | "createWord" | "searchWord"| "createCard" | "addWordsToCard";
+type RpcMethodName = "listAllCourses" | "createLesson" | "createWord" | "searchWord"| "createCard" | "addWordsToCard" | "getMyDecks";
 
 const rpcMethods: Record<RpcMethodName, { rpcMethod: CallableFunction, rpcMethodParamsSchema: Schema }> = {
     "listAllCourses": {
         rpcMethod: listAllCourses,
         rpcMethodParamsSchema: courseRpcParamsSchemas["listAllCourses"]
+    },
+    "getMyDecks": {
+        rpcMethod: getMyDecks,
+        rpcMethodParamsSchema: courseRpcParamsSchemas["getMyDecks"]
     },
     "createLesson": {
         rpcMethod: createLesson,
