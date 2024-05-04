@@ -13,6 +13,6 @@ const expressSession = session({
     resave: false,
     cookie: {
         httpOnly: true,
-        maxAge: 1000 * 60 * 60
+        maxAge: 1000 * 60 * 60 * 24
     }
 })
