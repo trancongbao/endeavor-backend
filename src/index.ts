@@ -10,6 +10,7 @@ import {admin} from "./admin/admin";
 import {teach} from "./teach/teach";
 import dotenv from "dotenv";
 import cors from "cors"
+import {corsOptions} from "./cors/cors";
 
 if (process.env.NODE_ENV === "LOCAL") {
     dotenv.config()
@@ -18,10 +19,7 @@ if (process.env.NODE_ENV === "LOCAL") {
 const app = express()
 
 // Cors
-app.use(cors({
-    origin: "http://localhost:3001",
-    credentials: true
-}))
+app.use(cors(corsOptions))
 
 // All apis use a json body (similar to json-rpc)
 app.use(express.json());
