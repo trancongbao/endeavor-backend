@@ -42,13 +42,12 @@ function listAllCourses(request: any, response: any) {
 }
 
 function getMyDecks(request: any, response: any) {
-    //course join with lesson
     const {username} = request.session.userInfo
     return endeavorDB
         .selectFrom("teacher_course")
         .innerJoin("course", "course.id", "teacher_course.course_id")
-        //.innerJoin("lesson", "lesson.course_id", "course.id")
-        .select(["course.id", "course.level", "course.title"])
+        .innerJoin("lesson", "lesson.course_id", "course.id")
+        .select(["course.level as course_level", "course.title as course_title", "lesson.title as lesson_title", "lesson.lesson_order"])
         .where("teacher_course.teacher_username", "=", username)
         .execute()
         .then(course => {
