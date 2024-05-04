@@ -6,13 +6,16 @@ import {sendSuccessResponse} from "../response/success";
 import {Codes, sendErrorResponse} from "../response/error";
 import {Schema} from "express-validator";
 
-export {RpcMethodName, lessonRpcParamsSchemas, createLesson}
+export {RpcMethodName, rpcMethods}
 
 type RpcMethodName = "createLesson";
 
-const lessonRpcParamsSchemas: Record<RpcMethodName, Schema> = {
-    "createLesson": {}
-};
+const rpcMethods: Record<RpcMethodName, { rpcMethod: CallableFunction, rpcMethodParamsSchema: Schema }> = {
+    "createLesson": {
+        rpcMethod: createLesson,
+        rpcMethodParamsSchema: {}
+    }
+}
 
 function createLesson(request: any, response: any) {
     return endeavorDB

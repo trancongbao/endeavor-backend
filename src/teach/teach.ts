@@ -1,11 +1,10 @@
 import {Schema} from 'express-validator'
 import {Codes} from "../response/error";
 import {validate} from "../validation/validation";
-import {lessonRpcParamsSchemas, createLesson} from "./lessonMethods";
 import {wordRpcParamsSchemas, createWord, searchWord} from "./wordMethods";
 import {addWordsToCard, cardRpcParamsSchemas, createCard} from "./cardMethods";
 import {RpcMethodName as CourseRpcMethodName, rpcMethods as courseRpcMethods} from "./courseMethods";
-import {RpcMethodName as LessonRpcMethodName} from "./lessonMethods";
+import {RpcMethodName as LessonRpcMethodName, rpcMethods as lessonRpcMethods} from "./lessonMethods";
 import {RpcMethodName as CardRpcMethodName} from "./cardMethods";
 import {RpcMethodName as WordRpcMethodName} from "./wordMethods";
 
@@ -15,10 +14,7 @@ type RpcMethodName = CourseRpcMethodName | LessonRpcMethodName | CardRpcMethodNa
 
 const rpcMethods: Record<RpcMethodName, { rpcMethod: CallableFunction, rpcMethodParamsSchema: Schema }> = {
     ...courseRpcMethods,
-    "createLesson": {
-        rpcMethod: createLesson,
-        rpcMethodParamsSchema: lessonRpcParamsSchemas["createLesson"]
-    },
+    ...lessonRpcMethods,
     "createWord": {
         rpcMethod: createWord,
         rpcMethodParamsSchema: wordRpcParamsSchemas["createWord"]
