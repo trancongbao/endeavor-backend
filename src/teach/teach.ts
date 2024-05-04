@@ -5,14 +5,14 @@ import {validate} from "../validation/validation";
 import {lessonRpcParamsSchemas, createLesson} from "./lessonMethods";
 import {wordRpcParamsSchemas, createWord, searchWord} from "./wordMethods";
 import {addWordsToCard, cardRpcParamsSchemas, createCard} from "./cardMethods";
-import {RpcMethodNames as CourseRpcMethodNames} from "./courseMethods";
-import {RpcMethodNames as LessonRpcMethodNames} from "./lessonMethods";
-import {RpcMethodNames as CardRpcMethodNames} from "./cardMethods";
-import {RpcMethodNames as WordRpcMethodNames} from "./wordMethods";
+import {RpcMethodName as CourseRpcMethodName} from "./courseMethods";
+import {RpcMethodName as LessonRpcMethodName} from "./lessonMethods";
+import {RpcMethodName as CardRpcMethodName} from "./cardMethods";
+import {RpcMethodName as WordRpcMethodName} from "./wordMethods";
 
 export {rpcMethods, validateParams, teach};
 
-type RpcMethodName = CourseRpcMethodNames | LessonRpcMethodNames | CardRpcMethodNames | WordRpcMethodNames;
+type RpcMethodName = CourseRpcMethodName | LessonRpcMethodName | CardRpcMethodName | WordRpcMethodName;
 
 const rpcMethods: Record<RpcMethodName, { rpcMethod: CallableFunction, rpcMethodParamsSchema: Schema }> = {
     "listAllCourses": {

@@ -7,11 +7,11 @@ import {sendSuccessResponse} from "../response/success";
 import {Codes, sendErrorResponse} from "../response/error";
 import {encode} from 'html-entities';
 
-export {RpcMethodNames, cardRpcParamsSchemas, createCard, addWordsToCard}
+export {RpcMethodName, cardRpcParamsSchemas, createCard, addWordsToCard}
 
-type RpcMethodNames = "createCard" | "addWordsToCard";
+type RpcMethodName = "createCard" | "addWordsToCard";
 
-const cardRpcParamsSchemas: Record<RpcMethodNames, Schema> = {
+const cardRpcParamsSchemas: Record<RpcMethodName, Schema> = {
     "createCard": {},
     "addWordsToCard": {}
 };

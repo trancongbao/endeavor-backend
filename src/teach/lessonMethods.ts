@@ -6,11 +6,11 @@ import {sendSuccessResponse} from "../response/success";
 import {Codes, sendErrorResponse} from "../response/error";
 import {Schema} from "express-validator";
 
-export {RpcMethodNames, lessonRpcParamsSchemas, createLesson}
+export {RpcMethodName, lessonRpcParamsSchemas, createLesson}
 
-type RpcMethodNames = "createLesson";
+type RpcMethodName = "createLesson";
 
-const lessonRpcParamsSchemas: Record<RpcMethodNames, Schema> = {
+const lessonRpcParamsSchemas: Record<RpcMethodName, Schema> = {
     "createLesson": {}
 };
 

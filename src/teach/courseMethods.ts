@@ -4,14 +4,25 @@ import {Schema} from "express-validator";
 import {sendSuccessResponse} from "../response/success";
 import {Codes, sendErrorResponse} from "../response/error";
 
-export {RpcMethodNames, courseRpcParamsSchemas, listAllCourses, readCourse, getMyDecks}
+export {RpcMethodName, rpcMethods, courseRpcParamsSchemas, listAllCourses, readCourse, getMyDecks}
 
-type RpcMethodNames = "listAllCourses" | "getMyDecks";
+type RpcMethodName = "listAllCourses" | "getMyDecks";
 
-const courseRpcParamsSchemas: Record<RpcMethodNames, Schema> = {
+const courseRpcParamsSchemas: Record<RpcMethodName, Schema> = {
     "listAllCourses": {},
     "getMyDecks": {}
 };
+
+const rpcMethods: Record<RpcMethodName, { rpcMethod: CallableFunction, rpcMethodParamsSchema: Schema }> = {
+    "listAllCourses": {
+        rpcMethod: listAllCourses,
+        rpcMethodParamsSchema: courseRpcParamsSchemas["listAllCourses"]
+    },
+    "getMyDecks": {
+        rpcMethod: getMyDecks,
+        rpcMethodParamsSchema: courseRpcParamsSchemas["getMyDecks"]
+    }
+}
 
 function readCourse({id}: {
     id: number
