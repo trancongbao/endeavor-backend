@@ -1,40 +1,20 @@
-import {courseRpcParamsSchemas, listAllCourses} from "./courseMethods";
 import {Schema} from 'express-validator'
 import {Codes} from "../response/error";
 import {validate} from "../validation/validation";
-import {lessonRpcParamsSchemas, createLesson} from "./lessonMethods";
-import {wordRpcParamsSchemas, createWord, searchWord} from "./wordMethods";
-import {addWordsToCard, cardRpcParamsSchemas, createCard} from "./cardMethods";
+import {RpcMethodName as CourseRpcMethodName, rpcMethods as courseRpcMethods} from "./courseMethods";
+import {RpcMethodName as LessonRpcMethodName, rpcMethods as lessonRpcMethods} from "./lessonMethods";
+import {RpcMethodName as CardRpcMethodName, rpcMethods as cardRpcMethods} from "./cardMethods";
+import {RpcMethodName as WordRpcMethodName, rpcMethods as wordRpcMethods} from "./wordMethods";
 
 export {rpcMethods, validateParams, teach};
 
-type RpcMethodName = "listAllCourses" | "createLesson" | "createWord" | "searchWord"| "createCard" | "addWordsToCard";
+type RpcMethodName = CourseRpcMethodName | LessonRpcMethodName | CardRpcMethodName | WordRpcMethodName;
 
 const rpcMethods: Record<RpcMethodName, { rpcMethod: CallableFunction, rpcMethodParamsSchema: Schema }> = {
-    "listAllCourses": {
-        rpcMethod: listAllCourses,
-        rpcMethodParamsSchema: courseRpcParamsSchemas["listAllCourses"]
-    },
-    "createLesson": {
-        rpcMethod: createLesson,
-        rpcMethodParamsSchema: lessonRpcParamsSchemas["createLesson"]
-    },
-    "createWord": {
-        rpcMethod: createWord,
-        rpcMethodParamsSchema: wordRpcParamsSchemas["createWord"]
-    },
-    "searchWord": {
-        rpcMethod: searchWord,
-        rpcMethodParamsSchema: wordRpcParamsSchemas["searchWord"]
-    },
-    "createCard": {
-        rpcMethod: createCard,
-        rpcMethodParamsSchema: cardRpcParamsSchemas["createCard"]
-    },
-    "addWordsToCard": {
-        rpcMethod: addWordsToCard,
-        rpcMethodParamsSchema: cardRpcParamsSchemas["addWordsToCard"]
-    }
+    ...courseRpcMethods,
+    ...lessonRpcMethods,
+    ...cardRpcMethods,
+    ...wordRpcMethods
 }
 
 async function validateParams(request: any, response: any, next: any) {

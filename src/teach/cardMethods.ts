@@ -6,8 +6,24 @@ import {Schema} from "express-validator";
 import {sendSuccessResponse} from "../response/success";
 import {Codes, sendErrorResponse} from "../response/error";
 import {encode} from 'html-entities';
+import {rpcMethods as courseRpcMethods} from "./courseMethods";
+import {rpcMethods as lessonRpcMethods} from "./lessonMethods";
+import {rpcMethods as wordRpcMethods} from "./wordMethods";
 
-export {cardRpcParamsSchemas, createCard, addWordsToCard}
+export {RpcMethodName, rpcMethods}
+
+type RpcMethodName = "createCard" | "addWordsToCard";
+
+const rpcMethods: Record<RpcMethodName, { rpcMethod: CallableFunction, rpcMethodParamsSchema: Schema }> = {
+    "createCard": {
+        rpcMethod: createCard,
+        rpcMethodParamsSchema: {}
+    },
+    "addWordsToCard": {
+        rpcMethod: addWordsToCard,
+        rpcMethodParamsSchema: {}
+    }
+}
 
 function createCard(request: any, response: any) {
     request.body.params.front_text = encode(request.body.params.front_text)
@@ -59,10 +75,3 @@ function addWordsToCard(request: any, response: any) {
             sendErrorResponse(response, Codes.RpcMethodInvocationError, error.message)
         })
 }
-
-type RpcMethodNames = "createCard" | "addWordsToCard";
-
-const cardRpcParamsSchemas: Record<RpcMethodNames, Schema> = {
-    "createCard": {},
-    "addWordsToCard": {}
-};

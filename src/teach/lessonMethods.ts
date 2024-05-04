@@ -6,7 +6,16 @@ import {sendSuccessResponse} from "../response/success";
 import {Codes, sendErrorResponse} from "../response/error";
 import {Schema} from "express-validator";
 
-export {lessonRpcParamsSchemas, createLesson}
+export {RpcMethodName, rpcMethods}
+
+type RpcMethodName = "createLesson";
+
+const rpcMethods: Record<RpcMethodName, { rpcMethod: CallableFunction, rpcMethodParamsSchema: Schema }> = {
+    "createLesson": {
+        rpcMethod: createLesson,
+        rpcMethodParamsSchema: {}
+    }
+}
 
 function createLesson(request: any, response: any) {
     return endeavorDB
@@ -40,8 +49,3 @@ export function deleteLesson({id}: { id: number }) {
     return endeavorDB.deleteFrom("lesson").where("id", "=", id).returningAll().executeTakeFirstOrThrow();
 }
 
-type RpcMethodNames = "createLesson";
-
-const lessonRpcParamsSchemas: Record<RpcMethodNames, Schema> = {
-    "createLesson": {}
-};
