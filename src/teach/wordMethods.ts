@@ -1,19 +1,25 @@
 import "scope-extensions-js";
 import {endeavorDB} from "../databases/endeavorDB";
 import {Word} from "../databases/endeavorDB";
-import {Insertable, sql, Updateable} from "kysely";
+import {sql, Updateable} from "kysely";
 import {Schema} from "express-validator";
 import {sendSuccessResponse} from "../response/success";
 import {Codes, sendErrorResponse} from "../response/error";
 
-export {RpcMethodName, wordRpcParamsSchemas, createWord, searchWord}
+export {RpcMethodName, rpcMethods}
 
 type RpcMethodName = "createWord" | "searchWord";
 
-const wordRpcParamsSchemas: Record<RpcMethodName, Schema> = {
-    "createWord": {},
-    "searchWord": {}
-};
+const rpcMethods: Record<RpcMethodName, { rpcMethod: CallableFunction, rpcMethodParamsSchema: Schema }> = {
+    "createWord": {
+        rpcMethod: createWord,
+        rpcMethodParamsSchema: {}
+    },
+    "searchWord": {
+        rpcMethod: searchWord,
+        rpcMethodParamsSchema: {}
+    }
+}
 
 function createWord(request: any, response: any) {
     return endeavorDB

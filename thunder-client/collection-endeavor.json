@@ -2,7 +2,7 @@
     "clientName": "Thunder Client",
     "collectionName": "endeavor",
     "collectionId": "03abc8a1-d450-473a-9521-7a47847bfdc9",
-    "dateExported": "2024-05-02T14:58:46.805Z",
+    "dateExported": "2024-05-04T13:01:06.032Z",
     "version": "1.2",
     "folders": [
         {
@@ -217,7 +217,7 @@
             "method": "POST",
             "sortNum": 70000,
             "created": "2024-04-28T03:45:01.348Z",
-            "modified": "2024-04-30T16:53:16.181Z",
+            "modified": "2024-05-04T11:10:21.542Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -230,7 +230,7 @@
             ],
             "body": {
                 "type": "json",
-                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"createLesson\",\n    \"params\": {\n        \"course_id\": 4,\n        \"position\": 1,\n        \"title\": \"title\",\n        \"audio\": \"audio\",\n        \"summary\": \"summary\",\n        \"description\": \"description\",\n        \"thumbnail\": \"thumbnail\",\n        \"content\": \"content\"\n    },\n    \"id\": 1\n}",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"createLesson\",\n    \"params\": {\n        \"course_id\": 4,\n        \"lesson_order\": 2,\n        \"title\": \"title\",\n        \"audio\": \"audio\",\n        \"summary\": \"summary\",\n        \"description\": \"description\",\n        \"thumbnail\": \"thumbnail\",\n        \"content\": \"content\"\n    },\n    \"id\": 1\n}",
                 "form": []
             }
         },
@@ -265,7 +265,7 @@
             "method": "POST",
             "sortNum": 80000,
             "created": "2024-04-30T16:18:01.586Z",
-            "modified": "2024-04-30T16:20:39.812Z",
+            "modified": "2024-05-04T03:06:58.864Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -317,7 +317,7 @@
             "method": "POST",
             "sortNum": 90000,
             "created": "2024-04-28T03:45:01.350Z",
-            "modified": "2024-04-30T07:50:59.231Z",
+            "modified": "2024-05-04T03:05:34.911Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -339,7 +339,7 @@
             "method": "POST",
             "sortNum": 90000,
             "created": "2024-05-01T04:03:16.465Z",
-            "modified": "2024-05-01T05:05:25.007Z",
+            "modified": "2024-05-04T13:00:50.875Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -352,7 +352,33 @@
             ],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"createCard\",\n  \"params\": {\n    \"lesson_id\": 1,\n    \"card_order\": 1,\n    \"front_text\": \"People who set realistic goals are more likely to keep at their endeavor.\",\n    \"front_audio_uri\": \"front_audio_uri\"\n  },\n  \"id\": 1\n}",
+                "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"createCard\",\n  \"params\": {\n    \"lesson_id\": 2,\n    \"card_order\": 5,\n    \"front_text\": \"People who set #realistic# goals are more likely to keep at their endeavor.<>\",\n    \"front_audio_uri\": \"front_audio_uri\"\n  },\n  \"id\": 1\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "23b06947-c91c-4c0b-8c62-e41ecc79b9fb",
+            "colId": "03abc8a1-d450-473a-9521-7a47847bfdc9",
+            "containerId": "829fed55-370c-4ee2-8e5d-e460bc88e30b",
+            "name": "getMyDecks",
+            "url": "http://localhost:3000/teach",
+            "method": "POST",
+            "sortNum": 90000,
+            "created": "2024-05-04T09:38:30.875Z",
+            "modified": "2024-05-04T09:38:49.669Z",
+            "headers": [
+                {
+                    "name": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "name": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkFETUlOIiwidXNlcm5hbWUiOiJ1c2VybmFtZSIsInN1cm5hbWUiOiJzdXJuYW1lIiwiZ2l2ZW5fbmFtZSI6ImdpdmVuX25hbWUiLCJlbWFpbCI6ImVtYWlsIiwicGhvbmUiOiJwaG9uZSIsImRhdGVfb2ZfYmlydGgiOiIxOTg4LTA3LTA2VDE3OjAwOjAwLjAwMFoiLCJhZGRyZXNzIjoiYWRkcmVzcyIsImF2YXRhciI6ImF2YXRhciIsImlhdCI6MTY5Nzk2MDkxMCwiZXhwIjoxNjk3OTcxNzEwfQ.IHaZZFZtPeSri77CIBSgvX1Tl81R_gbN1kUfeBXDceY"
+                }
+            ],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"getMyDecks\",\n  \"params\": {},\n  \"id\": 1\n}",
                 "form": []
             }
         },
@@ -453,5 +479,5 @@
             }
         }
     ],
-    "ref": "CgWBUScMLFsidF4zufo-TbDf9Ff9Jc9nZOFiBuy67ZSbTh5DeclXvGvlfdt7CsrlG6ozCffo9agtMVZfYlrDLw"
+    "ref": "CgWBUScMLFsidF4zufo-TVTZshF4zzCn-LsrkpoDAqISv0uPQEBanwFb36HXmlG-OeirD5gXwTWoSKMnoQ4WFQ"
 }

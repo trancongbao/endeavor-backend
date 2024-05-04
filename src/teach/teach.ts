@@ -1,12 +1,10 @@
 import {Schema} from 'express-validator'
 import {Codes} from "../response/error";
 import {validate} from "../validation/validation";
-import {wordRpcParamsSchemas, createWord, searchWord} from "./wordMethods";
-import {addWordsToCard, cardRpcParamsSchemas, createCard} from "./cardMethods";
 import {RpcMethodName as CourseRpcMethodName, rpcMethods as courseRpcMethods} from "./courseMethods";
 import {RpcMethodName as LessonRpcMethodName, rpcMethods as lessonRpcMethods} from "./lessonMethods";
-import {RpcMethodName as CardRpcMethodName} from "./cardMethods";
-import {RpcMethodName as WordRpcMethodName} from "./wordMethods";
+import {RpcMethodName as CardRpcMethodName, rpcMethods as cardRpcMethods} from "./cardMethods";
+import {RpcMethodName as WordRpcMethodName, rpcMethods as wordRpcMethods} from "./wordMethods";
 
 export {rpcMethods, validateParams, teach};
 
@@ -15,22 +13,8 @@ type RpcMethodName = CourseRpcMethodName | LessonRpcMethodName | CardRpcMethodNa
 const rpcMethods: Record<RpcMethodName, { rpcMethod: CallableFunction, rpcMethodParamsSchema: Schema }> = {
     ...courseRpcMethods,
     ...lessonRpcMethods,
-    "createWord": {
-        rpcMethod: createWord,
-        rpcMethodParamsSchema: wordRpcParamsSchemas["createWord"]
-    },
-    "searchWord": {
-        rpcMethod: searchWord,
-        rpcMethodParamsSchema: wordRpcParamsSchemas["searchWord"]
-    },
-    "createCard": {
-        rpcMethod: createCard,
-        rpcMethodParamsSchema: cardRpcParamsSchemas["createCard"]
-    },
-    "addWordsToCard": {
-        rpcMethod: addWordsToCard,
-        rpcMethodParamsSchema: cardRpcParamsSchemas["addWordsToCard"]
-    }
+    ...cardRpcMethods,
+    ...wordRpcMethods
 }
 
 async function validateParams(request: any, response: any, next: any) {
