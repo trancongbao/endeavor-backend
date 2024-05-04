@@ -33,11 +33,12 @@ app.use(expressSession)
 app.use(validateBody)
 
 // Authentication
-app.use("/auth", validateParams, auth);
+app.post("/auth", validateParams, auth);
 
-app.use("/admin", isAdmin, admin);
-app.use("/teach", isTeacher, teach);
-app.use("/study", isStudent);
+app.post("/admin", isAdmin, admin);
+app.post("/teach", isTeacher, teach);
+app.post("/study", isStudent);
+
 app.listen(3000, () => {
     console.log("Express server started on port 3000.");
 });
