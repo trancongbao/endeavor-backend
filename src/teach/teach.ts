@@ -7,10 +7,12 @@ import {wordRpcParamsSchemas, createWord, searchWord} from "./wordMethods";
 import {addWordsToCard, cardRpcParamsSchemas, createCard} from "./cardMethods";
 import {RpcMethodNames as CourseRpcMethodNames} from "./courseMethods";
 import {RpcMethodNames as LessonRpcMethodNames} from "./lessonMethods";
+import {RpcMethodNames as CardRpcMethodNames} from "./cardMethods";
+import {RpcMethodNames as WordRpcMethodNames} from "./wordMethods";
 
 export {rpcMethods, validateParams, teach};
 
-type RpcMethodName = CourseRpcMethodNames | LessonRpcMethodNames | "createWord" | "searchWord"| "createCard" | "addWordsToCard";
+type RpcMethodName = CourseRpcMethodNames | LessonRpcMethodNames | CardRpcMethodNames | WordRpcMethodNames;
 
 const rpcMethods: Record<RpcMethodName, { rpcMethod: CallableFunction, rpcMethodParamsSchema: Schema }> = {
     "listAllCourses": {

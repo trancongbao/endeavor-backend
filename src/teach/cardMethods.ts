@@ -7,7 +7,14 @@ import {sendSuccessResponse} from "../response/success";
 import {Codes, sendErrorResponse} from "../response/error";
 import {encode} from 'html-entities';
 
-export {cardRpcParamsSchemas, createCard, addWordsToCard}
+export {RpcMethodNames, cardRpcParamsSchemas, createCard, addWordsToCard}
+
+type RpcMethodNames = "createCard" | "addWordsToCard";
+
+const cardRpcParamsSchemas: Record<RpcMethodNames, Schema> = {
+    "createCard": {},
+    "addWordsToCard": {}
+};
 
 function createCard(request: any, response: any) {
     request.body.params.front_text = encode(request.body.params.front_text)
@@ -59,10 +66,3 @@ function addWordsToCard(request: any, response: any) {
             sendErrorResponse(response, Codes.RpcMethodInvocationError, error.message)
         })
 }
-
-type RpcMethodNames = "createCard" | "addWordsToCard";
-
-const cardRpcParamsSchemas: Record<RpcMethodNames, Schema> = {
-    "createCard": {},
-    "addWordsToCard": {}
-};

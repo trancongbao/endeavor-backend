@@ -6,7 +6,7 @@ import {Schema} from "express-validator";
 import {sendSuccessResponse} from "../response/success";
 import {Codes, sendErrorResponse} from "../response/error";
 
-export {wordRpcParamsSchemas, createWord, searchWord}
+export {RpcMethodNames, wordRpcParamsSchemas, createWord, searchWord}
 
 type RpcMethodNames = "createWord" | "searchWord";
 
