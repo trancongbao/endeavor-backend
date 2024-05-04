@@ -10,6 +10,7 @@ import {admin} from "./admin/admin";
 import {teach} from "./teach/teach";
 import dotenv from "dotenv";
 import cors from "cors"
+import {corsOptions} from "./cors/cors";
 
 if (process.env.NODE_ENV === "LOCAL") {
     dotenv.config()
@@ -18,10 +19,7 @@ if (process.env.NODE_ENV === "LOCAL") {
 const app = express()
 
 // Cors
-app.use(cors({
-    origin: "http://localhost:3001",
-    credentials: true
-}))
+app.use(cors(corsOptions))
 
 // All apis use a json body (similar to json-rpc)
 app.use(express.json());
@@ -33,11 +31,12 @@ app.use(expressSession)
 app.use(validateBody)
 
 // Authentication
-app.use("/auth", validateParams, auth);
+app.post("/auth", validateParams, auth);
 
-app.use("/admin", isAdmin, admin);
-app.use("/teach", isTeacher, teach);
-app.use("/study", isStudent);
+app.post("/admin", isAdmin, admin);
+app.post("/teach", isTeacher, teach);
+app.post("/study", isStudent);
+
 app.listen(3000, () => {
     console.log("Express server started on port 3000.");
 });
