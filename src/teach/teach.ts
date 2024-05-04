@@ -1,4 +1,3 @@
-import {listAllCourses, getMyDecks} from "./courseMethods";
 import {Schema} from 'express-validator'
 import {Codes} from "../response/error";
 import {validate} from "../validation/validation";

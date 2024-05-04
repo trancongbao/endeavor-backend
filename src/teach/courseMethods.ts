@@ -4,7 +4,7 @@ import {Schema} from "express-validator";
 import {sendSuccessResponse} from "../response/success";
 import {Codes, sendErrorResponse} from "../response/error";
 
-export {RpcMethodName, rpcMethods, listAllCourses, readCourse, getMyDecks}
+export {RpcMethodName, rpcMethods}
 
 type RpcMethodName = "listAllCourses" | "getMyDecks";
 
