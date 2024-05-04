@@ -57,19 +57,19 @@ function getMyDecks(request: any, response: any) {
                 title: string,
                 subDecks: { order: number, title: string }[]
             }[] = [];
-            rows.forEach(row => {
-                const course = courses.find(course => course.id === row.course_id)
+            rows.forEach(({course_id, course_level, course_title, lesson_order, lesson_title}) => {
+                const course = courses.find(course => course.id === course_id)
                 if (course === undefined) {
                     courses.push({
-                        id: row.course_id,
-                        level: row.course_level,
-                        title: row.course_title,
+                        id: course_id,
+                        level: course_level,
+                        title: course_title,
                         subDecks: []
                     })
                 } else {
                     course.subDecks.push({
-                        order: row.lesson_order,
-                        title: row.lesson_title
+                        order: lesson_order,
+                        title: lesson_title
                     })
                 }
             })
