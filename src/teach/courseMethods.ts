@@ -3,15 +3,13 @@ import {endeavorDB} from "../databases/endeavorDB";
 import {Schema} from "express-validator";
 import {sendSuccessResponse} from "../response/success";
 import {Codes, sendErrorResponse} from "../response/error";
-import {createLesson} from "./lessonMethods";
 
-export {courseRpcParamsSchemas, listAllCourses, readCourse, getMyDecks}
+export {RpcMethodNames, courseRpcParamsSchemas, listAllCourses, readCourse, getMyDecks}
 
-type RpcMethodNames = "listAllCourses" | "readCourse" | "getMyDecks";
+type RpcMethodNames = "listAllCourses" | "getMyDecks";
 
 const courseRpcParamsSchemas: Record<RpcMethodNames, Schema> = {
     "listAllCourses": {},
-    "readCourse": {},
     "getMyDecks": {}
 };
 

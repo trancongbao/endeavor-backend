@@ -5,10 +5,12 @@ import {validate} from "../validation/validation";
 import {lessonRpcParamsSchemas, createLesson} from "./lessonMethods";
 import {wordRpcParamsSchemas, createWord, searchWord} from "./wordMethods";
 import {addWordsToCard, cardRpcParamsSchemas, createCard} from "./cardMethods";
+import {RpcMethodNames as CourseRpcMethodNames} from "./courseMethods";
+import {RpcMethodNames as LessonRpcMethodNames} from "./lessonMethods";
 
 export {rpcMethods, validateParams, teach};
 
-type RpcMethodName = "listAllCourses" | "createLesson" | "createWord" | "searchWord"| "createCard" | "addWordsToCard" | "getMyDecks";
+type RpcMethodName = CourseRpcMethodNames | LessonRpcMethodNames | "createWord" | "searchWord"| "createCard" | "addWordsToCard";
 
 const rpcMethods: Record<RpcMethodName, { rpcMethod: CallableFunction, rpcMethodParamsSchema: Schema }> = {
     "listAllCourses": {
