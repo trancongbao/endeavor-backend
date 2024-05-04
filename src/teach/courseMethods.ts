@@ -50,8 +50,31 @@ function getMyDecks(request: any, response: any) {
         .select(["course.id as course_id", "course.level as course_level", "course.title as course_title", "lesson.id as lesson_id", "lesson.lesson_order", "lesson.title as lesson_title"])
         .where("teacher_course.teacher_username", "=", username)
         .execute()
-        .then(course => {
-            sendSuccessResponse(response, course)
+        .then((rows) => {
+            const courses: {
+                id: number,
+                level: number,
+                title: string,
+                subDecks: { order: number, title: string }[]
+            }[] = [];
+            rows.forEach(row => {
+                const course = courses.find(course => course.id === row.course_id)
+                if (course === undefined) {
+                    courses.push({
+                        id: row.course_id,
+                        level: row.course_level,
+                        title: row.course_title,
+                        subDecks: []
+                    })
+                } else {
+                    course.subDecks.push({
+                        order: row.lesson_order,
+                        title: row.lesson_title
+                    })
+                }
+            })
+
+            sendSuccessResponse(response, courses)
         })
         .catch(error => {
             console.log(error)
