@@ -28,19 +28,14 @@ function login(request: any, response: any) {
 
     if (userType === "admin") {
         if ((username === process.env.ADMIN_USERNAME) && (password === process.env.ADMIN_PASSWORD)) {
-            const userInfo = {
-                username: username,
-                password: password
-            }
             /**
              * Add authenticated session data
              */
-            request.session.userType = userType
-            request.session.userInfo = userInfo
-            return sendSuccessResponse(response, {
+            request.session.userInfo = {
                 userType: userType,
-                userInfo: userInfo
-            })
+                username: username
+            }
+            return sendSuccessResponse(response, request.session.userInfo)
         } else {
             return sendErrorResponse(
                 response,
@@ -53,17 +48,14 @@ function login(request: any, response: any) {
     queryUserFromDB(userType, username, password)
         .then((users) => {
             if (users.length) {
-                const {password, ...userInfo} = users[0]; // Remove the password field
                 /**
                  * Add authenticated session data
                  */
-                request.session.userType = userType
-                request.session.userInfo = userInfo
-
-                sendSuccessResponse(response, {
+                request.session.userInfo = {
                     userType: userType,
-                    userInfo: userInfo
-                })
+                    username: username
+                }
+                return sendSuccessResponse(response, request.session.userInfo)
             } else {
                 return sendErrorResponse(
                     response,
