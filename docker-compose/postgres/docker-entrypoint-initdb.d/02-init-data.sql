@@ -53,7 +53,7 @@ VALUES (1, 0, 'Introduction', 'audio/intro_sql.mp3', null, null, null,
         *** Discover
         Now read and discover more about school!',
         current_timestamp),
-       (1, 1, 'Chapter 1: Let''s Go to School ', 'audio/intro_sql.mp3', null, null, null,
+       (1, 1, 'Chapter 1: Let''s Go to School', 'audio/intro_sql.mp3', null, null, null,
         'All around the world, students go to school.
         Some students walk to school, and some go by bus or by train.
         Some students go by bicycle, and some go by car.
@@ -90,6 +90,88 @@ VALUES (1, 0, 'Introduction', 'audio/intro_sql.mp3', null, null, null,
         They are in their bags.
         *** Discover
         One school in China is in a cave.',
+        current_timestamp),
+       (1, 4, 'Chapter 4: In Class', 'audio/intro_sql.mp3', null, null, null,
+        'In the classroom, the teacher says, ''Sit down, please’.
+        Open your English books.
+        It''s an English class.
+        The teacher has a picture.
+        She says, ''What''s this?''
+        One student says, ''It''s a giraffe.''
+        *** Discover
+        Put up your hand when you want to speak in class.
+        In some classes, students have computers.
+        Do you have computers in your classroom?
+        In physical education classes, students run, jump, and play.
+        These girls play basketball in their physical education classes.',
+        current_timestamp),
+       (2, 0, 'Introduction', 'audio/intro_sql.mp3', null, null, null,
+        'Go outside and look up.
+        What can you see?
+        You can see the sky.
+        The sky is above you.
+        Look at the sky.
+        Is it day or night?
+        What can you see in the sky?
+        ***Discover
+        Now read and discover more about the sky!',
+        current_timestamp),
+       (2, 1, 'Chapter 01: The Sky', 'audio/intro_sql.mp3', null, null, null,
+        'Look at the sky in the day.
+        What color is it?
+        Can you see clouds?
+        When it''s sunny, the sky is blue.
+        Clouds are white or gray.
+        Sometimes you can see birds and planes.
+        They fly in the sky.
+        Sometimes when it''s sunny and rainy, you can see a rainbow in the sky.
+        How many colors can you see?
+        A spacecraft goes up into the sky.
+        Then it goes into space.
+        Space is dark and very big.',
+        current_timestamp),
+       (2, 2, 'Chapter 02: At Night', 'audio/intro_sql.mp3', null, null, null,
+        'At night the sky is dark.
+        You can see the moon.
+        The moon is a big ball of rock.
+        Sometimes you see a round moon.
+        This is called a full moon.
+        Sometimes you see different shapes.
+        A thin moon is called a crescent moon.
+        You can see stars at night, too.
+        Stars are big, hot balls of fire.
+        They look very little because they are far out in space.
+        Sometimes you can see planets, too.',
+        current_timestamp),
+       (2, 3, 'Chapter 03: The Sun', 'audio/intro_sql.mp3', null, null, null,
+        'Do you know the sun is a star?
+        It''s our star.
+        We live on a planet called Earth.
+        Earth goes around the sun.
+        The sun shines in the sky.
+        It gives our planet light.
+        Don''t look at the sun.
+        It isn''t good for your eyes.
+        The sun is very, very hot.
+        It makes our planet warm so we can live here.
+        ***Discover
+        We get electricity from the sun!
+        Light from the sun shines on solar panels.
+        This makes electricity.',
+        current_timestamp),
+       (2, 4, 'Chapter 04: Day and Night', 'audio/intro_sql.mp3', null, null, null,
+        'Sometimes it''s day and sometimes it''s night.
+        That''s because Earth turns.
+        When your place on Earth turns toward the sun, you see light from the sun.
+        This is day.
+        When your place turns away from the sun, you don''t see light from the sun.
+        This is night.
+        Then Earth turns and it''s day again.
+        At night it''s dark.
+        It''s dark in parks and gardens.
+        It''s dark in homes, too.
+        People make light with electricity or candles.
+        Is it dark when you go to bed?',
         current_timestamp);
 
 -- Sample data for CARD table
