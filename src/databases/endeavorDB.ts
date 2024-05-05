@@ -91,7 +91,7 @@ enum CourseStatus {
 interface Lesson {
     id: Generated<number>;
     course_id: number;
-    order: number;
+    lesson_order: number;
     title: string;
     audio: string;
     summary?: string;
