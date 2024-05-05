@@ -64,7 +64,10 @@ function getMyDecks(request: any, response: any) {
                         id: course_id,
                         level: course_level,
                         title: course_title,
-                        subDecks: []
+                        subDecks: [{
+                            order: lesson_order,
+                            title: lesson_title
+                        }]
                     })
                 } else {
                     course.subDecks.push({
