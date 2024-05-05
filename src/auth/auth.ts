@@ -1,15 +1,22 @@
 import {paramsSchema as loginParamsSchema, login} from "./login";
+import {paramsSchema as currentUserParamsSchema, currentUser} from "./currentUser";
 import {paramsSchema as logoutParamsSchema, logout} from "./logout";
 import {Schema} from 'express-validator'
 import {Codes} from "../response/error";
 import {validate} from "../validation/validation";
 
-export {methods, validateParams, auth};
+export {rpcMethods, validateParams, auth};
 
-const methods: Record<Method, { method: CallableFunction, schema: Schema }> = {
+type RpcMethodName = "login" | "logout" | "currentUser";
+
+const rpcMethods: Record<RpcMethodName, { method: CallableFunction, schema: Schema }> = {
     "login": {
         method: login,
         schema: loginParamsSchema
+    },
+    "currentUser": {
+        method: currentUser,
+        schema: currentUserParamsSchema
     },
     "logout": {
         method: logout,
@@ -18,11 +25,10 @@ const methods: Record<Method, { method: CallableFunction, schema: Schema }> = {
 }
 
 async function validateParams(request: any, response: any, next: any) {
-    await validate(request, response, next, methods[request.body.method as Method].schema, Codes.Auth.InputValidationError)
+    await validate(request, response, next, rpcMethods[request.body.method as RpcMethodName].schema, Codes.Auth.InputValidationError)
 }
 
-function auth(request: { body: { method: Method } }, response: any) {
-    methods[request.body.method].method(request, response)
+function auth(request: { body: { method: RpcMethodName } }, response: any) {
+    rpcMethods[request.body.method].method(request, response)
 }
 
-type Method = "login" | "logout";

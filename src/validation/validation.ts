@@ -1,6 +1,6 @@
 import {checkSchema, Schema, validationResult} from 'express-validator'
 import {Codes, sendErrorResponse} from "../response/error";
-import {methods as authMethods} from "../auth/auth";
+import {rpcMethods as authMethods} from "../auth/auth";
 import {rpcMethods as adminRpcMethods} from "../admin/admin";
 import {rpcMethods as teachRpcMethods} from "../teach/teach";
 
