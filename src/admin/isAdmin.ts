@@ -6,7 +6,7 @@ import {
 export {isAdmin};
 
 function isAdmin(request: any, response: any, next: any): void {
-    if (request.session.userInfo.userType == "admin") {
+    if (request.session.userInfo.userType === "admin") {
         next();
     } else {
         sendErrorResponse(
