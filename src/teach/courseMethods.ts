@@ -6,7 +6,7 @@ import {Codes, sendErrorResponse} from "../response/error";
 
 export {RpcMethodName, rpcMethods}
 
-type RpcMethodName = "listAllCourses" | "getMyDecks" | "getDeck";
+type RpcMethodName = "listAllCourses" | "getMyDecks" | "getSubdecks";
 
 const rpcMethods: Record<RpcMethodName, { rpcMethod: CallableFunction, rpcMethodParamsSchema: Schema }> = {
     "listAllCourses": {
@@ -17,8 +17,8 @@ const rpcMethods: Record<RpcMethodName, { rpcMethod: CallableFunction, rpcMethod
         rpcMethod: getMyDecks,
         rpcMethodParamsSchema: {}
     },
-    "getDeck": {
-        rpcMethod: getDeck,
+    "getSubdecks": {
+        rpcMethod: getSubdecks,
         rpcMethodParamsSchema: {}
     }
 }
@@ -87,12 +87,12 @@ function getMyDecks(request: any, response: any) {
         })
 }
 
-function getDeck(request: any, response: any) {
+function getSubdecks(request: any, response: any) {
     return endeavorDB
         .selectFrom("teacher_course")
         .innerJoin("course", "course.id", "teacher_course.course_id")
         .innerJoin("lesson", "lesson.course_id", "course.id")
-        .select(["lesson.id as lesson_id", "lesson.lesson_order", "lesson.title as lesson_title"])
+        .select(["lesson.id as id", "lesson.lesson_order as order", "lesson.title as title"])
         .where("teacher_course.teacher_username", "=", request.session.userInfo.username)
         .where("teacher_course.course_id", "=", request.body.params.id)
         .execute()
