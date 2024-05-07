@@ -77,11 +77,11 @@ function addWordsToCard(request: any, response: any) {
 function getCards(request: any, response: any) {
     return endeavorDB
         .selectFrom("teacher_course")
-        .where("teacher_course.teacher_username", "=", request.session.userInfo.username)
         .innerJoin("course", "course.id", "teacher_course.course_id")
         .innerJoin("lesson", "lesson.course_id", "course.id")
-        .where("lesson.id", "=", request.body.params.id)
-        .innerJoin("card", "card.lesson_id", "lesson_id")
+        .innerJoin("card", "card.lesson_id", "lesson.id")
+        .where("teacher_course.teacher_username", "=", request.session.userInfo.username)
+        .where("card.lesson_id", "=", request.body.params.id)
         .select(["card.id", "card.card_order as order", "card.front_text as text"])
         .execute()
         .then((cards) => {
