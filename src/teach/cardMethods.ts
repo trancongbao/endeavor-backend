@@ -6,13 +6,10 @@ import {Schema} from "express-validator";
 import {sendSuccessResponse} from "../response/success";
 import {Codes, sendErrorResponse} from "../response/error";
 import {encode} from 'html-entities';
-import {rpcMethods as courseRpcMethods} from "./courseMethods";
-import {rpcMethods as lessonRpcMethods} from "./lessonMethods";
-import {rpcMethods as wordRpcMethods} from "./wordMethods";
 
 export {RpcMethodName, rpcMethods}
 
-type RpcMethodName = "createCard" | "addWordsToCard";
+type RpcMethodName = "createCard" | "addWordsToCard" | "getCards";
 
 const rpcMethods: Record<RpcMethodName, { rpcMethod: CallableFunction, rpcMethodParamsSchema: Schema }> = {
     "createCard": {
@@ -21,6 +18,10 @@ const rpcMethods: Record<RpcMethodName, { rpcMethod: CallableFunction, rpcMethod
     },
     "addWordsToCard": {
         rpcMethod: addWordsToCard,
+        rpcMethodParamsSchema: {}
+    },
+    "getCards": {
+        rpcMethod: getCards,
         rpcMethodParamsSchema: {}
     }
 }
@@ -41,9 +42,6 @@ function createCard(request: any, response: any) {
         })
 }
 
-function readCard({id}: { id: number }) {
-    return endeavorDB.selectFrom("card").selectAll().where("id", "=", id).executeTakeFirstOrThrow();
-}
 
 function updateCard(card: Updateable<Card>) {
     return endeavorDB.updateTable("card").where("id", "=", card.id!!).set(card).returningAll().executeTakeFirstOrThrow();
@@ -69,6 +67,25 @@ function addWordsToCard(request: any, response: any) {
         .execute()
         .then(course => {
             sendSuccessResponse(response, course)
+        })
+        .catch(error => {
+            console.log(error)
+            sendErrorResponse(response, Codes.RpcMethodInvocationError, error.message)
+        })
+}
+
+function getCards(request: any, response: any) {
+    return endeavorDB
+        .selectFrom("teacher_course")
+        .where("teacher_course.teacher_username", "=", request.session.userInfo.username)
+        .innerJoin("course", "course.id", "teacher_course.course_id")
+        .innerJoin("lesson", "lesson.course_id", "course.id")
+        .innerJoin("card", "card.lesson_id", "lesson.id")
+        .where("card.lesson_id", "=", request.body.params.id)
+        .select(["card.id", "card.card_order as order", "card.front_text as text"])
+        .execute()
+        .then((cards) => {
+            sendSuccessResponse(response, cards)
         })
         .catch(error => {
             console.log(error)
