@@ -82,7 +82,7 @@ function getCards(request: any, response: any) {
         .innerJoin("lesson", "lesson.course_id", "course.id")
         .where("lesson.id", "=", request.body.params.id)
         .innerJoin("card", "card.lesson_id", "lesson_id")
-        .select(["card.id", "card.card_order as order", "card.front_text as front_text"])
+        .select(["card.id", "card.card_order as order", "card.front_text as text"])
         .execute()
         .then((cards) => {
             sendSuccessResponse(response, cards)
