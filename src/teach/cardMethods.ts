@@ -6,13 +6,10 @@ import {Schema} from "express-validator";
 import {sendSuccessResponse} from "../response/success";
 import {Codes, sendErrorResponse} from "../response/error";
 import {encode} from 'html-entities';
-import {rpcMethods as courseRpcMethods} from "./courseMethods";
-import {rpcMethods as lessonRpcMethods} from "./lessonMethods";
-import {rpcMethods as wordRpcMethods} from "./wordMethods";
 
 export {RpcMethodName, rpcMethods}
 
-type RpcMethodName = "createCard" | "addWordsToCard";
+type RpcMethodName = "createCard" | "addWordsToCard" | "getCards";
 
 const rpcMethods: Record<RpcMethodName, { rpcMethod: CallableFunction, rpcMethodParamsSchema: Schema }> = {
     "createCard": {
@@ -21,6 +18,10 @@ const rpcMethods: Record<RpcMethodName, { rpcMethod: CallableFunction, rpcMethod
     },
     "addWordsToCard": {
         rpcMethod: addWordsToCard,
+        rpcMethodParamsSchema: {}
+    },
+    "getCards": {
+        rpcMethod: getCards,
         rpcMethodParamsSchema: {}
     }
 }
