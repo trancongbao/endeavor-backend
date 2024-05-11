@@ -103,44 +103,16 @@ function getCards(request: any, response: any) {
                 id: number,
                 order: number,
                 text: string,
-                words: { id: number, order: number }[]
+                words: { word_id: number, word_order: number, word_word: string }[]
             }[] = [];
-            rows.forEach(
-                ({
-                     id,
-                     order,
-                     text,
-                     word_id,
-                     word_order,
-                     word_word,
-                     word_definition,
-                     word_phonetic,
-                     word_part_of_speech,
-                     word_audio_uri,
-                     word_image_uri
-                 }) => {
-                    const card = cards.find(card => card.id === id)
-                    const word = {
-                        id: word_id,
-                        order: word_order,
-                        word: word_word,
-                        definition: word_definition,
-                        phonetic: word_phonetic,
-                        part_of_speech: word_part_of_speech,
-                        audio_uri: word_audio_uri,
-                        image_uri: word_image_uri
-                    }
-                    if (card) {
-                        card.words.push(word)
-                    } else {
-                        cards.push({
-                            id: id,
-                            order: order,
-                            text: text,
-                            words: [word]
-                        })
-                    }
-                })
+            rows.forEach(({id, order, text, ...word}) => {
+                const card = cards.find(card => card.id === id)
+                if (card) {
+                    card.words.push(word)
+                } else {
+                    cards.push({id: id, order: order, text: text, words: [word]})
+                }
+            })
             sendSuccessResponse(response, cards)
         })
         .catch(error => {
