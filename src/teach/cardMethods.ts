@@ -84,7 +84,19 @@ function getCards(request: any, response: any) {
         .where("card.lesson_id", "=", request.body.params.id)
         .innerJoin("card_word", "card_word.card_id", "card.id")
         .innerJoin("word", "word.id", "card_word.word_id")
-        .select(["card.id", "card.card_order as order", "card.front_text as text", "word.id as word_id","card_word.word_order as word_order", "word.word as word_word"])
+        .select([
+            "card.id as id",
+            "card.card_order as order",
+            "card.front_text as text",
+            "word.id as word_id",
+            "card_word.word_order as word_order",
+            "word.word as word_word",
+            "word.definition as word_definition",
+            "word.phonetic as word_phonetic",
+            "word.part_of_speech as word_part_of_speech",
+            "word.audio_uri as word_audio_uri",
+            "word.image_uri as word_image_uri"
+        ])
         .execute()
         .then((cards) => {
             sendSuccessResponse(response, cards)
