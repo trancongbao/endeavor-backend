@@ -105,7 +105,7 @@ interface Card {
     id: Generated<number>;
     lesson_id: number;
     card_order: number;
-    front_text?: string;
+    front_text: string;
     front_audio_uri?: string;
 }
 
