@@ -78,6 +78,7 @@ function queryUserFromDB(userTable: UserType, username: string, password: string
         .selectAll()
         .where("username", "=", username)
         .where("password", "=", password)
+        .limit(1)
         .execute()
 }
 

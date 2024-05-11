@@ -105,7 +105,7 @@ interface Card {
     id: Generated<number>;
     lesson_id: number;
     card_order: number;
-    front_text?: string;
+    front_text: string;
     front_audio_uri?: string;
 }
 
@@ -120,6 +120,7 @@ interface Word {
 }
 
 interface CardWord {
-    card_id: number
+    card_id: number;
     word_id: number;
+    word_order: number
 }
