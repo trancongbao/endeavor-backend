@@ -120,6 +120,7 @@ interface Word {
 }
 
 interface CardWord {
-    card_id: number
+    card_id: number;
     word_id: number;
+    word_order: number
 }
