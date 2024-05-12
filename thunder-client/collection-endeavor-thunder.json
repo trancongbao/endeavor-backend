@@ -2,7 +2,7 @@
     "clientName": "Thunder Client",
     "collectionName": "endeavor",
     "collectionId": "03abc8a1-d450-473a-9521-7a47847bfdc9",
-    "dateExported": "2024-05-11T09:00:09.123Z",
+    "dateExported": "2024-05-11T12:26:03.249Z",
     "version": "1.2",
     "folders": [
         {
@@ -365,7 +365,7 @@
             "method": "POST",
             "sortNum": 90000,
             "created": "2024-05-04T09:38:30.875Z",
-            "modified": "2024-05-04T09:38:49.669Z",
+            "modified": "2024-05-11T12:25:57.126Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -378,7 +378,7 @@
             ],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"getMyDecks\",\n  \"params\": {},\n  \"id\": 1\n}",
+                "raw": "{\n  \"method\": \"getDecks\",\n  \"params\": {}\n}",
                 "form": []
             }
         },
@@ -553,5 +553,5 @@
             }
         }
     ],
-    "ref": "CgWBUScMLFsidF4zufo-Tf4ZURva_z_apwy7R7Ug-vRUVwEs4ccTMNH85wCErGG_2RaCviP2yWnJYzxLMgHqgA"
+    "ref": "CgWBUScMLFsidF4zufo-Tf4ZURva_z_apwy7R7Ug-vR8tkrM4Z6TNnxDs-gAsZhxkyGD3UR53h7I3PVLMsTKxA"
 }

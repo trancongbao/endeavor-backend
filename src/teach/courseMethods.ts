@@ -6,15 +6,18 @@ import {Codes, sendErrorResponse} from "../response/error";
 
 export {RpcMethodName, rpcMethods}
 
-type RpcMethodName = "listAllCourses" | "getMyDecks" | "getSubdecks";
+type RpcMethodName = "listAllCourses" | "getDecks" | "getSubdecks";
 
-const rpcMethods: Record<RpcMethodName, { rpcMethod: CallableFunction, rpcMethodParamsSchema: Schema }> = {
+const rpcMethods: Record<RpcMethodName, {
+    rpcMethod: CallableFunction,
+    rpcMethodParamsSchema: Schema
+}> = {
     "listAllCourses": {
         rpcMethod: listAllCourses,
         rpcMethodParamsSchema: {}
     },
-    "getMyDecks": {
-        rpcMethod: getMyDecks,
+    "getDecks": {
+        rpcMethod: getDecks,
         rpcMethodParamsSchema: {}
     },
     "getSubdecks": {
@@ -45,41 +48,44 @@ function listAllCourses(request: any, response: any) {
         })
 }
 
-function getMyDecks(request: any, response: any) {
+function getDecks(request: any, response: any) {
     const {username} = request.session.userInfo
     return endeavorDB
         .selectFrom("teacher_course")
         .innerJoin("course", "course.id", "teacher_course.course_id")
         .innerJoin("lesson", "lesson.course_id", "course.id")
-        .select(["course.id as course_id", "course.level as course_level", "course.title as course_title", "lesson.id as lesson_id", "lesson.lesson_order", "lesson.title as lesson_title"])
+        .select([
+            "course.id as id",
+            "course.level as level",
+            "course.title as title",
+            "lesson.id as subdeck_id",
+            "lesson.lesson_order as subdeck_order",
+            "lesson.title as subdeck_title"
+        ])
         .where("teacher_course.teacher_username", "=", username)
         .execute()
         .then((rows) => {
-            const courses: {
+            const decks: {
                 id: number,
                 level: number,
                 title: string,
-                subDecks: { order: number, title: string }[]
+                subdecks: {
+                    subdeck_id: number,
+                    subdeck_order: number,
+                    subdeck_title: string
+                }[]
             }[] = [];
-            rows.forEach(({course_id, course_level, course_title, lesson_order, lesson_title}) => {
-                const course = courses.find(course => course.id === course_id)
-                const lesson = {
-                    order: lesson_order,
-                    title: lesson_title
-                }
-                if (course === undefined) {
-                    courses.push({
-                        id: course_id,
-                        level: course_level,
-                        title: course_title,
-                        subDecks: [lesson]
-                    })
+
+            rows.forEach(({id, level, title, ...subdeck}) => {
+                const deck = decks.find(course => course.id === id)
+                if (deck) {
+                    deck.subdecks.push(subdeck)
                 } else {
-                    course.subDecks.push(lesson)
+                    decks.push({id: id, level: level, title: title, subdecks: [subdeck]})
                 }
             })
 
-            sendSuccessResponse(response, courses)
+            sendSuccessResponse(response, decks)
         })
         .catch(error => {
             console.log(error)
