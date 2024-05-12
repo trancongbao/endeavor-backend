@@ -5,6 +5,8 @@ import {Updateable} from "kysely";
 import {sendSuccessResponse} from "../response/success";
 import {Codes, sendErrorResponse} from "../response/error";
 import {Schema} from "express-validator";
+import SQL from 'sql-template-strings';
+import {pg, pgp} from "../databases/postgres";
 
 export {RpcMethodName, rpcMethods}
 
@@ -17,8 +19,29 @@ const rpcMethods: Record<RpcMethodName, { rpcMethod: CallableFunction, rpcMethod
     }
 }
 
-function createLesson(request: any, response: any) {
-    return endeavorDB
+async function createLesson(request: any, response: any) {
+    const lessonId = 1
+
+    const template = SQL`SELECT *
+                         FROM lesson
+                         WHERE id = ${lessonId}`
+
+    console.log("template", template)
+
+    const res = await pg.query(template)
+    console.log("res: ", res)
+
+    pg.query(SQL`        SELECT id
+                         FROM lesson
+                         WHERE id = ${lessonId}`)
+        .then((r) =>
+            console.log("result: ", r)
+        )
+        .catch((e) =>
+            console.log("error", e)
+        )
+
+    endeavorDB
         .insertInto("lesson")
         .values(request.body.params)
         .returningAll()
