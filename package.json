@@ -27,7 +27,8 @@
     "lodash": "^4.17.21",
     "pg": "^8.11.3",
     "pg-promise": "^11.5.4",
-    "scope-extensions-js": "^1.1.0"
+    "scope-extensions-js": "^1.1.0",
+    "sql-template-strings": "^2.2.2"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.5",
