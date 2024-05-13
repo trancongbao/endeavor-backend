@@ -29,7 +29,7 @@ async function createLesson(request: any, response: any) {
     console.log("template", template)
 
     const res = await pg.query(template)
-    console.log("res: ", res)
+    console.log("res: ", res.rows)
 
     pg.query(SQL`        SELECT id
                          FROM lesson
