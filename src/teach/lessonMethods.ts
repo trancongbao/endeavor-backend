@@ -34,12 +34,13 @@ async function createLesson(request: any, response: any) {
             WHERE EXISTS          (SELECT 1
                                    FROM teacher_course
                                    WHERE teacher_username = ${request.session.userInfo.username}
-                                     AND course_id = ${course_id});`
+                                     AND course_id = ${course_id})
+            RETURNING *;`
     )
 
     console.log("queryResult: ", queryResult)
 
-    sendSuccessResponse(response, queryResult.rows)
+    sendSuccessResponse(response, queryResult.rows[0])
 }
 
 export function readLesson({id}: { id: number }) {
