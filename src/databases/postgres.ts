@@ -1,10 +1,15 @@
-import pgPromise from "pg-promise";
-import { ColumnType, Generated, Insertable, Selectable, Updateable } from 'kysely'
+import pgPromise from "pg-promise"
+import {Pool} from 'pg'
 
-export default pgPromise()({
-  user: "postgres",
-  host: "localhost",
-  database: "endeavor",
-  password: "postgres",
-  port: 5432,
-});
+export {pg, pgp}
+
+//Ref: https://node-postgres.com/features/connecting#environment-variables
+const pg = new Pool()
+
+const pgp = pgPromise()({
+    host: "localhost",
+    port: 5432,
+    database: "postgres_db",
+    user: "postgres_user",
+    password: "postgres_password"
+})
