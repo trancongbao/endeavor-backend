@@ -6,7 +6,7 @@ import {sendSuccessResponse} from "../response/success";
 import {Codes, sendErrorResponse} from "../response/error";
 import {Schema} from "express-validator";
 import SQL from 'sql-template-strings';
-import {pg, pgp} from "../databases/postgres";
+import {pg} from "../databases/postgres";
 
 export {RpcMethodName, rpcMethods}
 
