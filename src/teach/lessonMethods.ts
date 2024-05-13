@@ -20,12 +20,6 @@ const rpcMethods: Record<RpcMethodName, { rpcMethod: CallableFunction, rpcMethod
 }
 
 async function createLesson(request: any, response: any) {
-    const lessonId = 1
-    const res = await pg.query(SQL`SELECT *
-                                   FROM lesson
-                                   WHERE id = ${lessonId}`)
-    console.log("res: ", res.rows[0])
-
     const {course_id, lesson_order, title, audio, summary, description, thumbnail, content} = request.body.params
     const queryResult = await pg.query(
         SQL`INSERT INTO lesson (course_id, lesson_order, title, audio, summary, description, thumbnail, content)
