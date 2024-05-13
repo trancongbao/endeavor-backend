@@ -21,25 +21,10 @@ const rpcMethods: Record<RpcMethodName, { rpcMethod: CallableFunction, rpcMethod
 
 async function createLesson(request: any, response: any) {
     const lessonId = 1
-
-    const template = SQL`SELECT *
-                         FROM lesson
-                         WHERE id = ${lessonId}`
-
-    console.log("template", template)
-
-    const res = await pg.query(template)
-    console.log("res: ", res.rows)
-
-    pg.query(SQL`SELECT id
-                 FROM lesson
-                 WHERE id = ${lessonId}`)
-        .then((r) =>
-            console.log("result: ", r)
-        )
-        .catch((e) =>
-            console.log("error", e)
-        )
+    const res = await pg.query(SQL`SELECT *
+                                   FROM lesson
+                                   WHERE id = ${lessonId}`)
+    console.log("res: ", res.rows[0])
 
     endeavorDB
         .insertInto("lesson")
