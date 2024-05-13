@@ -20,24 +20,28 @@ const rpcMethods: Record<RpcMethodName, { rpcMethod: CallableFunction, rpcMethod
 }
 
 async function createLesson(request: any, response: any) {
-    const lessonId = 1
-    const res = await pg.query(SQL`SELECT *
-                                   FROM lesson
-                                   WHERE id = ${lessonId}`)
-    console.log("res: ", res.rows[0])
+    const {course_id, lesson_order, title, audio, summary, description, thumbnail, content} = request.body.params
+    const sql = SQL`INSERT INTO lesson (course_id, lesson_order, title, audio, summary, description, thumbnail,
+                                        content)
+                    SELECT ${course_id},
+                           ${lesson_order},
+                           ${title},
+                           ${audio},
+                           ${summary},
+                           ${description},
+                           ${thumbnail},
+                           ${content}
+                    WHERE EXISTS          (SELECT 1
+                                           FROM teacher_course
+                                           WHERE teacher_username = ${request.session.userInfo.username}
+                                             AND course_id = ${course_id})
+                    RETURNING *;`
 
-    endeavorDB
-        .insertInto("lesson")
-        .values(request.body.params)
-        .returningAll()
-        .execute()
-        .then(course => {
-            sendSuccessResponse(response, course)
-        })
-        .catch(error => {
-            console.log(error)
-            sendErrorResponse(response, Codes.RpcMethodInvocationError, error.message)
-        })
+    try {
+        sendSuccessResponse(response, (await pg.query(sql)).rows[0])
+    } catch (error: any) {
+        sendErrorResponse(response, Codes.RpcMethodInvocationError, error.message)
+    }
 }
 
 export function readLesson({id}: { id: number }) {
