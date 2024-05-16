@@ -24,21 +24,22 @@ async function createLesson(request: any, response: any) {
     /**
      * Insert only when the teacher is assigned the course
      */
-    const sql = SQL`INSERT INTO lesson (course_id, lesson_order, title, audio, summary, description, thumbnail,
-                                        content)
-                    SELECT ${course_id},
-                           ${lesson_order},
-                           ${title},
-                           ${audio},
-                           ${summary},
-                           ${description},
-                           ${thumbnail},
-                           ${content}
-                    WHERE EXISTS          (SELECT 1
-                                           FROM teacher_course
-                                           WHERE teacher_username = ${request.session.userInfo.username}
-                                             AND course_id = ${course_id})
-                    RETURNING *;`
+    const sql =
+        SQL`INSERT INTO lesson (course_id, lesson_order, title, audio, summary, description, thumbnail,
+                                content)
+            SELECT ${course_id},
+                   ${lesson_order},
+                   ${title},
+                   ${audio},
+                   ${summary},
+                   ${description},
+                   ${thumbnail},
+                   ${content}
+            WHERE EXISTS          (SELECT 1
+                                   FROM teacher_course
+                                   WHERE teacher_username = ${request.session.userInfo.username}
+                                     AND course_id = ${course_id})
+            RETURNING *;`
 
     try {
         sendSuccessResponse(response, (await query(sql)).rows[0])
