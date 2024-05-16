@@ -6,6 +6,8 @@ import {Schema} from "express-validator";
 import {sendSuccessResponse} from "../response/success";
 import {Codes, sendErrorResponse} from "../response/error";
 import {encode} from 'html-entities';
+import SQL from "sql-template-strings";
+import {query} from "../databases/postgres";
 
 export {RpcMethodName, rpcMethods}
 
@@ -26,29 +28,26 @@ const rpcMethods: Record<RpcMethodName, { rpcMethod: CallableFunction, rpcMethod
     }
 }
 
-function createCard(request: any, response: any) {
-    request.body.params.front_text = encode(request.body.params.front_text)
-    return endeavorDB
-        .insertInto("card")
-        .values(request.body.params)
-        .returningAll()
-        .execute()
-        .then(course => {
-            sendSuccessResponse(response, course)
-        })
-        .catch(error => {
-            console.log(error)
-            sendErrorResponse(response, Codes.RpcMethodInvocationError, error.message)
-        })
-}
+async function createCard(request: any, response: any) {
+    const teacherUsername = request.session.userInfo.username
+    const {lesson_id, card_order, front_text, front_audio_uri} = request.body.params
 
+    const sql =
+        SQL`INSERT INTO card (lesson_id, card_order, front_text, front_audio_uri)
+            SELECT ${lesson_id}, ${card_order}, ${encode(front_text)}, ${front_audio_uri}
+            WHERE EXISTS          (SELECT 1
+                                   FROM teacher_course
+                                            INNER JOIN course on course.id = teacher_course.course_id
+                                            INNER JOIN lesson on course.id = lesson.course_id
+                                   WHERE teacher_course.teacher_username = ${teacherUsername}
+                                     AND lesson.id = ${lesson_id})
+            RETURNING *;`
 
-function updateCard(card: Updateable<Card>) {
-    return endeavorDB.updateTable("card").where("id", "=", card.id!!).set(card).returningAll().executeTakeFirstOrThrow();
-}
-
-function deleteCard({id}: { id: number }) {
-    return endeavorDB.deleteFrom("card").where("id", "=", id).returningAll().executeTakeFirstOrThrow();
+    try {
+        sendSuccessResponse(response, (await query(sql)).rows[0])
+    } catch (error: any) {
+        sendErrorResponse(response, Codes.RpcMethodInvocationError, error.message)
+    }
 }
 
 function addWordsToCard(request: any, response: any) {

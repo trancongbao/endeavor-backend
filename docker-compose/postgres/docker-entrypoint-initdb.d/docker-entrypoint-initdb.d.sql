@@ -316,18 +316,18 @@ VALUES (1, 0, 'Introduction', 'audio/intro_sql.mp3', null, null, null,
         current_timestamp);
 
 -- Sample data for CARD table
-INSERT INTO CARD (id, lesson_id, card_order, front_text, front_audio_uri)
-VALUES (1, 1, 0, '#There are# schools #all around the world#.', null),
-       (2, 1, 1, '#There are# big schools and little schools, new schools and old schools.', null),
-       (3, 1, 2, 'Is your school #big# or #little#?', null),
-       (4, 1, 3, 'Is your school #new# or #old#?', null),
-       (5, 2, 0, '#All around the world#, students go to school.', null),
-       (6, 2, 1, 'Some students #walk# to school, and some go by bus or by train.', null),
-       (7, 2, 2, 'Some students go by #bicycle#, and some go by #car#.', null),
-       (8, 2, 3, 'These students are in #the USA#. They go to school by bus.', null),
-       (9, 2, 4, 'In the snow in Canada, some students go to school by #sled#.', null),
-       (10, 2, 5, 'In India, some students go to school by #rickshaw#.', null),
-       (11, 2, 6, '#How# do you go to school?', null);
+INSERT INTO CARD (lesson_id, card_order, front_text, front_audio_uri)
+VALUES (1, 0, '#There are# schools #all around the world#.', null),
+       (1, 1, '#There are# big schools and little schools, new schools and old schools.', null),
+       (1, 2, 'Is your school #big# or #little#?', null),
+       (1, 3, 'Is your school #new# or #old#?', null),
+       (2, 0, '#All around the world#, students go to school.', null),
+       (2, 1, 'Some students #walk# to school, and some go by bus or by train.', null),
+       (2, 2, 'Some students go by #bicycle#, and some go by #car#.', null),
+       (2, 3, 'These students are in #the USA#. They go to school by bus.', null),
+       (2, 4, 'In the snow in Canada, some students go to school by #sled#.', null),
+       (2, 5, 'In India, some students go to school by #rickshaw#.', null),
+       (2, 6, '#How# do you go to school?', null);
 
 -- Sample data for WORD table
 INSERT INTO WORD (id, word, definition, phonetic, part_of_speech, audio_uri, image_uri)
