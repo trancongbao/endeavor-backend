@@ -6,7 +6,7 @@ import {sendSuccessResponse} from "../response/success";
 import {Codes, sendErrorResponse} from "../response/error";
 import {Schema} from "express-validator";
 import SQL from 'sql-template-strings';
-import {pg} from "../databases/postgres";
+import {query} from "../databases/postgres";
 
 export {RpcMethodName, rpcMethods}
 
@@ -38,7 +38,7 @@ async function createLesson(request: any, response: any) {
                     RETURNING *;`
 
     try {
-        sendSuccessResponse(response, (await pg.query(sql)).rows[0])
+        sendSuccessResponse(response, (await query(sql)).rows[0])
     } catch (error: any) {
         sendErrorResponse(response, Codes.RpcMethodInvocationError, error.message)
     }
