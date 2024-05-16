@@ -6,7 +6,7 @@ import {sendSuccessResponse} from "../response/success";
 import {Codes, sendErrorResponse} from "../response/error";
 import {Schema} from "express-validator";
 import SQL from 'sql-template-strings';
-import {pg} from "../databases/postgres";
+import {query} from "../databases/postgres";
 
 export {RpcMethodName, rpcMethods}
 
@@ -21,6 +21,9 @@ const rpcMethods: Record<RpcMethodName, { rpcMethod: CallableFunction, rpcMethod
 
 async function createLesson(request: any, response: any) {
     const {course_id, lesson_order, title, audio, summary, description, thumbnail, content} = request.body.params
+    /**
+     * Insert only when the teacher is assigned the course
+     */
     const sql = SQL`INSERT INTO lesson (course_id, lesson_order, title, audio, summary, description, thumbnail,
                                         content)
                     SELECT ${course_id},
@@ -38,7 +41,7 @@ async function createLesson(request: any, response: any) {
                     RETURNING *;`
 
     try {
-        sendSuccessResponse(response, (await pg.query(sql)).rows[0])
+        sendSuccessResponse(response, (await query(sql)).rows[0])
     } catch (error: any) {
         sendErrorResponse(response, Codes.RpcMethodInvocationError, error.message)
     }
