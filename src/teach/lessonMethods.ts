@@ -21,6 +21,9 @@ const rpcMethods: Record<RpcMethodName, { rpcMethod: CallableFunction, rpcMethod
 
 async function createLesson(request: any, response: any) {
     const {course_id, lesson_order, title, audio, summary, description, thumbnail, content} = request.body.params
+    /**
+     * Insert only when the teacher is assigned the course
+     */
     const sql = SQL`INSERT INTO lesson (course_id, lesson_order, title, audio, summary, description, thumbnail,
                                         content)
                     SELECT ${course_id},
