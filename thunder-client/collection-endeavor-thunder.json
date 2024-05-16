@@ -2,7 +2,7 @@
     "clientName": "Thunder Client",
     "collectionName": "endeavor",
     "collectionId": "03abc8a1-d450-473a-9521-7a47847bfdc9",
-    "dateExported": "2024-05-11T12:26:03.249Z",
+    "dateExported": "2024-05-16T09:26:34.220Z",
     "version": "1.2",
     "folders": [
         {
@@ -217,7 +217,7 @@
             "method": "POST",
             "sortNum": 70000,
             "created": "2024-04-28T03:45:01.348Z",
-            "modified": "2024-05-04T11:10:21.542Z",
+            "modified": "2024-05-16T04:17:32.559Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -230,7 +230,7 @@
             ],
             "body": {
                 "type": "json",
-                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"createLesson\",\n    \"params\": {\n        \"course_id\": 4,\n        \"lesson_order\": 2,\n        \"title\": \"title\",\n        \"audio\": \"audio\",\n        \"summary\": \"summary\",\n        \"description\": \"description\",\n        \"thumbnail\": \"thumbnail\",\n        \"content\": \"content\"\n    },\n    \"id\": 1\n}",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"createLesson\",\n    \"params\": {\n        \"course_id\": 4,\n        \"lesson_order\": 61,\n        \"title\": \"title\",\n        \"audio\": \"audio\",\n        \"summary\": \"summary\",\n        \"description\": \"description\",\n        \"thumbnail\": \"thumbnail\",\n        \"content\": \"content\"\n    },\n    \"id\": 1\n}",
                 "form": []
             }
         },
@@ -339,7 +339,7 @@
             "method": "POST",
             "sortNum": 90000,
             "created": "2024-05-01T04:03:16.465Z",
-            "modified": "2024-05-11T08:58:51.483Z",
+            "modified": "2024-05-16T09:01:25.179Z",
             "headers": [
                 {
                     "name": "Content-Type",
@@ -352,7 +352,7 @@
             ],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"method\": \"createCard\",\n  \"params\": {\n    \"lesson_id\": 2,\n    \"card_order\": 5,\n    \"front_text\": \"People who set #realistic# goals are more likely to keep at their endeavor.\",\n    \"front_audio_uri\": \"front_audio_uri\"\n  }\n}",
+                "raw": "{\n  \"method\": \"createCard\",\n  \"params\": {\n    \"lesson_id\": 2,\n    \"card_order\": 7,\n    \"front_text\": \"People who set #realistic# goals are more likely to keep at their endeavor.\",\n    \"front_audio_uri\": \"front_audio_uri\"\n  }\n}",
                 "form": []
             }
         },
@@ -360,7 +360,7 @@
             "_id": "23b06947-c91c-4c0b-8c62-e41ecc79b9fb",
             "colId": "03abc8a1-d450-473a-9521-7a47847bfdc9",
             "containerId": "829fed55-370c-4ee2-8e5d-e460bc88e30b",
-            "name": "getMyDecks",
+            "name": "getDecks",
             "url": "http://localhost:3000/teach",
             "method": "POST",
             "sortNum": 90000,
@@ -553,5 +553,5 @@
             }
         }
     ],
-    "ref": "CgWBUScMLFsidF4zufo-Tf4ZURva_z_apwy7R7Ug-vR8tkrM4Z6TNnxDs-gAsZhxkyGD3UR53h7I3PVLMsTKxA"
+    "ref": "CgWBUScMLFsidF4zufo-TUm7eLXtTh03s0G3gXJ7BsmyERUy-Gj7urQPrKB0HeL20inhmgtBw5vCbVKRtMzFsA"
 }
