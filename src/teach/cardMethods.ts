@@ -1,13 +1,12 @@
 import "scope-extensions-js";
 import {endeavorDB} from "../databases/endeavorDB";
-import {Card} from "../databases/endeavorDB";
-import {Updateable} from "kysely";
 import {Schema} from "express-validator";
 import {sendSuccessResponse} from "../response/success";
 import {Codes, sendErrorResponse} from "../response/error";
 import {encode} from 'html-entities';
 import SQL from "sql-template-strings";
 import {query} from "../databases/postgres";
+import format from 'pg-format';
 
 export {RpcMethodName, rpcMethods}
 
@@ -50,27 +49,54 @@ async function createCard(request: any, response: any) {
     }
 }
 
-function addWordsToCard(request: any, response: any) {
-    return endeavorDB
-        .insertInto("card_word")
-        .values(
-            request.body.params.words.map((word: { id: number, order: number }) => {
-                return {
-                    card_id: request.body.params.card_id,
-                    word_id: word.id,
-                    word_order: word.order
-                }
-            })
-        )
-        .returningAll()
-        .execute()
-        .then(course => {
-            sendSuccessResponse(response, course)
+async function addWordsToCard(request: any, response: any) {
+    const teacherUsername = request.session.userInfo.username
+    const {card_id, words} = request.body.params
+
+    let sql = format(
+        `INSERT INTO card_word (card_id, word_id, word_order)
+        VALUES
+        %L`,
+        words.map((word: { id: number, order: number }) => {
+            return [card_id, word.id, word.order]
         })
-        .catch(error => {
-            console.log(error)
-            sendErrorResponse(response, Codes.RpcMethodInvocationError, error.message)
-        })
+    )
+
+    // const values = "(4, 5, 1), (4, 6, 2)"
+    //
+    // const sql =
+    //     SQL`INSERT INTO card_word (card_id, word_id, word_order)
+    //         VALUES ${values};`
+
+    console.log(sql)
+
+    try {
+        sendSuccessResponse(response, (await query(sql)).rows[0])
+    } catch (error: any) {
+        console.log(error)
+        sendErrorResponse(response, Codes.RpcMethodInvocationError, error.message)
+    }
+
+    // return endeavorDB
+    //     .insertInto("card_word")
+    //     .values(
+    //         request.body.params.words.map((word: { id: number, order: number }) => {
+    //             return {
+    //                 card_id: request.body.params.card_id,
+    //                 word_id: word.id,
+    //                 word_order: word.order
+    //             }
+    //         })
+    //     )
+    //     .returningAll()
+    //     .execute()
+    //     .then(course => {
+    //         sendSuccessResponse(response, course)
+    //     })
+    //     .catch(error => {
+    //         console.log(error)
+    //         sendErrorResponse(response, Codes.RpcMethodInvocationError, error.message)
+    //     })
 }
 
 function getCards(request: any, response: any) {
