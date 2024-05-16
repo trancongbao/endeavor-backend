@@ -330,13 +330,13 @@ VALUES (1, 0, '#There are# schools #all around the world#.', null),
        (2, 6, '#How# do you go to school?', null);
 
 -- Sample data for WORD table
-INSERT INTO WORD (id, word, definition, phonetic, part_of_speech, audio_uri, image_uri)
-VALUES (1, 'there are', 'có', null, null, null, null),
-       (2, 'all the around the word', 'khắp thế giới', null, null, null, null),
-       (3, 'big', 'to, lớn', null, null, null, null),
-       (4, 'little', 'nhỏ', null, null, null, null),
-       (5, 'new', 'mới', null, null, null, null),
-       (6, 'old', 'cũ', null, null, null, null);
+INSERT INTO WORD (word, definition, phonetic, part_of_speech, audio_uri, image_uri)
+VALUES ('there are', 'có', null, null, null, null),
+       ('all the around the word', 'khắp thế giới', null, null, null, null),
+       ('big', 'to, lớn', null, null, null, null),
+       ('little', 'nhỏ', null, null, null, null),
+       ('new', 'mới', null, null, null, null),
+       ('old', 'cũ', null, null, null, null);
 
 -- Sample data for CARD_WORD table
 INSERT INTO CARD_WORD (card_id, word_id, word_order)
