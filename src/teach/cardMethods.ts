@@ -6,7 +6,6 @@ import { Codes, sendErrorResponse } from "../response/error";
 import { encode } from "html-entities";
 import SQL from "sql-template-strings";
 import { query } from "../databases/postgres";
-import format from "pg-format";
 
 export { RpcMethodName, rpcMethods };
 
