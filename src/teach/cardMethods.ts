@@ -52,49 +52,45 @@ async function addWordsToCard(request: any, response: any) {
   const teacherUsername = request.session.userInfo.username;
   const { card_id, words }: { card_id: number; words: { id: number; order: number }[] } = request.body.params;
 
-  /**
-   * `card_access_right` contains `1` if the teacher has access right to the card
-   * `insert_rows` is a result set with three columns `card_id`, `word_id`, `word_order`, that is dynamically unioned from the request `params`
-   * `WHERE EXISTS` is not used and `INNER JOIN` is used exclusively because:
-   *   `WHERE EXISTS` cannot be used with `VALUES`
-   *   Creating an insert_rows CTE using either SELECT+UNION or INSERT, for some unknown reason, causes `RETURNING` to return only one row.
-   */
-  let sql = SQL`
-  WITH card_access_right AS (
-    SELECT 1
-    FROM teacher_course
-    INNER JOIN course ON course.id = teacher_course.course_id
-    INNER JOIN lesson ON lesson.course_id = course.id
-    INNER JOIN card ON card.lesson_id = lesson.id
-    WHERE teacher_course.teacher_username = ${teacherUsername}
-    AND card.id = ${card_id}
-  ), 
-  insert_rows AS (
-    INSERT INTO card_word (card_id, word_id, word_order)
-    SELECT * FROM (
-      VALUES
-  `;
-  
-  // Dynamically construct the values for multiple rows
-  words.forEach((word, index) => {
-    if (index > 0) {
-      sql.append(SQL`,`);
-    }
-    sql.append(SQL`(${card_id}::integer, ${word.id}::integer, ${word.order}::integer)`);
-  });
-  
-  sql.append(SQL`
-    ) AS data (card_id, word_id, word_order)
-    CROSS JOIN card_access_right
-    RETURNING *;`
-  );
-  
-  console.log(sql.text);
-  console.log(sql.values);
-  
-
   try {
-    sendSuccessResponse(response, (await query(sql)).rows[0]);
+    // Check if the teacher has access rights to the card
+    const accessCheckSql = SQL`
+      SELECT 1
+      FROM teacher_course
+      INNER JOIN course ON course.id = teacher_course.course_id
+      INNER JOIN lesson ON lesson.course_id = course.id
+      INNER JOIN card ON card.lesson_id = lesson.id
+      WHERE teacher_course.teacher_username = ${teacherUsername}
+      AND card.id = ${card_id};
+    `;
+
+    const accessCheckResult = await query(accessCheckSql);
+
+    if (accessCheckResult.rows.length === 0) {
+      // Teacher does not have access rights, send error response
+      sendErrorResponse(response, Codes.Teach.TeacherPrivilegeMissing, "Teacher does not have access rights to the card.");
+      return;
+    }
+
+    // Insert words into card_word table
+    const insertSql = SQL`
+      INSERT INTO card_word (card_id, word_id, word_order)
+      VALUES 
+    `;
+
+    words.forEach((word, index) => {
+      if (index > 0) {
+        insertSql.append(SQL`,`);
+      }
+      insertSql.append(SQL`(${card_id}, ${word.id}, ${word.order})`);
+    });
+
+    insertSql.append(SQL`
+      RETURNING *;
+    `);
+
+    const insertResult = await query(insertSql);
+    sendSuccessResponse(response, insertResult.rows);
   } catch (error: any) {
     console.log(error);
     sendErrorResponse(response, Codes.RpcMethodInvocationError, error.message);
