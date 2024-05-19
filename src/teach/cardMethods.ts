@@ -51,9 +51,6 @@ async function createCard(request: any, response: any) {
 async function addWordsToCard(request: any, response: any) {
   const teacherUsername = request.session.userInfo.username;
   const { card_id, words }: { card_id: number; words: { id: number; order: number }[] } = request.body.params;
-
-  console.log(card_id)
-  console.log(words)
   /**
    * The SQL statement is of the form:
    *  INSERT INTO card_word (card_id, word_id, word_order)
@@ -73,7 +70,7 @@ async function addWordsToCard(request: any, response: any) {
   `;
 
   // Loop over the words array to construct the query
-  words.forEach((word: { id: any; order: any }, index: number) => {
+  words.forEach((word: { id: number; order: number }, index: number) => {
     if (index > 0) {
       sql.append(SQL`UNION ALL `); // Add UNION ALL for multiple rows
     }
@@ -83,7 +80,7 @@ async function addWordsToCard(request: any, response: any) {
     `);
   });
 
-  sql.append(SQL`RETURNING *;`)
+  sql.append(SQL`RETURNING *;`);
 
   console.log(sql.text);
   console.log(sql.values);
