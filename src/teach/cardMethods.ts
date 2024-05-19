@@ -52,8 +52,15 @@ async function addWordsToCard(request: any, response: any) {
   const teacherUsername = request.session.userInfo.username;
   const { card_id, words }: { card_id: number; words: { id: number; order: number }[] } = request.body.params;
 
+  /**
+   * Two queries need to be used.
+   * In order to use one query, the access check needs to be done together with INSERT, and several methods have been tried to achived this but none succeeded.
+   *   + WHERE EXISTS cannot be used with VALUES
+   *   + Using INSERT with SELECT FROM a CTE or similar methods, for some unknown reason, causes RETURNING to return only one row.
+   * Also, with two queries we can have a separate and more meaningful response for the case the teacher does not have access right.
+   */
   try {
-    // Check if the teacher has access rights to the card
+    // Check if the teacher has access right to the card
     const accessCheckSql = SQL`
       SELECT 1
       FROM teacher_course
@@ -64,11 +71,13 @@ async function addWordsToCard(request: any, response: any) {
       AND card.id = ${card_id};
     `;
 
-    const accessCheckResult = await query(accessCheckSql);
-
-    if (accessCheckResult.rows.length === 0) {
+    if ((await query(accessCheckSql)).rows.length === 0) {
       // Teacher does not have access rights, send error response
-      sendErrorResponse(response, Codes.Teach.TeacherPrivilegeMissing, "Teacher does not have access rights to the card.");
+      sendErrorResponse(
+        response,
+        Codes.Teach.TeacherPrivilegeMissing,
+        "Teacher does not have access rights to the card."
+      );
       return;
     }
 
@@ -89,8 +98,7 @@ async function addWordsToCard(request: any, response: any) {
       RETURNING *;
     `);
 
-    const insertResult = await query(insertSql);
-    sendSuccessResponse(response, insertResult.rows);
+    sendSuccessResponse(response, (await query(insertSql)).rows);
   } catch (error: any) {
     console.log(error);
     sendErrorResponse(response, Codes.RpcMethodInvocationError, error.message);
