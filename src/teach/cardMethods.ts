@@ -90,13 +90,8 @@ async function addWordsToCard(request: any, response: any) {
         sql.append(SQL`(${card_id}, ${word.id}, ${word.order})`);
         index <= words.length - 2 && sql.append(",");
       });
-      sql.append(SQL`
-        RETURNING *;
-      `);
+      sql.append(SQL`RETURNING *;`);
     });
-
-    console.log(insertSql.text);
-    console.log(insertSql.values);
 
     sendSuccessResponse(response, (await query(insertSql)).rows);
   } catch (error: any) {
