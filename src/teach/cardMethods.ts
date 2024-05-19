@@ -53,10 +53,11 @@ async function addWordsToCard(request: any, response: any) {
 
   /**
    * Two queries need to be used.
-   * In order to use one query, the access check needs to be done together with INSERT, and several methods have been tried to achived this but none succeeded.
+   * In order to use one query, the access check needs to be done together with INSERT
+   * Several methods have been tried but none succeeded in achieving this.
    *   + WHERE EXISTS cannot be used with VALUES
    *   + Using INSERT with SELECT FROM a CTE or similar methods, for some unknown reason, causes RETURNING to return only one row.
-   * Also, with two queries we can have a separate and more meaningful response for the case the teacher does not have access right.
+   * Also, with two queries we can have a separate and more meaningful response for the case the teacher is not authorized.
    */
   try {
     // Check if the teacher has access right to the card
@@ -96,17 +97,6 @@ async function addWordsToCard(request: any, response: any) {
       RETURNING *;
     `);
     });
-
-    // words.forEach((word, index) => {
-    //   if (index > 0) {
-    //     insertSql.append(SQL`,`);
-    //   }
-    //   insertSql.append(SQL`(${card_id}, ${word.id}, ${word.order})`);
-    // });
-
-    // insertSql.append(SQL`
-    //   RETURNING *;
-    // `);
 
     sendSuccessResponse(response, (await query(insertSql)).rows);
   } catch (error: any) {
