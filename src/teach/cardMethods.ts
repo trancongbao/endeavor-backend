@@ -50,25 +50,43 @@ async function createCard(request: any, response: any) {
 
 async function addWordsToCard(request: any, response: any) {
   const teacherUsername = request.session.userInfo.username;
-  const { card_id, words } = request.body.params;
+  const { card_id, words }: { card_id: number; words: { id: number; order: number }[] } = request.body.params;
 
+  console.log(card_id)
+  console.log(words)
   /**
    * The SQL statement is of the form:
-   *  INSERT INTO card_word (card_id, word_id, word_order) 
-   *  VALUES 
+   *  INSERT INTO card_word (card_id, word_id, word_order)
+   *  VALUES
    * Initialize the SQL statement
-   * */ 
-  let sql = SQL`INSERT INTO card_word (card_id, word_id, word_order) VALUES `;
+   * */
+  let sql = SQL`
+    WITH check_course AS (
+      SELECT 1
+      FROM teacher_course
+      INNER JOIN course ON course.id = teacher_course.course_id
+      INNER JOIN lesson ON lesson.course_id = course.id
+      INNER JOIN card ON card.lesson_id = lesson.id
+      WHERE teacher_course.teacher_username = ${teacherUsername}
+    )
+    INSERT INTO card_word (card_id, word_id, word_order)
+  `;
 
-  // Loop over the valuesArray to construct the query
-  words.forEach((word: { id: number; order: number }, index: number) => {
+  // Loop over the words array to construct the query
+  words.forEach((word: { id: any; order: any }, index: number) => {
     if (index > 0) {
-      sql.append(SQL`, `); // Add a comma separator for multiple rows
+      sql.append(SQL`UNION ALL `); // Add UNION ALL for multiple rows
     }
-    sql.append(SQL`(${card_id}, ${word.id}, ${word.order})`);
+    sql.append(SQL`
+      SELECT ${card_id}::integer, ${word.id}::integer, ${word.order}::integer
+      WHERE EXISTS (SELECT 1 FROM check_course)
+    `);
   });
 
-  console.log(sql);
+  sql.append(SQL`RETURNING *;`)
+
+  console.log(sql.text);
+  console.log(sql.values);
 
   try {
     sendSuccessResponse(response, (await query(sql)).rows[0]);
