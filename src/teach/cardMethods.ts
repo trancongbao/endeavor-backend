@@ -53,9 +53,9 @@ async function addWordsToCard(request: any, response: any) {
   const { card_id, words }: { card_id: number; words: { id: number; order: number }[] } = request.body.params;
 
   /**
-   * `card_access_right` contains 1 if the teacher has access right to the card
-   * `insert_rows` is a result set with 3 columns `card_id`, `word_id`, `word_order`, that is dynamically unioned from request `params`
-   * Issue:
+   * `card_access_right` contains `1` if the teacher has access right to the card
+   * `insert_rows` is a result set with three columns `card_id`, `word_id`, `word_order`, that is dynamically unioned from the request `params`
+   * Remaining issue:
    *  Only one row is returned.
    *  Possible fix: https://stackoverflow.com/questions/67309426/postgresql-function-with-union-not-returning-all-records
    * */
