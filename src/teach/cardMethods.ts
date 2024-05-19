@@ -84,18 +84,29 @@ async function addWordsToCard(request: any, response: any) {
     const insertSql = SQL`
       INSERT INTO card_word (card_id, word_id, word_order)
       VALUES 
-    `;
+    `.also((sql) => {
+      words.forEach((word, index) => {
+        if (index > 0) {
+          sql.append(SQL`,`);
+        }
+        sql.append(SQL`(${card_id}, ${word.id}, ${word.order})`);
+      });
 
-    words.forEach((word, index) => {
-      if (index > 0) {
-        insertSql.append(SQL`,`);
-      }
-      insertSql.append(SQL`(${card_id}, ${word.id}, ${word.order})`);
-    });
-
-    insertSql.append(SQL`
+      sql.append(SQL`
       RETURNING *;
     `);
+    });
+
+    // words.forEach((word, index) => {
+    //   if (index > 0) {
+    //     insertSql.append(SQL`,`);
+    //   }
+    //   insertSql.append(SQL`(${card_id}, ${word.id}, ${word.order})`);
+    // });
+
+    // insertSql.append(SQL`
+    //   RETURNING *;
+    // `);
 
     sendSuccessResponse(response, (await query(insertSql)).rows);
   } catch (error: any) {
