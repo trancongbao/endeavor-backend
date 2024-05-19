@@ -55,40 +55,43 @@ async function addWordsToCard(request: any, response: any) {
   /**
    * `card_access_right` contains `1` if the teacher has access right to the card
    * `insert_rows` is a result set with three columns `card_id`, `word_id`, `word_order`, that is dynamically unioned from the request `params`
-   * Remaining issue:
-   *  Only one row is returned.
-   *  Possible fix: https://stackoverflow.com/questions/67309426/postgresql-function-with-union-not-returning-all-records
-   * */
-  let sql = SQL`WITH card_access_right AS (
-      SELECT 1
-      FROM teacher_course
-      INNER JOIN course ON course.id = teacher_course.course_id
-      INNER JOIN lesson ON lesson.course_id = course.id
-      INNER JOIN card ON card.lesson_id = lesson.id
-      WHERE teacher_course.teacher_username = ${teacherUsername}
-      AND card.id = ${card_id}
-    ), 
-    insert_rows AS (
-    `;
-
+   * `WHERE EXISTS` is not used and `INNER JOIN` is used exclusively because:
+   *   `WHERE EXISTS` cannot be used with `VALUES`
+   *   Creating an insert_rows CTE using either SELECT+UNION or INSERT, for some unknown reason, causes `RETURNING` to return only one row.
+   */
+  let sql = SQL`
+  WITH card_access_right AS (
+    SELECT 1
+    FROM teacher_course
+    INNER JOIN course ON course.id = teacher_course.course_id
+    INNER JOIN lesson ON lesson.course_id = course.id
+    INNER JOIN card ON card.lesson_id = lesson.id
+    WHERE teacher_course.teacher_username = ${teacherUsername}
+    AND card.id = ${card_id}
+  ), 
+  insert_rows AS (
+    INSERT INTO card_word (card_id, word_id, word_order)
+    SELECT * FROM (
+      VALUES
+  `;
+  
+  // Dynamically construct the values for multiple rows
   words.forEach((word, index) => {
     if (index > 0) {
-      sql.append(SQL`UNION ALL
-      `);
+      sql.append(SQL`,`);
     }
-    sql.append(SQL`SELECT ${card_id}::integer AS card_id, ${word.id}::integer AS word_id, ${word.order}::integer AS word_order
-    `);
+    sql.append(SQL`(${card_id}::integer, ${word.id}::integer, ${word.order}::integer)`);
   });
-
-  sql.append(SQL`)
-  INSERT INTO card_word (card_id, word_id, word_order)
-  SELECT card_id, word_id, word_order 
-  FROM insert_rows
-  WHERE EXISTS (SELECT 1 FROM card_access_right)
-  RETURNING *;`);
-
+  
+  sql.append(SQL`
+    ) AS data (card_id, word_id, word_order)
+    CROSS JOIN card_access_right
+    RETURNING *;`
+  );
+  
   console.log(sql.text);
   console.log(sql.values);
+  
 
   try {
     sendSuccessResponse(response, (await query(sql)).rows[0]);
