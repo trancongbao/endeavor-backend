@@ -65,22 +65,24 @@ async function addWordsToCard(request: any, response: any) {
       INNER JOIN lesson ON lesson.course_id = course.id
       INNER JOIN card ON card.lesson_id = lesson.id
       WHERE teacher_course.teacher_username = ${teacherUsername}
-    )
-    INSERT INTO card_word (card_id, word_id, word_order)
+    ), card_words_to_insert AS (
   `;
 
   // Loop over the words array to construct the query
-  words.forEach((word: { id: number; order: number }, index: number) => {
+  words.forEach((word, index) => {
     if (index > 0) {
       sql.append(SQL`UNION ALL `); // Add UNION ALL for multiple rows
     }
     sql.append(SQL`
-      SELECT ${card_id}::integer, ${word.id}::integer, ${word.order}::integer
+      SELECT ${card_id}::integer AS card_id, ${word.id}::integer AS word_id, ${word.order}::integer AS word_order
       WHERE EXISTS (SELECT 1 FROM check_course)
     `);
   });
 
-  sql.append(SQL`RETURNING *;`);
+  sql.append(SQL`)
+  INSERT INTO card_word (card_id, word_id, word_order)
+  SELECT card_id, word_id, word_order FROM card_words_to_insert
+  RETURNING *;`);
 
   console.log(sql.text);
   console.log(sql.values);
