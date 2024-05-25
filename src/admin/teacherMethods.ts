@@ -1,30 +1,37 @@
 import bcrypt from "bcryptjs";
-import { endeavorDB, Teacher } from "../databases/endeavorDB";
-import { Insertable, Updateable } from "kysely";
 import { Schema } from "express-validator";
+import { sendSuccessResponse } from "../response/success";
+import { Codes, sendErrorResponse } from "../response/error";
+import SQL from "sql-template-strings";
+import { query } from "../databases/postgres";
 
 export { RpcMethodName, rpcMethods };
 
-type RpcMethodName = "createTeacher";
+type RpcMethodName = "addTeacher";
 
 const rpcMethods: Record<RpcMethodName, { rpcMethod: CallableFunction; rpcMethodParamsSchema: Schema }> = {
-  createTeacher: {
-    rpcMethod: createTeacher,
+  addTeacher: {
+    rpcMethod: addTeacher,
     rpcMethodParamsSchema: createTeacherParamsSchema(),
   },
 };
 
-function createTeacher(teacher: Insertable<Teacher>) {
-  bcrypt.hash(teacher.password, 13, (_, hashedPassword) => {
-    teacher.password = hashedPassword;
-  });
+async function addTeacher(request: any, response: any) {
+  const { username, password, surname, givenName, email, phone, dateOfBirth, address, avatar } = request.body.params;
 
-  return endeavorDB
-    .insertInto("teacher")
-    .values(teacher)
-    .returningAll()
-    .executeTakeFirstOrThrow()
-    .also(() => console.log(`Teacher created: ${JSON.stringify(teacher)}`));
+  const hashedPassword = await bcrypt.hash(password, 13);
+
+  const sql = SQL`
+    INSERT INTO teacher (username, password, surname, given_name, email, phone, date_of_birth, address, avatar)
+    VALUES (${username}, ${hashedPassword}, ${surname}, ${givenName}, ${email}, ${phone}, ${dateOfBirth}, ${address}, ${avatar})
+    RETURNING *; 
+    `;
+
+  try {
+    sendSuccessResponse(response, (await query(sql)).rows[0]);
+  } catch (error: any) {
+    sendErrorResponse(response, Codes.RpcMethodInvocationError, error.message);
+  }
 }
 
 export function readTeacher(teacherId: number) {}
