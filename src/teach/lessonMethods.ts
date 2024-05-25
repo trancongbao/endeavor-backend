@@ -79,9 +79,8 @@ async function getDecks(request: any, response: any) {
                 lesson.title as subdeck_title
         FROM course
         INNER JOIN lesson ON lesson.course_id = course.id
-        WHERE EXISTS    (SELECT 1 
-                        FROM teacher_course
-                        WHERE teacher_course.teacher_username = ${teacherUsername})
+        INNER JOIN teacher_course ON teacher_course.course_id = course.id
+        WHERE teacher_course.teacher_username = ${teacherUsername}
     `;
 
   try {
