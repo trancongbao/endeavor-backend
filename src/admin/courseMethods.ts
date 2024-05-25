@@ -4,6 +4,8 @@ import { Updateable } from "kysely";
 import { Schema } from "express-validator";
 import { sendSuccessResponse } from "../response/success";
 import { Codes, sendErrorResponse } from "../response/error";
+import SQL from "sql-template-strings";
+import { query } from "../databases/postgres";
 
 export { RpcMethodName, rpcMethods };
 
@@ -116,22 +118,20 @@ function assignCourseParamsSchema() {
   return {};
 }
 
-function createCourse(request: any, response: any) {
-  endeavorDB
-    .insertInto("course")
-    .values({
-      ...request.body.params,
-      status: CourseStatus.DRAFT,
-    })
-    .returningAll()
-    .execute()
-    .then((course) => {
-      sendSuccessResponse(response, course);
-    })
-    .catch((error) => {
-      console.log(error);
-      sendErrorResponse(response, Codes.RpcMethodInvocationError, error.message);
-    });
+async function createCourse(request: any, response: any) {
+  const { title, level, summary, description, thumbnail } = request.body.params;
+
+  const sql = SQL`
+    INSERT INTO course (title, status, level, summary, description, thumbnail)
+    VALUES (${title}, 'DRAFT', ${level}, ${summary}, ${description}, ${thumbnail})
+    RETURNING *; 
+    `;
+
+  try {
+    sendSuccessResponse(response, (await query(sql)).rows[0]);
+  } catch (error: any) {
+    sendErrorResponse(response, Codes.RpcMethodInvocationError, error.message);
+  }
 }
 
 function readCourse({ id }: { id: number }) {
