@@ -10,15 +10,15 @@ import { query } from "../databases/postgres";
 
 export { RpcMethodName, rpcMethods };
 
-type RpcMethodName = "createLesson" | "getDecks";
+type RpcMethodName = "createLesson" | "getSubdecks";
 
 const rpcMethods: Record<RpcMethodName, { rpcMethod: CallableFunction; rpcMethodParamsSchema: Schema }> = {
   createLesson: {
     rpcMethod: createLesson,
     rpcMethodParamsSchema: {},
   },
-  getDecks: {
-    rpcMethod: getDecks,
+  getSubdecks: {
+    rpcMethod: getSubdecks,
     rpcMethodParamsSchema: {},
   },
 };
@@ -28,21 +28,23 @@ async function createLesson(request: any, response: any) {
   /**
    * Insert only when the teacher is assigned the course
    */
-  const sql = SQL`INSERT INTO lesson (course_id, lesson_order, title, audio, summary, description, thumbnail,
+  const sql = SQL`
+    INSERT INTO lesson (course_id, lesson_order, title, audio, summary, description, thumbnail,
                                 content)
-            SELECT ${course_id},
-                   ${lesson_order},
-                   ${title},
-                   ${audio},
-                   ${summary},
-                   ${description},
-                   ${thumbnail},
-                   ${content}
-            WHERE EXISTS          (SELECT 1
-                                   FROM teacher_course
-                                   WHERE teacher_username = ${request.session.userInfo.username}
-                                     AND course_id = ${course_id})
-            RETURNING *;`;
+    SELECT ${course_id},
+            ${lesson_order},
+            ${title},
+            ${audio},
+            ${summary},
+            ${description},
+            ${thumbnail},
+            ${content}
+    WHERE EXISTS    (SELECT 1
+                    FROM teacher_course
+                    WHERE teacher_username = ${request.session.userInfo.username}
+                    AND course_id = ${course_id})
+    RETURNING *;
+    `;
 
   try {
     sendSuccessResponse(response, (await query(sql)).rows[0]);
@@ -68,45 +70,23 @@ export function deleteLesson({ id }: { id: number }) {
   return endeavorDB.deleteFrom("lesson").where("id", "=", id).returningAll().executeTakeFirstOrThrow();
 }
 
-async function getDecks(request: any, response: any) {
+async function getSubdecks(request: any, response: any) {
   const teacherUsername = request.session.userInfo.username;
+  const courseId = request.body.params.id;
+
   const sql = SQL`
-        SELECT  course.id as id,
-                course.level as level,
-                course.title as title,
-                lesson.id as subdeck_id,
-                lesson.lesson_order as subdeck_order,
-                lesson.title as subdeck_title
-        FROM course
-        INNER JOIN lesson ON lesson.course_id = course.id
-        INNER JOIN teacher_course ON teacher_course.course_id = course.id
-        WHERE teacher_course.teacher_username = ${teacherUsername}
+    SELECT  lesson.id           as id,
+            lesson.lesson_order as "order",
+            lesson.title        as title
+    FROM lesson
+    WHERE EXISTS    (SELECT 1
+                    FROM teacher_course
+                    WHERE teacher_username = ${teacherUsername}
+                    AND course_id = ${courseId})
     `;
 
   try {
-    const rows = (await query(sql)).rows;
-    const decks: {
-      id: number;
-      level: number;
-      title: string;
-      subdecks: {
-        subdeck_id: number;
-        subdeck_order: number;
-        subdeck_title: string;
-      }[];
-    }[] = [];
-
-    rows.forEach((row: any) => {
-      const { id, level, title, ...subdeck } = row;
-      const deck = decks.find((course) => course.id === id);
-      if (deck) {
-        deck.subdecks.push(subdeck);
-      } else {
-        decks.push({ id: id, level: level, title: title, subdecks: [subdeck] });
-      }
-    });
-
-    sendSuccessResponse(response, decks);
+    sendSuccessResponse(response, (await query(sql)).rows);
   } catch (error: any) {
     console.log(error);
     sendErrorResponse(response, Codes.RpcMethodInvocationError, error.message);
