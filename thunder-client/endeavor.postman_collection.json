@@ -180,7 +180,7 @@
 			"name": "/admin",
 			"item": [
 				{
-					"name": "createTeacher",
+					"name": "addTeacher",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -195,7 +195,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"createTeacher\",\n    \"params\": {\n        \"username\": \"username7\",\n        \"password\": \"password\",\n        \"surname\": \"surname\",\n        \"given_name\": \"given_name\",\n        \"email\": \"email\",\n        \"phone\": \"phone\",\n        \"date_of_birth\": \"01/01/2000\",\n        \"address\": \"address\",\n        \"avatar\": \"avatar\"\n    },\n    \"id\": 1\n}",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"createTeacher\",\n    \"params\": {\n        \"username\": \"username8\",\n        \"password\": \"password\",\n        \"surname\": \"surname\",\n        \"givenName\": \"givenName\",\n        \"email\": \"email\",\n        \"phone\": \"phone\",\n        \"date_of_birth\": \"01/01/2000\",\n        \"address\": \"address\",\n        \"avatar\": \"avatar\"\n    },\n    \"id\": 1\n}",
 							"options": {
 								"raw": {
 									"language": "json"
