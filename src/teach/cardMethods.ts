@@ -119,14 +119,16 @@ async function getCards(request: any, response: any) {
             word.part_of_speech   as word_part_of_speech,
             word.audio_uri        as word_audio_uri,
             word.image_uri        as word_image_uri
-    FROM teacher_course
-    INNER JOIN course ON course.id = teacher_course.course_id
-    INNER JOIN lesson ON lesson.course_id = course.id
-    INNER JOIN card ON card.lesson_id = lesson.id
+    FROM card
     INNER JOIN card_word ON card_word.card_id = card.id
     INNER JOIN word ON word.id = card_word.word_id
-    WHERE teacher_course.teacher_username = ${teacherUsername}
-    AND lesson.id = ${lessonId}
+    WHERE card.lesson_id = ${lessonId}
+    AND EXISTS  (SELECT 1
+                FROM teacher_course
+                INNER JOIN course ON course.id = teacher_course.course_id
+                INNER JOIN lesson ON lesson.course_id = course.id
+                WHERE teacher_course.teacher_username = ${teacherUsername}
+                AND lesson.id = ${lessonId})
   `;
 
   try {
