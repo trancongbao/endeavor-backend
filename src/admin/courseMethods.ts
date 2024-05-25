@@ -123,7 +123,7 @@ async function createCourse(request: any, response: any) {
 
   const sql = SQL`
     INSERT INTO course (title, status, level, summary, description, thumbnail)
-    VALUES (${title}, 'DRAFT', ${level}, ${summary}, ${description}, ${thumbnail})
+    VALUES (${title}, ${CourseStatus.DRAFT}, ${level}, ${summary}, ${description}, ${thumbnail})
     RETURNING *; 
     `;
 
@@ -151,19 +151,20 @@ function deleteCourse({ id }: { id: number }) {
   return endeavorDB.deleteFrom("course").where("id", "=", id).returningAll().executeTakeFirstOrThrow();
 }
 
-function assignCourse(request: any, response: any) {
-  endeavorDB
-    .insertInto("teacher_course")
-    .values(request.body.params)
-    .returningAll()
-    .execute()
-    .then((course) => {
-      sendSuccessResponse(response, course);
-    })
-    .catch((error) => {
-      console.log(error);
-      sendErrorResponse(response, Codes.RpcMethodInvocationError, error.message);
-    });
+async function assignCourse(request: any, response: any) {
+  const { teacher_username, course_id } = request.body.params;
+
+  const sql = SQL`
+      INSERT INTO teacher_course (teacher_username, course_id)
+      VALUES (${teacher_username},  ${course_id})
+      RETURNING *; 
+      `;
+
+  try {
+    sendSuccessResponse(response, (await query(sql)).rows[0]);
+  } catch (error: any) {
+    sendErrorResponse(response, Codes.RpcMethodInvocationError, error.message);
+  }
 }
 
 function publishCourse() {}
