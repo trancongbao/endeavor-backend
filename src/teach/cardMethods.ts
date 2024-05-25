@@ -104,6 +104,9 @@ async function getCards(request: any, response: any) {
   const teacherUsername = request.session.userInfo.username;
   const lessonId = request.body.params.id;
 
+  /**
+   * A teacher can only get cards belonging to courses that he is assigned.
+   */
   const sql = SQL`
     SELECT  card.id               as id,
             card.card_order       as order,
@@ -127,54 +130,27 @@ async function getCards(request: any, response: any) {
   `;
 
   try {
-    sendSuccessResponse(response, (await query(sql)).rows);
+    const rows = (await query(sql)).rows;
+    const cards: {
+      id: number;
+      order: number;
+      text: string;
+      words: { word_id: number; word_order: number; word_word: string }[];
+    }[] = [];
+
+    rows.forEach((row: any) => {
+      const { id, order, text, ...word } = row;
+      const card = cards.find((card) => card.id === id);
+      if (card) {
+        card.words.push(word);
+      } else {
+        cards.push({ id: id, order: order, text: text, words: [word] });
+      }
+    });
+
+    sendSuccessResponse(response, cards);
   } catch (error: any) {
     console.log(error);
     sendErrorResponse(response, Codes.RpcMethodInvocationError, error.message);
   }
-
-  // return endeavorDB
-  //   .selectFrom("teacher_course")
-  //   .where("teacher_course.teacher_username", "=", request.session.userInfo.username)
-  //   .innerJoin("course", "course.id", "teacher_course.course_id")
-  //   .innerJoin("lesson", "lesson.course_id", "course.id")
-  //   .innerJoin("card", "card.lesson_id", "lesson.id")
-  //   .where("card.lesson_id", "=", request.body.params.id)
-  //   .innerJoin("card_word", "card_word.card_id", "card.id")
-  //   .innerJoin("word", "word.id", "card_word.word_id")
-  //   .select([
-  //     "card.id as id",
-  //     "card.card_order as order",
-  //     "card.front_text as text",
-  //     "word.id as word_id",
-  //     "card_word.word_order as word_order",
-  //     "word.word as word_word",
-  //     "word.definition as word_definition",
-  //     "word.phonetic as word_phonetic",
-  //     "word.part_of_speech as word_part_of_speech",
-  //     "word.audio_uri as word_audio_uri",
-  //     "word.image_uri as word_image_uri",
-  //   ])
-  //   .execute()
-  //   .then((rows) => {
-  //     const cards: {
-  //       id: number;
-  //       order: number;
-  //       text: string;
-  //       words: { word_id: number; word_order: number; word_word: string }[];
-  //     }[] = [];
-  //     rows.forEach(({ id, order, text, ...word }) => {
-  //       const card = cards.find((card) => card.id === id);
-  //       if (card) {
-  //         card.words.push(word);
-  //       } else {
-  //         cards.push({ id: id, order: order, text: text, words: [word] });
-  //       }
-  //     });
-  //     sendSuccessResponse(response, cards);
-  //   })
-  //   .catch((error) => {
-  //     console.log(error);
-  //     sendErrorResponse(response, Codes.RpcMethodInvocationError, error.message);
-  //   });
 }
