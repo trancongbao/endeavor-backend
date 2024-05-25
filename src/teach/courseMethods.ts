@@ -8,7 +8,7 @@ import {query} from "../databases/postgres";
 
 export {RpcMethodName, rpcMethods}
 
-type RpcMethodName = "listAllCourses" | "getDecks" | "getSubdecks";
+type RpcMethodName = "listAllCourses" | "getSubdecks";
 
 const rpcMethods: Record<RpcMethodName, {
     rpcMethod: CallableFunction,
@@ -16,10 +16,6 @@ const rpcMethods: Record<RpcMethodName, {
 }> = {
     "listAllCourses": {
         rpcMethod: listAllCourses,
-        rpcMethodParamsSchema: {}
-    },
-    "getDecks": {
-        rpcMethod: getDecks,
         rpcMethodParamsSchema: {}
     },
     "getSubdecks": {
@@ -50,50 +46,50 @@ function listAllCourses(request: any, response: any) {
         })
 }
 
-async function getDecks(request: any, response: any) {
-    const teacherUsername = request.session.userInfo.username
-    return endeavorDB
-        .selectFrom("teacher_course")
-        .innerJoin("course", "course.id", "teacher_course.course_id")
-        .innerJoin("lesson", "lesson.course_id", "course.id")
-        .select([
-            "course.id as id",
-            "course.level as level",
-            "course.title as title",
-            "lesson.id as subdeck_id",
-            "lesson.lesson_order as subdeck_order",
-            "lesson.title as subdeck_title"
-        ])
-        .where("teacher_course.teacher_username", "=", teacherUsername)
-        .execute()
-        .then((rows) => {
-            const decks: {
-                id: number,
-                level: number,
-                title: string,
-                subdecks: {
-                    subdeck_id: number,
-                    subdeck_order: number,
-                    subdeck_title: string
-                }[]
-            }[] = [];
+// async function getDecks(request: any, response: any) {
+//     const teacherUsername = request.session.userInfo.username
+//     return endeavorDB
+//         .selectFrom("teacher_course")
+//         .innerJoin("course", "course.id", "teacher_course.course_id")
+//         .innerJoin("lesson", "lesson.course_id", "course.id")
+//         .select([
+//             "course.id as id",
+//             "course.level as level",
+//             "course.title as title",
+//             "lesson.id as subdeck_id",
+//             "lesson.lesson_order as subdeck_order",
+//             "lesson.title as subdeck_title"
+//         ])
+//         .where("teacher_course.teacher_username", "=", teacherUsername)
+//         .execute()
+//         .then((rows) => {
+//             const decks: {
+//                 id: number,
+//                 level: number,
+//                 title: string,
+//                 subdecks: {
+//                     subdeck_id: number,
+//                     subdeck_order: number,
+//                     subdeck_title: string
+//                 }[]
+//             }[] = [];
 
-            rows.forEach(({id, level, title, ...subdeck}) => {
-                const deck = decks.find(course => course.id === id)
-                if (deck) {
-                    deck.subdecks.push(subdeck)
-                } else {
-                    decks.push({id: id, level: level, title: title, subdecks: [subdeck]})
-                }
-            })
+//             rows.forEach(({id, level, title, ...subdeck}) => {
+//                 const deck = decks.find(course => course.id === id)
+//                 if (deck) {
+//                     deck.subdecks.push(subdeck)
+//                 } else {
+//                     decks.push({id: id, level: level, title: title, subdecks: [subdeck]})
+//                 }
+//             })
 
-            sendSuccessResponse(response, decks)
-        })
-        .catch(error => {
-            console.log(error)
-            sendErrorResponse(response, Codes.RpcMethodInvocationError, error.message)
-        })
-}
+//             sendSuccessResponse(response, decks)
+//         })
+//         .catch(error => {
+//             console.log(error)
+//             sendErrorResponse(response, Codes.RpcMethodInvocationError, error.message)
+//         })
+// }
 
 async function getSubdecks(request: any, response: any) {
     const teacherUsername = request.session.userInfo.username
