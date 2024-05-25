@@ -1,15 +1,16 @@
 import { RpcMethodName as CourseRpcMethodName, rpcMethods as courseRpcMethods } from "./courseMethods";
-import { paramsSchema as createTeacherParamsSchema, createTeacher } from "./teacherMethods";
+import { RpcMethodName as TeacherRpcMethodName, rpcMethods as teacherRpcMethods } from "./teacherMethods";
 import { Schema } from "express-validator";
 import { Codes } from "../response/error";
 import { validate } from "../validation/validation";
 
 export { rpcMethods, validateParams, admin };
 
-type RpcMethodName = CourseRpcMethodName;
+type RpcMethodName = CourseRpcMethodName | TeacherRpcMethodName;
 
 const rpcMethods: Record<RpcMethodName, { rpcMethod: CallableFunction; rpcMethodParamsSchema: Schema }> = {
   ...courseRpcMethods,
+  ...teacherRpcMethods,
 };
 
 async function validateParams(request: any, response: any, next: any) {
