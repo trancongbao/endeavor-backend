@@ -336,7 +336,13 @@ VALUES ('there are', 'có', null, null, null, null),
        ('big', 'to, lớn', null, null, null, null),
        ('little', 'nhỏ', null, null, null, null),
        ('new', 'mới', null, null, null, null),
-       ('old', 'cũ', null, null, null, null);
+       ('walk', 'đi', null, null, null, null),
+       ('bicycle', 'xe đạp', null, null, null, null),
+       ('car', 'xe hơi', null, null, null, null),
+       ('the USA', 'nước Mỹ', null, null, null, null),
+       ('sled', 'xe kéo trượt tuyết', null, null, null, null),
+       ('rickshaw', 'xe kéo', null, null, null, null),
+       ('how', 'bằng cách nào', null, null, null, null);
 
 -- Sample data for CARD_WORD table
 INSERT INTO CARD_WORD (card_id, word_id, word_order)
@@ -346,4 +352,11 @@ VALUES (1, 1, 1),
        (3, 3, 1),
        (3, 4, 2),
        (4, 5, 1),
-       (4, 6, 2);
+       (5, 2, 1),
+       (6, 6, 1),
+       (7, 7, 1),
+       (7, 8, 1),
+       (8, 9, 1),
+       (9, 10, 1),
+       (10, 11, 1),
+       (11, 12, 1);
