@@ -1,761 +1,782 @@
 {
-    "info": {
-        "_postman_id": "2b87e8ab-354e-40ad-a2b3-918fdcb0ef9f",
-        "name": "endeavor",
-        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-        "description": ""
-    },
-    "item": [
-        {
-            "name": "/admin",
-            "item": [
-                {
-                    "name": "createTeacher",
-                    "request": {
-                        "method": "POST",
-                        "url": {
-                            "raw": "http://localhost:3000/admin",
-                            "path": [
-                                "admin"
-                            ],
-                            "protocol": "http",
-                            "host": [
-                                "localhost"
-                            ],
-                            "port": "3000"
-                        },
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application/json"
-                            },
-                            {
-                                "key": "Authorization",
-                                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkFETUlOIiwidXNlcm5hbWUiOiJ1c2VybmFtZSIsInN1cm5hbWUiOiJzdXJuYW1lIiwiZ2l2ZW5fbmFtZSI6ImdpdmVuX25hbWUiLCJlbWFpbCI6ImVtYWlsIiwicGhvbmUiOiJwaG9uZSIsImRhdGVfb2ZfYmlydGgiOiIxOTg4LTA3LTA2VDE3OjAwOjAwLjAwMFoiLCJhZGRyZXNzIjoiYWRkcmVzcyIsImF2YXRhciI6ImF2YXRhciIsImlhdCI6MTY5Nzk2MDkxMCwiZXhwIjoxNjk3OTcxNzEwfQ.IHaZZFZtPeSri77CIBSgvX1Tl81R_gbN1kUfeBXDceY"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "options": {
-                                "raw": {
-                                    "language": "json"
-                                }
-                            },
-                            "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"createTeacher\",\n    \"params\": {\n        \"username\": \"username6\",\n        \"password\": \"password\",\n        \"surname\": \"surname\",\n        \"given_name\": \"given_name\",\n        \"email\": \"email\",\n        \"phone\": \"phone\",\n        \"date_of_birth\": \"01/01/2000\",\n        \"address\": \"address\",\n        \"avatar\": \"avatar\"\n    },\n    \"id\": 1\n}"
-                        }
-                    }
-                },
-                {
-                    "name": "createCourse",
-                    "request": {
-                        "method": "POST",
-                        "url": {
-                            "raw": "http://localhost:3000/admin",
-                            "path": [
-                                "admin"
-                            ],
-                            "protocol": "http",
-                            "host": [
-                                "localhost"
-                            ],
-                            "port": "3000"
-                        },
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application/json"
-                            },
-                            {
-                                "key": "Authorization",
-                                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkFETUlOIiwidXNlcm5hbWUiOiJ1c2VybmFtZSIsInN1cm5hbWUiOiJzdXJuYW1lIiwiZ2l2ZW5fbmFtZSI6ImdpdmVuX25hbWUiLCJlbWFpbCI6ImVtYWlsIiwicGhvbmUiOiJwaG9uZSIsImRhdGVfb2ZfYmlydGgiOiIxOTg4LTA3LTA2VDE3OjAwOjAwLjAwMFoiLCJhZGRyZXNzIjoiYWRkcmVzcyIsImF2YXRhciI6ImF2YXRhciIsImlhdCI6MTY5Nzk2MDkxMCwiZXhwIjoxNjk3OTcxNzEwfQ.IHaZZFZtPeSri77CIBSgvX1Tl81R_gbN1kUfeBXDceY"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "options": {
-                                "raw": {
-                                    "language": "json"
-                                }
-                            },
-                            "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"createCourse\",\n    \"params\": {\n        \"title\": \"title8\",\n        \"level\": 1,\n        \"summary\": \"summary\",\n        \"description\": \"description\",\n        \"thumbnail\": \"thumbnail\"\n    },\n    \"id\": 1\n}"
-                        }
-                    }
-                },
-                {
-                    "name": "/admin createStudent",
-                    "request": {
-                        "method": "POST",
-                        "url": {
-                            "raw": "http://localhost:3000/admin",
-                            "path": [
-                                "admin"
-                            ],
-                            "protocol": "http",
-                            "host": [
-                                "localhost"
-                            ],
-                            "port": "3000"
-                        },
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application/json"
-                            },
-                            {
-                                "key": "Authorization",
-                                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkFETUlOIiwidXNlcm5hbWUiOiJ1c2VybmFtZSIsInN1cm5hbWUiOiJzdXJuYW1lIiwiZ2l2ZW5fbmFtZSI6ImdpdmVuX25hbWUiLCJlbWFpbCI6ImVtYWlsIiwicGhvbmUiOiJwaG9uZSIsImRhdGVfb2ZfYmlydGgiOiIxOTg4LTA3LTA2VDE3OjAwOjAwLjAwMFoiLCJhZGRyZXNzIjoiYWRkcmVzcyIsImF2YXRhciI6ImF2YXRhciIsImlhdCI6MTY5Nzk0NTI4NCwiZXhwIjoxNjk3OTQ4ODg0fQ.3Js-aYRcpf16UjCeDxFgO13VX1xLG5LGWw16C-QrZKY"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "options": {
-                                "raw": {
-                                    "language": "json"
-                                }
-                            },
-                            "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"createStudent\",\n    \"params\": {\n        \"username\": \"username5\",\n        \"password\": \"password\",\n        \"surname\": \"surname\",\n        \"given_name\": \"given_name\",\n        \"email\": \"email\",\n        \"phone\": \"phone\",\n        \"date_of_birth\": \"01/01/2000\",\n        \"address\": \"address\",\n        \"avatar\": \"avatar\",\n        \"proficiency\": 100\n    },\n    \"id\": 1\n}"
-                        }
-                    }
-                },
-                {
-                    "name": "/admin updateStudent",
-                    "request": {
-                        "method": "POST",
-                        "url": {
-                            "raw": "http://localhost:3000/admin",
-                            "path": [
-                                "admin"
-                            ],
-                            "protocol": "http",
-                            "host": [
-                                "localhost"
-                            ],
-                            "port": "3000"
-                        },
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application/json"
-                            },
-                            {
-                                "key": "Authorization",
-                                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkFETUlOIiwidXNlcm5hbWUiOiJ1c2VybmFtZSIsInN1cm5hbWUiOiJzdXJuYW1lIiwiZ2l2ZW5fbmFtZSI6ImdpdmVuX25hbWUiLCJlbWFpbCI6ImVtYWlsIiwicGhvbmUiOiJwaG9uZSIsImRhdGVfb2ZfYmlydGgiOiIxOTg4LTA3LTA2VDE3OjAwOjAwLjAwMFoiLCJhZGRyZXNzIjoiYWRkcmVzcyIsImF2YXRhciI6ImF2YXRhciIsImlhdCI6MTY5Nzk0OTY2MywiZXhwIjoxNjk3OTUzMjYzfQ.l6Uy7i-2V3hzMttZMCraGQcWThXcaqOPblptaI6k3Gs"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "options": {
-                                "raw": {
-                                    "language": "json"
-                                }
-                            },
-                            "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"updateStudent\",\n    \"params\": {\n        \"username\": \"username5\",\n        \"proficiency\": 1000\n    },\n    \"id\": 1\n}"
-                        }
-                    }
-                },
-                {
-                    "name": "/admin readStudent",
-                    "request": {
-                        "method": "POST",
-                        "url": {
-                            "raw": "http://localhost:3000/admin",
-                            "path": [
-                                "admin"
-                            ],
-                            "protocol": "http",
-                            "host": [
-                                "localhost"
-                            ],
-                            "port": "3000"
-                        },
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application/json"
-                            },
-                            {
-                                "key": "Authorization",
-                                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkFETUlOIiwidXNlcm5hbWUiOiJ1c2VybmFtZSIsInN1cm5hbWUiOiJzdXJuYW1lIiwiZ2l2ZW5fbmFtZSI6ImdpdmVuX25hbWUiLCJlbWFpbCI6ImVtYWlsIiwicGhvbmUiOiJwaG9uZSIsImRhdGVfb2ZfYmlydGgiOiIxOTg4LTA3LTA2VDE3OjAwOjAwLjAwMFoiLCJhZGRyZXNzIjoiYWRkcmVzcyIsImF2YXRhciI6ImF2YXRhciIsImlhdCI6MTY5Nzk0ODkxMywiZXhwIjoxNjk3OTUyNTEzfQ.iP-_aWkDr2HFoqz5cKX8KNqGok1jMLu87Gd2bsELZQ0"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "options": {
-                                "raw": {
-                                    "language": "json"
-                                }
-                            },
-                            "raw": "{\r\n    \"jsonrpc\": \"2.0\",\r\n    \"method\": \"readStudent\",\r\n    \"params\": {\r\n        \"username\": \"username5\"\r\n    },\r\n    \"id\": 1\r\n}"
-                        }
-                    }
-                },
-                {
-                    "name": "/admin deleteStudent",
-                    "request": {
-                        "method": "POST",
-                        "url": {
-                            "raw": "http://localhost:3000/admin",
-                            "path": [
-                                "admin"
-                            ],
-                            "protocol": "http",
-                            "host": [
-                                "localhost"
-                            ],
-                            "port": "3000"
-                        },
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application/json"
-                            },
-                            {
-                                "key": "Authorization",
-                                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkFETUlOIiwidXNlcm5hbWUiOiJ1c2VybmFtZSIsInN1cm5hbWUiOiJzdXJuYW1lIiwiZ2l2ZW5fbmFtZSI6ImdpdmVuX25hbWUiLCJlbWFpbCI6ImVtYWlsIiwicGhvbmUiOiJwaG9uZSIsImRhdGVfb2ZfYmlydGgiOiIxOTg4LTA3LTA2VDE3OjAwOjAwLjAwMFoiLCJhZGRyZXNzIjoiYWRkcmVzcyIsImF2YXRhciI6ImF2YXRhciIsImlhdCI6MTY5Nzk0ODkxMywiZXhwIjoxNjk3OTUyNTEzfQ.iP-_aWkDr2HFoqz5cKX8KNqGok1jMLu87Gd2bsELZQ0"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "options": {
-                                "raw": {
-                                    "language": "json"
-                                }
-                            },
-                            "raw": "{\r\n    \"jsonrpc\": \"2.0\",\r\n    \"method\": \"readStudent\",\r\n    \"params\": {\r\n        \"username\": \"username5\"\r\n    },\r\n    \"id\": 1\r\n}"
-                        }
-                    }
-                },
-                {
-                    "name": "assignCourse",
-                    "request": {
-                        "method": "POST",
-                        "url": {
-                            "raw": "http://localhost:3000/admin",
-                            "path": [
-                                "admin"
-                            ],
-                            "protocol": "http",
-                            "host": [
-                                "localhost"
-                            ],
-                            "port": "3000"
-                        },
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application/json"
-                            },
-                            {
-                                "key": "Authorization",
-                                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkFETUlOIiwidXNlcm5hbWUiOiJ1c2VybmFtZSIsInN1cm5hbWUiOiJzdXJuYW1lIiwiZ2l2ZW5fbmFtZSI6ImdpdmVuX25hbWUiLCJlbWFpbCI6ImVtYWlsIiwicGhvbmUiOiJwaG9uZSIsImRhdGVfb2ZfYmlydGgiOiIxOTg4LTA3LTA2VDE3OjAwOjAwLjAwMFoiLCJhZGRyZXNzIjoiYWRkcmVzcyIsImF2YXRhciI6ImF2YXRhciIsImlhdCI6MTY5Nzk2MDkxMCwiZXhwIjoxNjk3OTcxNzEwfQ.IHaZZFZtPeSri77CIBSgvX1Tl81R_gbN1kUfeBXDceY"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "options": {
-                                "raw": {
-                                    "language": "json"
-                                }
-                            },
-                            "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"assignCourse\",\n  \"params\": {\n    \"teacher_username\": \"teacher1\",\n    \"course_id\": 7\n  },\n  \"id\": 1\n}"
-                        }
-                    }
-                }
-            ]
-        },
-        {
-            "name": "/teach",
-            "item": [
-                {
-                    "name": "createLesson",
-                    "request": {
-                        "method": "POST",
-                        "url": {
-                            "raw": "http://localhost:3000/teach",
-                            "path": [
-                                "teach"
-                            ],
-                            "protocol": "http",
-                            "host": [
-                                "localhost"
-                            ],
-                            "port": "3000"
-                        },
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application/json"
-                            },
-                            {
-                                "key": "Authorization",
-                                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkFETUlOIiwidXNlcm5hbWUiOiJ1c2VybmFtZSIsInN1cm5hbWUiOiJzdXJuYW1lIiwiZ2l2ZW5fbmFtZSI6ImdpdmVuX25hbWUiLCJlbWFpbCI6ImVtYWlsIiwicGhvbmUiOiJwaG9uZSIsImRhdGVfb2ZfYmlydGgiOiIxOTg4LTA3LTA2VDE3OjAwOjAwLjAwMFoiLCJhZGRyZXNzIjoiYWRkcmVzcyIsImF2YXRhciI6ImF2YXRhciIsImlhdCI6MTY5Nzk2MDkxMCwiZXhwIjoxNjk3OTcxNzEwfQ.IHaZZFZtPeSri77CIBSgvX1Tl81R_gbN1kUfeBXDceY"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "options": {
-                                "raw": {
-                                    "language": "json"
-                                }
-                            },
-                            "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"createLesson\",\n    \"params\": {\n        \"course_id\": 4,\n        \"lesson_order\": 2,\n        \"title\": \"title\",\n        \"audio\": \"audio\",\n        \"summary\": \"summary\",\n        \"description\": \"description\",\n        \"thumbnail\": \"thumbnail\",\n        \"content\": \"content\"\n    },\n    \"id\": 1\n}"
-                        }
-                    }
-                },
-                {
-                    "name": "listAllCourses",
-                    "request": {
-                        "method": "POST",
-                        "url": {
-                            "raw": "http://localhost:3000/teach",
-                            "path": [
-                                "teach"
-                            ],
-                            "protocol": "http",
-                            "host": [
-                                "localhost"
-                            ],
-                            "port": "3000"
-                        },
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application/json"
-                            },
-                            {
-                                "key": "Authorization",
-                                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkFETUlOIiwidXNlcm5hbWUiOiJ1c2VybmFtZSIsInN1cm5hbWUiOiJzdXJuYW1lIiwiZ2l2ZW5fbmFtZSI6ImdpdmVuX25hbWUiLCJlbWFpbCI6ImVtYWlsIiwicGhvbmUiOiJwaG9uZSIsImRhdGVfb2ZfYmlydGgiOiIxOTg4LTA3LTA2VDE3OjAwOjAwLjAwMFoiLCJhZGRyZXNzIjoiYWRkcmVzcyIsImF2YXRhciI6ImF2YXRhciIsImlhdCI6MTY5Nzk2MDkxMCwiZXhwIjoxNjk3OTcxNzEwfQ.IHaZZFZtPeSri77CIBSgvX1Tl81R_gbN1kUfeBXDceY"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "options": {
-                                "raw": {
-                                    "language": "json"
-                                }
-                            },
-                            "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"listAllCourses\",\n  \"params\": {},\n  \"id\": 1\n}"
-                        }
-                    }
-                },
-                {
-                    "name": "createWord",
-                    "request": {
-                        "method": "POST",
-                        "url": {
-                            "raw": "http://localhost:3000/teach",
-                            "path": [
-                                "teach"
-                            ],
-                            "protocol": "http",
-                            "host": [
-                                "localhost"
-                            ],
-                            "port": "3000"
-                        },
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application/json"
-                            },
-                            {
-                                "key": "Authorization",
-                                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkFETUlOIiwidXNlcm5hbWUiOiJ1c2VybmFtZSIsInN1cm5hbWUiOiJzdXJuYW1lIiwiZ2l2ZW5fbmFtZSI6ImdpdmVuX25hbWUiLCJlbWFpbCI6ImVtYWlsIiwicGhvbmUiOiJwaG9uZSIsImRhdGVfb2ZfYmlydGgiOiIxOTg4LTA3LTA2VDE3OjAwOjAwLjAwMFoiLCJhZGRyZXNzIjoiYWRkcmVzcyIsImF2YXRhciI6ImF2YXRhciIsImlhdCI6MTY5Nzk2MDkxMCwiZXhwIjoxNjk3OTcxNzEwfQ.IHaZZFZtPeSri77CIBSgvX1Tl81R_gbN1kUfeBXDceY"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "options": {
-                                "raw": {
-                                    "language": "json"
-                                }
-                            },
-                            "raw": "{\n  \"method\": \"createWord\",\n  \"params\": {\n    \"word\": \"endeavor\",\n    \"definition\": \"an attempt to achieve a goal\",\n    \"phonetic\": \"enˈdevər\",\n    \"part_of_speech\": \"noun\",\n    \"audio_uri\": \"audio_uri\",\n    \"image_uri\": \"image_uri\"\n  }\n}"
-                        }
-                    }
-                },
-                {
-                    "name": "createCard",
-                    "request": {
-                        "method": "POST",
-                        "url": {
-                            "raw": "http://localhost:3000/teach",
-                            "path": [
-                                "teach"
-                            ],
-                            "protocol": "http",
-                            "host": [
-                                "localhost"
-                            ],
-                            "port": "3000"
-                        },
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application/json"
-                            },
-                            {
-                                "key": "Authorization",
-                                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkFETUlOIiwidXNlcm5hbWUiOiJ1c2VybmFtZSIsInN1cm5hbWUiOiJzdXJuYW1lIiwiZ2l2ZW5fbmFtZSI6ImdpdmVuX25hbWUiLCJlbWFpbCI6ImVtYWlsIiwicGhvbmUiOiJwaG9uZSIsImRhdGVfb2ZfYmlydGgiOiIxOTg4LTA3LTA2VDE3OjAwOjAwLjAwMFoiLCJhZGRyZXNzIjoiYWRkcmVzcyIsImF2YXRhciI6ImF2YXRhciIsImlhdCI6MTY5Nzk2MDkxMCwiZXhwIjoxNjk3OTcxNzEwfQ.IHaZZFZtPeSri77CIBSgvX1Tl81R_gbN1kUfeBXDceY"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "options": {
-                                "raw": {
-                                    "language": "json"
-                                }
-                            },
-                            "raw": "{\n  \"method\": \"createCard\",\n  \"params\": {\n    \"lesson_id\": 2,\n    \"card_order\": 5,\n    \"front_text\": \"People who set #realistic# goals are more likely to keep at their endeavor.\",\n    \"front_audio_uri\": \"front_audio_uri\"\n  },\n}"
-                        }
-                    }
-                },
-                {
-                    "name": "searchWord",
-                    "request": {
-                        "method": "POST",
-                        "url": {
-                            "raw": "http://localhost:3000/teach",
-                            "path": [
-                                "teach"
-                            ],
-                            "protocol": "http",
-                            "host": [
-                                "localhost"
-                            ],
-                            "port": "3000"
-                        },
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application/json"
-                            },
-                            {
-                                "key": "Authorization",
-                                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkFETUlOIiwidXNlcm5hbWUiOiJ1c2VybmFtZSIsInN1cm5hbWUiOiJzdXJuYW1lIiwiZ2l2ZW5fbmFtZSI6ImdpdmVuX25hbWUiLCJlbWFpbCI6ImVtYWlsIiwicGhvbmUiOiJwaG9uZSIsImRhdGVfb2ZfYmlydGgiOiIxOTg4LTA3LTA2VDE3OjAwOjAwLjAwMFoiLCJhZGRyZXNzIjoiYWRkcmVzcyIsImF2YXRhciI6ImF2YXRhciIsImlhdCI6MTY5Nzk2MDkxMCwiZXhwIjoxNjk3OTcxNzEwfQ.IHaZZFZtPeSri77CIBSgvX1Tl81R_gbN1kUfeBXDceY"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "options": {
-                                "raw": {
-                                    "language": "json"
-                                }
-                            },
-                            "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"searchWord\",\n  \"params\": {\n    \"searchTerm\": \"new\"\n  },\n  \"id\": 1\n}"
-                        }
-                    }
-                },
-                {
-                    "name": "addWordsToCard",
-                    "request": {
-                        "method": "POST",
-                        "url": {
-                            "raw": "http://localhost:3000/teach",
-                            "path": [
-                                "teach"
-                            ],
-                            "protocol": "http",
-                            "host": [
-                                "localhost"
-                            ],
-                            "port": "3000"
-                        },
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application/json"
-                            },
-                            {
-                                "key": "Authorization",
-                                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkFETUlOIiwidXNlcm5hbWUiOiJ1c2VybmFtZSIsInN1cm5hbWUiOiJzdXJuYW1lIiwiZ2l2ZW5fbmFtZSI6ImdpdmVuX25hbWUiLCJlbWFpbCI6ImVtYWlsIiwicGhvbmUiOiJwaG9uZSIsImRhdGVfb2ZfYmlydGgiOiIxOTg4LTA3LTA2VDE3OjAwOjAwLjAwMFoiLCJhZGRyZXNzIjoiYWRkcmVzcyIsImF2YXRhciI6ImF2YXRhciIsImlhdCI6MTY5Nzk2MDkxMCwiZXhwIjoxNjk3OTcxNzEwfQ.IHaZZFZtPeSri77CIBSgvX1Tl81R_gbN1kUfeBXDceY"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "options": {
-                                "raw": {
-                                    "language": "json"
-                                }
-                            },
-                            "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 1,\n  \"method\": \"addWordsToCard\",\n  \"params\": {\n    \"card_id\": 1,\n    \"words\": [\n      {\n        \"id\": 3,\n        \"order\": 3\n      },\n      {\n        \"id\": 4,\n        \"order\": 4\n      }\n    ]\n  }\n}"
-                        }
-                    }
-                },
-                {
-                    "name": "getMyDecks",
-                    "request": {
-                        "method": "POST",
-                        "url": {
-                            "raw": "http://localhost:3000/teach",
-                            "path": [
-                                "teach"
-                            ],
-                            "protocol": "http",
-                            "host": [
-                                "localhost"
-                            ],
-                            "port": "3000"
-                        },
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application/json"
-                            },
-                            {
-                                "key": "Authorization",
-                                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkFETUlOIiwidXNlcm5hbWUiOiJ1c2VybmFtZSIsInN1cm5hbWUiOiJzdXJuYW1lIiwiZ2l2ZW5fbmFtZSI6ImdpdmVuX25hbWUiLCJlbWFpbCI6ImVtYWlsIiwicGhvbmUiOiJwaG9uZSIsImRhdGVfb2ZfYmlydGgiOiIxOTg4LTA3LTA2VDE3OjAwOjAwLjAwMFoiLCJhZGRyZXNzIjoiYWRkcmVzcyIsImF2YXRhciI6ImF2YXRhciIsImlhdCI6MTY5Nzk2MDkxMCwiZXhwIjoxNjk3OTcxNzEwfQ.IHaZZFZtPeSri77CIBSgvX1Tl81R_gbN1kUfeBXDceY"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "options": {
-                                "raw": {
-                                    "language": "json"
-                                }
-                            },
-                            "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"getMyDecks\",\n  \"params\": {},\n  \"id\": 1\n}"
-                        }
-                    }
-                },
-                {
-                    "name": "getSubdecks",
-                    "request": {
-                        "method": "POST",
-                        "url": {
-                            "raw": "http://localhost:3000/teach",
-                            "path": [
-                                "teach"
-                            ],
-                            "protocol": "http",
-                            "host": [
-                                "localhost"
-                            ],
-                            "port": "3000"
-                        },
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application/json"
-                            },
-                            {
-                                "key": "Authorization",
-                                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkFETUlOIiwidXNlcm5hbWUiOiJ1c2VybmFtZSIsInN1cm5hbWUiOiJzdXJuYW1lIiwiZ2l2ZW5fbmFtZSI6ImdpdmVuX25hbWUiLCJlbWFpbCI6ImVtYWlsIiwicGhvbmUiOiJwaG9uZSIsImRhdGVfb2ZfYmlydGgiOiIxOTg4LTA3LTA2VDE3OjAwOjAwLjAwMFoiLCJhZGRyZXNzIjoiYWRkcmVzcyIsImF2YXRhciI6ImF2YXRhciIsImlhdCI6MTY5Nzk2MDkxMCwiZXhwIjoxNjk3OTcxNzEwfQ.IHaZZFZtPeSri77CIBSgvX1Tl81R_gbN1kUfeBXDceY"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "options": {
-                                "raw": {
-                                    "language": "json"
-                                }
-                            },
-                            "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"getSubdecks\",\n  \"params\": {\n    \"id\": 1\n  },\n  \"id\": 1\n}"
-                        }
-                    }
-                },
-                {
-                    "name": "getCards",
-                    "request": {
-                        "method": "POST",
-                        "url": {
-                            "raw": "http://localhost:3000/teach",
-                            "path": [
-                                "teach"
-                            ],
-                            "protocol": "http",
-                            "host": [
-                                "localhost"
-                            ],
-                            "port": "3000"
-                        },
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application/json"
-                            },
-                            {
-                                "key": "Authorization",
-                                "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkFETUlOIiwidXNlcm5hbWUiOiJ1c2VybmFtZSIsInN1cm5hbWUiOiJzdXJuYW1lIiwiZ2l2ZW5fbmFtZSI6ImdpdmVuX25hbWUiLCJlbWFpbCI6ImVtYWlsIiwicGhvbmUiOiJwaG9uZSIsImRhdGVfb2ZfYmlydGgiOiIxOTg4LTA3LTA2VDE3OjAwOjAwLjAwMFoiLCJhZGRyZXNzIjoiYWRkcmVzcyIsImF2YXRhciI6ImF2YXRhciIsImlhdCI6MTY5Nzk2MDkxMCwiZXhwIjoxNjk3OTcxNzEwfQ.IHaZZFZtPeSri77CIBSgvX1Tl81R_gbN1kUfeBXDceY"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "options": {
-                                "raw": {
-                                    "language": "json"
-                                }
-                            },
-                            "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"getCards\",\n  \"params\": {\n    \"id\": 1\n  },\n  \"id\": 1\n}"
-                        }
-                    }
-                }
-            ]
-        },
-        {
-            "name": "/auth",
-            "item": [
-                {
-                    "name": "login admin",
-                    "request": {
-                        "method": "POST",
-                        "url": {
-                            "raw": "http://localhost:3000/auth",
-                            "path": [
-                                "auth"
-                            ],
-                            "protocol": "http",
-                            "host": [
-                                "localhost"
-                            ],
-                            "port": "3000"
-                        },
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application/json"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "options": {
-                                "raw": {
-                                    "language": "json"
-                                }
-                            },
-                            "raw": "{\n  \"method\": \"login\",\n  \"params\": {\n    \"userType\": \"admin\",\n    \"username\": \"admin\",\n    \"password\": \"password\"\n  }\n}"
-                        }
-                    }
-                },
-                {
-                    "name": "login teacher",
-                    "request": {
-                        "method": "POST",
-                        "url": {
-                            "raw": "http://localhost:3000/auth",
-                            "path": [
-                                "auth"
-                            ],
-                            "protocol": "http",
-                            "host": [
-                                "localhost"
-                            ],
-                            "port": "3000"
-                        },
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application/json"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "options": {
-                                "raw": {
-                                    "language": "json"
-                                }
-                            },
-                            "raw": "{\n  \"method\": \"login\",\n  \"params\": {\n    \"userType\": \"teacher\", \n    \"username\": \"teacher1\", \n    \"password\": \"password1\" \n  }\n}"
-                        }
-                    }
-                },
-                {
-                    "name": "login student",
-                    "request": {
-                        "method": "POST",
-                        "url": {
-                            "raw": "http://localhost:3000/auth",
-                            "path": [
-                                "auth"
-                            ],
-                            "protocol": "http",
-                            "host": [
-                                "localhost"
-                            ],
-                            "port": "3000"
-                        },
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application/json"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "options": {
-                                "raw": {
-                                    "language": "json"
-                                }
-                            },
-                            "raw": "{\n  \"method\": \"login\",\n  \"params\": {\n    \"userType\": \"student\", \n    \"username\": \"bao_tran\", \n    \"password\": \"password\" \n  }\n}"
-                        }
-                    }
-                },
-                {
-                    "name": "logout",
-                    "request": {
-                        "method": "POST",
-                        "url": {
-                            "raw": "http://localhost:3000/auth",
-                            "path": [
-                                "auth"
-                            ],
-                            "protocol": "http",
-                            "host": [
-                                "localhost"
-                            ],
-                            "port": "3000"
-                        },
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application/json"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "options": {
-                                "raw": {
-                                    "language": "json"
-                                }
-                            },
-                            "raw": "{\n  \"id\": 1,\n  \"method\": \"logout\",\n  \"params\": {}\n}"
-                        }
-                    }
-                },
-                {
-                    "name": "currentUser",
-                    "request": {
-                        "method": "POST",
-                        "url": {
-                            "raw": "http://localhost:3000/auth",
-                            "path": [
-                                "auth"
-                            ],
-                            "protocol": "http",
-                            "host": [
-                                "localhost"
-                            ],
-                            "port": "3000"
-                        },
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application/json"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "options": {
-                                "raw": {
-                                    "language": "json"
-                                }
-                            },
-                            "raw": "{\n  \"id\": 1,\n  \"method\": \"currentUser\",\n  \"params\": {}\n}"
-                        }
-                    }
-                }
-            ]
-        }
-    ]
+	"info": {
+		"_postman_id": "25bda668-1ba8-43a0-9264-aa972609d832",
+		"name": "endeavor",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21202707"
+	},
+	"item": [
+		{
+			"name": "/auth",
+			"item": [
+				{
+					"name": "login admin",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"method\": \"login\",\n  \"params\": {\n    \"userType\": \"admin\",\n    \"username\": \"admin\",\n    \"password\": \"password\"\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login teacher",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"method\": \"login\",\n  \"params\": {\n    \"userType\": \"teacher\", \n    \"username\": \"teacher1\", \n    \"password\": \"password1\" \n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login student",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"method\": \"login\",\n  \"params\": {\n    \"userType\": \"student\", \n    \"username\": \"bao_tran\", \n    \"password\": \"password\" \n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": 1,\n  \"method\": \"logout\",\n  \"params\": {}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "currentUser",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": 1,\n  \"method\": \"currentUser\",\n  \"params\": {}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "/admin",
+			"item": [
+				{
+					"name": "addTeacher",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkFETUlOIiwidXNlcm5hbWUiOiJ1c2VybmFtZSIsInN1cm5hbWUiOiJzdXJuYW1lIiwiZ2l2ZW5fbmFtZSI6ImdpdmVuX25hbWUiLCJlbWFpbCI6ImVtYWlsIiwicGhvbmUiOiJwaG9uZSIsImRhdGVfb2ZfYmlydGgiOiIxOTg4LTA3LTA2VDE3OjAwOjAwLjAwMFoiLCJhZGRyZXNzIjoiYWRkcmVzcyIsImF2YXRhciI6ImF2YXRhciIsImlhdCI6MTY5Nzk2MDkxMCwiZXhwIjoxNjk3OTcxNzEwfQ.IHaZZFZtPeSri77CIBSgvX1Tl81R_gbN1kUfeBXDceY"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"createTeacher\",\n    \"params\": {\n        \"username\": \"username8\",\n        \"password\": \"password\",\n        \"surname\": \"surname\",\n        \"givenName\": \"givenName\",\n        \"email\": \"email\",\n        \"phone\": \"phone\",\n        \"date_of_birth\": \"01/01/2000\",\n        \"address\": \"address\",\n        \"avatar\": \"avatar\"\n    },\n    \"id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/admin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createCourse",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkFETUlOIiwidXNlcm5hbWUiOiJ1c2VybmFtZSIsInN1cm5hbWUiOiJzdXJuYW1lIiwiZ2l2ZW5fbmFtZSI6ImdpdmVuX25hbWUiLCJlbWFpbCI6ImVtYWlsIiwicGhvbmUiOiJwaG9uZSIsImRhdGVfb2ZfYmlydGgiOiIxOTg4LTA3LTA2VDE3OjAwOjAwLjAwMFoiLCJhZGRyZXNzIjoiYWRkcmVzcyIsImF2YXRhciI6ImF2YXRhciIsImlhdCI6MTY5Nzk2MDkxMCwiZXhwIjoxNjk3OTcxNzEwfQ.IHaZZFZtPeSri77CIBSgvX1Tl81R_gbN1kUfeBXDceY"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"createCourse\",\n    \"params\": {\n        \"title\": \"title10\",\n        \"level\": 1,\n        \"summary\": \"summary\",\n        \"description\": \"description\",\n        \"thumbnail\": \"thumbnail\"\n    },\n    \"id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/admin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createStudent",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkFETUlOIiwidXNlcm5hbWUiOiJ1c2VybmFtZSIsInN1cm5hbWUiOiJzdXJuYW1lIiwiZ2l2ZW5fbmFtZSI6ImdpdmVuX25hbWUiLCJlbWFpbCI6ImVtYWlsIiwicGhvbmUiOiJwaG9uZSIsImRhdGVfb2ZfYmlydGgiOiIxOTg4LTA3LTA2VDE3OjAwOjAwLjAwMFoiLCJhZGRyZXNzIjoiYWRkcmVzcyIsImF2YXRhciI6ImF2YXRhciIsImlhdCI6MTY5Nzk0NTI4NCwiZXhwIjoxNjk3OTQ4ODg0fQ.3Js-aYRcpf16UjCeDxFgO13VX1xLG5LGWw16C-QrZKY"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"createStudent\",\n    \"params\": {\n        \"username\": \"username5\",\n        \"password\": \"password\",\n        \"surname\": \"surname\",\n        \"given_name\": \"given_name\",\n        \"email\": \"email\",\n        \"phone\": \"phone\",\n        \"date_of_birth\": \"01/01/2000\",\n        \"address\": \"address\",\n        \"avatar\": \"avatar\",\n        \"proficiency\": 100\n    },\n    \"id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/admin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateStudent",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkFETUlOIiwidXNlcm5hbWUiOiJ1c2VybmFtZSIsInN1cm5hbWUiOiJzdXJuYW1lIiwiZ2l2ZW5fbmFtZSI6ImdpdmVuX25hbWUiLCJlbWFpbCI6ImVtYWlsIiwicGhvbmUiOiJwaG9uZSIsImRhdGVfb2ZfYmlydGgiOiIxOTg4LTA3LTA2VDE3OjAwOjAwLjAwMFoiLCJhZGRyZXNzIjoiYWRkcmVzcyIsImF2YXRhciI6ImF2YXRhciIsImlhdCI6MTY5Nzk0OTY2MywiZXhwIjoxNjk3OTUzMjYzfQ.l6Uy7i-2V3hzMttZMCraGQcWThXcaqOPblptaI6k3Gs"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"updateStudent\",\n    \"params\": {\n        \"username\": \"username5\",\n        \"proficiency\": 1000\n    },\n    \"id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/admin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "readStudent",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkFETUlOIiwidXNlcm5hbWUiOiJ1c2VybmFtZSIsInN1cm5hbWUiOiJzdXJuYW1lIiwiZ2l2ZW5fbmFtZSI6ImdpdmVuX25hbWUiLCJlbWFpbCI6ImVtYWlsIiwicGhvbmUiOiJwaG9uZSIsImRhdGVfb2ZfYmlydGgiOiIxOTg4LTA3LTA2VDE3OjAwOjAwLjAwMFoiLCJhZGRyZXNzIjoiYWRkcmVzcyIsImF2YXRhciI6ImF2YXRhciIsImlhdCI6MTY5Nzk0ODkxMywiZXhwIjoxNjk3OTUyNTEzfQ.iP-_aWkDr2HFoqz5cKX8KNqGok1jMLu87Gd2bsELZQ0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"jsonrpc\": \"2.0\",\r\n    \"method\": \"readStudent\",\r\n    \"params\": {\r\n        \"username\": \"username5\"\r\n    },\r\n    \"id\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/admin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteStudent",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkFETUlOIiwidXNlcm5hbWUiOiJ1c2VybmFtZSIsInN1cm5hbWUiOiJzdXJuYW1lIiwiZ2l2ZW5fbmFtZSI6ImdpdmVuX25hbWUiLCJlbWFpbCI6ImVtYWlsIiwicGhvbmUiOiJwaG9uZSIsImRhdGVfb2ZfYmlydGgiOiIxOTg4LTA3LTA2VDE3OjAwOjAwLjAwMFoiLCJhZGRyZXNzIjoiYWRkcmVzcyIsImF2YXRhciI6ImF2YXRhciIsImlhdCI6MTY5Nzk0ODkxMywiZXhwIjoxNjk3OTUyNTEzfQ.iP-_aWkDr2HFoqz5cKX8KNqGok1jMLu87Gd2bsELZQ0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"jsonrpc\": \"2.0\",\r\n    \"method\": \"readStudent\",\r\n    \"params\": {\r\n        \"username\": \"username5\"\r\n    },\r\n    \"id\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/admin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "assignCourse",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkFETUlOIiwidXNlcm5hbWUiOiJ1c2VybmFtZSIsInN1cm5hbWUiOiJzdXJuYW1lIiwiZ2l2ZW5fbmFtZSI6ImdpdmVuX25hbWUiLCJlbWFpbCI6ImVtYWlsIiwicGhvbmUiOiJwaG9uZSIsImRhdGVfb2ZfYmlydGgiOiIxOTg4LTA3LTA2VDE3OjAwOjAwLjAwMFoiLCJhZGRyZXNzIjoiYWRkcmVzcyIsImF2YXRhciI6ImF2YXRhciIsImlhdCI6MTY5Nzk2MDkxMCwiZXhwIjoxNjk3OTcxNzEwfQ.IHaZZFZtPeSri77CIBSgvX1Tl81R_gbN1kUfeBXDceY"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"assignCourse\",\n  \"params\": {\n    \"teacher_username\": \"teacher1\",\n    \"course_id\": 7\n  },\n  \"id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/admin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"admin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "/teach",
+			"item": [
+				{
+					"name": "createLesson",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkFETUlOIiwidXNlcm5hbWUiOiJ1c2VybmFtZSIsInN1cm5hbWUiOiJzdXJuYW1lIiwiZ2l2ZW5fbmFtZSI6ImdpdmVuX25hbWUiLCJlbWFpbCI6ImVtYWlsIiwicGhvbmUiOiJwaG9uZSIsImRhdGVfb2ZfYmlydGgiOiIxOTg4LTA3LTA2VDE3OjAwOjAwLjAwMFoiLCJhZGRyZXNzIjoiYWRkcmVzcyIsImF2YXRhciI6ImF2YXRhciIsImlhdCI6MTY5Nzk2MDkxMCwiZXhwIjoxNjk3OTcxNzEwfQ.IHaZZFZtPeSri77CIBSgvX1Tl81R_gbN1kUfeBXDceY"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"createLesson\",\n    \"params\": {\n        \"course_id\": 4,\n        \"lesson_order\": 2,\n        \"title\": \"title\",\n        \"audio\": \"audio\",\n        \"summary\": \"summary\",\n        \"description\": \"description\",\n        \"thumbnail\": \"thumbnail\",\n        \"content\": \"content\"\n    },\n    \"id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/teach",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"teach"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "listAllCourses",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkFETUlOIiwidXNlcm5hbWUiOiJ1c2VybmFtZSIsInN1cm5hbWUiOiJzdXJuYW1lIiwiZ2l2ZW5fbmFtZSI6ImdpdmVuX25hbWUiLCJlbWFpbCI6ImVtYWlsIiwicGhvbmUiOiJwaG9uZSIsImRhdGVfb2ZfYmlydGgiOiIxOTg4LTA3LTA2VDE3OjAwOjAwLjAwMFoiLCJhZGRyZXNzIjoiYWRkcmVzcyIsImF2YXRhciI6ImF2YXRhciIsImlhdCI6MTY5Nzk2MDkxMCwiZXhwIjoxNjk3OTcxNzEwfQ.IHaZZFZtPeSri77CIBSgvX1Tl81R_gbN1kUfeBXDceY"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"listAllCourses\",\n  \"params\": {},\n  \"id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/teach",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"teach"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createWord",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkFETUlOIiwidXNlcm5hbWUiOiJ1c2VybmFtZSIsInN1cm5hbWUiOiJzdXJuYW1lIiwiZ2l2ZW5fbmFtZSI6ImdpdmVuX25hbWUiLCJlbWFpbCI6ImVtYWlsIiwicGhvbmUiOiJwaG9uZSIsImRhdGVfb2ZfYmlydGgiOiIxOTg4LTA3LTA2VDE3OjAwOjAwLjAwMFoiLCJhZGRyZXNzIjoiYWRkcmVzcyIsImF2YXRhciI6ImF2YXRhciIsImlhdCI6MTY5Nzk2MDkxMCwiZXhwIjoxNjk3OTcxNzEwfQ.IHaZZFZtPeSri77CIBSgvX1Tl81R_gbN1kUfeBXDceY"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"method\": \"createWord\",\n  \"params\": {\n    \"word\": \"endeavor\",\n    \"definition\": \"an attempt to achieve a goal\",\n    \"phonetic\": \"enˈdevər\",\n    \"part_of_speech\": \"noun\",\n    \"audio_uri\": \"audio_uri\",\n    \"image_uri\": \"image_uri\"\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/teach",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"teach"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createCard",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkFETUlOIiwidXNlcm5hbWUiOiJ1c2VybmFtZSIsInN1cm5hbWUiOiJzdXJuYW1lIiwiZ2l2ZW5fbmFtZSI6ImdpdmVuX25hbWUiLCJlbWFpbCI6ImVtYWlsIiwicGhvbmUiOiJwaG9uZSIsImRhdGVfb2ZfYmlydGgiOiIxOTg4LTA3LTA2VDE3OjAwOjAwLjAwMFoiLCJhZGRyZXNzIjoiYWRkcmVzcyIsImF2YXRhciI6ImF2YXRhciIsImlhdCI6MTY5Nzk2MDkxMCwiZXhwIjoxNjk3OTcxNzEwfQ.IHaZZFZtPeSri77CIBSgvX1Tl81R_gbN1kUfeBXDceY"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"method\": \"createCard\",\n  \"params\": {\n    \"lesson_id\": 2,\n    \"card_order\": 5,\n    \"front_text\": \"People who set #realistic# goals are more likely to keep at their endeavor.\",\n    \"front_audio_uri\": \"front_audio_uri\"\n  },\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/teach",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"teach"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "searchWord",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkFETUlOIiwidXNlcm5hbWUiOiJ1c2VybmFtZSIsInN1cm5hbWUiOiJzdXJuYW1lIiwiZ2l2ZW5fbmFtZSI6ImdpdmVuX25hbWUiLCJlbWFpbCI6ImVtYWlsIiwicGhvbmUiOiJwaG9uZSIsImRhdGVfb2ZfYmlydGgiOiIxOTg4LTA3LTA2VDE3OjAwOjAwLjAwMFoiLCJhZGRyZXNzIjoiYWRkcmVzcyIsImF2YXRhciI6ImF2YXRhciIsImlhdCI6MTY5Nzk2MDkxMCwiZXhwIjoxNjk3OTcxNzEwfQ.IHaZZFZtPeSri77CIBSgvX1Tl81R_gbN1kUfeBXDceY"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"searchWord\",\n  \"params\": {\n    \"searchTerm\": \"new\"\n  },\n  \"id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/teach",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"teach"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addWordsToCard",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkFETUlOIiwidXNlcm5hbWUiOiJ1c2VybmFtZSIsInN1cm5hbWUiOiJzdXJuYW1lIiwiZ2l2ZW5fbmFtZSI6ImdpdmVuX25hbWUiLCJlbWFpbCI6ImVtYWlsIiwicGhvbmUiOiJwaG9uZSIsImRhdGVfb2ZfYmlydGgiOiIxOTg4LTA3LTA2VDE3OjAwOjAwLjAwMFoiLCJhZGRyZXNzIjoiYWRkcmVzcyIsImF2YXRhciI6ImF2YXRhciIsImlhdCI6MTY5Nzk2MDkxMCwiZXhwIjoxNjk3OTcxNzEwfQ.IHaZZFZtPeSri77CIBSgvX1Tl81R_gbN1kUfeBXDceY"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 1,\n  \"method\": \"addWordsToCard\",\n  \"params\": {\n    \"card_id\": 1,\n    \"words\": [\n      {\n        \"id\": 1,\n        \"order\": 1\n      },\n      {\n        \"id\": 2,\n        \"order\": 2\n      }\n    ]\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/teach",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"teach"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getDecks",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkFETUlOIiwidXNlcm5hbWUiOiJ1c2VybmFtZSIsInN1cm5hbWUiOiJzdXJuYW1lIiwiZ2l2ZW5fbmFtZSI6ImdpdmVuX25hbWUiLCJlbWFpbCI6ImVtYWlsIiwicGhvbmUiOiJwaG9uZSIsImRhdGVfb2ZfYmlydGgiOiIxOTg4LTA3LTA2VDE3OjAwOjAwLjAwMFoiLCJhZGRyZXNzIjoiYWRkcmVzcyIsImF2YXRhciI6ImF2YXRhciIsImlhdCI6MTY5Nzk2MDkxMCwiZXhwIjoxNjk3OTcxNzEwfQ.IHaZZFZtPeSri77CIBSgvX1Tl81R_gbN1kUfeBXDceY"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"getDecks\",\n  \"params\": {},\n  \"id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/teach",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"teach"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getSubdecks",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkFETUlOIiwidXNlcm5hbWUiOiJ1c2VybmFtZSIsInN1cm5hbWUiOiJzdXJuYW1lIiwiZ2l2ZW5fbmFtZSI6ImdpdmVuX25hbWUiLCJlbWFpbCI6ImVtYWlsIiwicGhvbmUiOiJwaG9uZSIsImRhdGVfb2ZfYmlydGgiOiIxOTg4LTA3LTA2VDE3OjAwOjAwLjAwMFoiLCJhZGRyZXNzIjoiYWRkcmVzcyIsImF2YXRhciI6ImF2YXRhciIsImlhdCI6MTY5Nzk2MDkxMCwiZXhwIjoxNjk3OTcxNzEwfQ.IHaZZFZtPeSri77CIBSgvX1Tl81R_gbN1kUfeBXDceY"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"getSubdecks\",\n  \"params\": {\n    \"id\": 1\n  },\n  \"id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/teach",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"teach"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCards",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkFETUlOIiwidXNlcm5hbWUiOiJ1c2VybmFtZSIsInN1cm5hbWUiOiJzdXJuYW1lIiwiZ2l2ZW5fbmFtZSI6ImdpdmVuX25hbWUiLCJlbWFpbCI6ImVtYWlsIiwicGhvbmUiOiJwaG9uZSIsImRhdGVfb2ZfYmlydGgiOiIxOTg4LTA3LTA2VDE3OjAwOjAwLjAwMFoiLCJhZGRyZXNzIjoiYWRkcmVzcyIsImF2YXRhciI6ImF2YXRhciIsImlhdCI6MTY5Nzk2MDkxMCwiZXhwIjoxNjk3OTcxNzEwfQ.IHaZZFZtPeSri77CIBSgvX1Tl81R_gbN1kUfeBXDceY"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"method\": \"getCards\",\n  \"params\": {\n    \"courseId\": 1,\n    \"lessonId\": 1\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/teach",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"teach"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
 }

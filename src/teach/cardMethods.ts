@@ -139,7 +139,7 @@ async function getCards(request: any, response: any) {
     AND EXISTS  (SELECT 1
                 FROM teacher_course
                 WHERE teacher_course.teacher_username = ${teacherUsername}
-                AND course.id = ${courseId})
+                AND teacher_course.course_id = ${courseId})
   `
 
   try {
