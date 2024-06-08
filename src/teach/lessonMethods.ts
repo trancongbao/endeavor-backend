@@ -92,7 +92,7 @@ export function deleteLesson({ id }: { id: number }) {
 
 async function getSubdecks(request: any, response: any) {
   const teacherUsername = request.session.userInfo.username
-  const courseId = request.body.params.id
+  const deckId = request.body.params.deckId
 
   const sql = SQL`
     SELECT  course.id           as course_id,
@@ -101,11 +101,11 @@ async function getSubdecks(request: any, response: any) {
             lesson.title        as lesson_title
     FROM course
     INNER JOIN lesson ON lesson.course_id = course.id
-    WHERE course.id = ${courseId}
+    WHERE course.id = ${deckId}
     AND EXISTS  (SELECT 1
                 FROM teacher_course
                 WHERE teacher_username = ${teacherUsername}
-                AND course_id = ${courseId})
+                AND course_id = ${deckId})
     `
 
   try {
