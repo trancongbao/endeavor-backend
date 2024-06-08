@@ -95,10 +95,10 @@ async function getSubdecks(request: any, response: any) {
   const deckId = request.body.params.deckId
 
   const sql = SQL`
-    SELECT  course.id           as course_id,
-            lesson.id           as lesson_id,
-            lesson.lesson_order as lesson_order,
-            lesson.title        as lesson_title
+    SELECT  course.id           as deck_id,
+            lesson.id           as subdeck_id,
+            lesson.lesson_order as subdeck_order,
+            lesson.title        as subdeck_title
     FROM course
     INNER JOIN lesson ON lesson.course_id = course.id
     WHERE course.id = ${deckId}
