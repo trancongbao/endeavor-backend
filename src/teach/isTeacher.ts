@@ -6,7 +6,7 @@ import {
 export {isTeacher};
 
 function isTeacher(request: any, response: any, next: any): void {
-    if (request.session.userInfo.userType === "teacher") {
+    if (request.session.userInfo?.userType === "teacher") {
         next();
     } else {
         sendErrorResponse(
