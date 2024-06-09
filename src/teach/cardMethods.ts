@@ -84,7 +84,7 @@ async function addWordToCard(request: any, response: any) {
       RETURNING *;
     `
 
-    sendSuccessResponse(response, (await query(insertSql)).rows)
+    sendSuccessResponse(response, (await query(insertSql)).rows[0])
   } catch (error: any) {
     console.log(error)
     sendErrorResponse(response, Codes.RpcMethodInvocationError, error.message)
