@@ -9,7 +9,7 @@ import { query } from '../databases/postgres'
 
 export { RpcMethodName, rpcMethods }
 
-type RpcMethodName = 'createCard' | 'addWordsToCard' | 'getCards'
+type RpcMethodName = 'createCard' | 'addWordToCard' | 'getCards'
 
 const rpcMethods: Record<
   RpcMethodName,
@@ -19,8 +19,8 @@ const rpcMethods: Record<
     rpcMethod: createCard,
     rpcMethodParamsSchema: {},
   },
-  addWordsToCard: {
-    rpcMethod: addWordsToCard,
+  addWordToCard: {
+    rpcMethod: addWordToCard,
     rpcMethodParamsSchema: {},
   },
   getCards: {
@@ -51,7 +51,7 @@ async function createCard(request: any, response: any) {
   }
 }
 
-async function addWordsToCard(request: any, response: any) {
+async function addWordToCard(request: any, response: any) {
   const teacherUsername = request.session.userInfo.username
   const {
     card_id,
