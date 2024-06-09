@@ -629,7 +629,7 @@
 					"response": []
 				},
 				{
-					"name": "addWordsToCard",
+					"name": "addWordToCard",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -644,7 +644,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 1,\n  \"method\": \"addWordsToCard\",\n  \"params\": {\n    \"card_id\": 1,\n    \"words\": [\n      {\n        \"id\": 1,\n        \"order\": 1\n      },\n      {\n        \"id\": 2,\n        \"order\": 2\n      }\n    ]\n  }\n}",
+							"raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 1,\n  \"method\": \"addWordToCard\",\n  \"params\": {\n    \"card_id\": 11,\n    \"word_id\": 10,\n    \"word_order\": 3\n  }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
