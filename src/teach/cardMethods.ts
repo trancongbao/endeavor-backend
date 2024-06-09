@@ -80,7 +80,7 @@ async function addWordToCard(request: any, response: any) {
     // Insert the word into the card_word table
     const insertSql = SQL`
       INSERT INTO card_word (card_id, word_id, word_order)
-      VALUE (${card_id}, ${word_id}, ${word_order})
+      VALUES (${card_id}, ${word_id}, ${word_order})
       RETURNING *;
     `
 
