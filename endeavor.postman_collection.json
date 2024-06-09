@@ -718,7 +718,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"getSubdecks\",\n  \"params\": {\n    \"id\": 1\n  },\n  \"id\": 1\n}",
+							"raw": "{\n  \"method\": \"getSubdecks\",\n  \"params\": {\n    \"deckId\": 1\n  }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -755,7 +755,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"getCards\",\n  \"params\": {\n    \"id\": 1\n  },\n  \"id\": 1\n}",
+							"raw": "{\n  \"method\": \"getCards\",\n  \"params\": {\n    \"courseId\": 1,\n    \"lessonId\": 2\n  }\n}",
 							"options": {
 								"raw": {
 									"language": "json"

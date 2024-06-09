@@ -110,7 +110,7 @@ async function addWordsToCard(request: any, response: any) {
 
 async function getCards(request: any, response: any) {
   const teacherUsername = request.session.userInfo.username
-  const { courseId, lessonId } = request.body.params
+  const { deckId, subdeckId } = request.body.params
 
   /**
    * A teacher can only get cards belonging to courses that he is assigned.
@@ -134,12 +134,12 @@ async function getCards(request: any, response: any) {
     INNER JOIN card ON card.lesson_id = lesson.id
     INNER JOIN card_word ON card_word.card_id = card.id
     INNER JOIN word ON word.id = card_word.word_id
-    WHERE course.id = ${courseId}
-    AND lesson.id = ${lessonId}
+    WHERE course.id = ${deckId}
+    AND lesson.id = ${subdeckId}
     AND EXISTS  (SELECT 1
                 FROM teacher_course
                 WHERE teacher_course.teacher_username = ${teacherUsername}
-                AND teacher_course.course_id = ${courseId})
+                AND teacher_course.course_id = ${deckId})
   `
 
   try {
