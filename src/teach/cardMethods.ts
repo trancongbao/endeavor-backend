@@ -9,7 +9,7 @@ import { query } from '../databases/postgres'
 
 export { RpcMethodName, rpcMethods }
 
-type RpcMethodName = 'createCard' | 'addWordsToCard' | 'getCards'
+type RpcMethodName = 'createCard' | 'addWordToCard' | 'getCards'
 
 const rpcMethods: Record<
   RpcMethodName,
@@ -19,8 +19,8 @@ const rpcMethods: Record<
     rpcMethod: createCard,
     rpcMethodParamsSchema: {},
   },
-  addWordsToCard: {
-    rpcMethod: addWordsToCard,
+  addWordToCard: {
+    rpcMethod: addWordToCard,
     rpcMethodParamsSchema: {},
   },
   getCards: {
@@ -51,22 +51,10 @@ async function createCard(request: any, response: any) {
   }
 }
 
-async function addWordsToCard(request: any, response: any) {
+async function addWordToCard(request: any, response: any) {
   const teacherUsername = request.session.userInfo.username
-  const {
-    card_id,
-    words,
-  }: { card_id: number; words: { id: number; order: number }[] } =
-    request.body.params
+  const { card_id, word_id, word_order } = request.body.params
 
-  /**
-   * Two queries need to be used.
-   * In order to use one query, the access check needs to be done together with INSERT
-   * Several methods have been tried but none succeeded in achieving this.
-   *   + WHERE EXISTS cannot be used with VALUES
-   *   + Using INSERT with SELECT FROM a CTE or similar methods, for some unknown reason, causes RETURNING to return only one row.
-   * Also, with two queries we can have a separate and more meaningful response for the case the teacher is not authorized.
-   */
   try {
     // Check if the teacher has access right to the card
     const accessCheckSql = SQL`
@@ -89,19 +77,14 @@ async function addWordsToCard(request: any, response: any) {
       return
     }
 
-    // Insert words into card_word table
+    // Insert the word into the card_word table
     const insertSql = SQL`
       INSERT INTO card_word (card_id, word_id, word_order)
-      VALUES 
-    `.also((sql) => {
-      words.forEach((word, index) => {
-        sql.append(SQL`(${card_id}, ${word.id}, ${word.order})`)
-        index <= words.length - 2 && sql.append(',')
-      })
-      sql.append(SQL`RETURNING *;`)
-    })
+      VALUES (${card_id}, ${word_id}, ${word_order})
+      RETURNING *;
+    `
 
-    sendSuccessResponse(response, (await query(insertSql)).rows)
+    sendSuccessResponse(response, (await query(insertSql)).rows[0])
   } catch (error: any) {
     console.log(error)
     sendErrorResponse(response, Codes.RpcMethodInvocationError, error.message)
