@@ -9,7 +9,11 @@ import { query } from '../databases/postgres'
 
 export { RpcMethodName, rpcMethods }
 
-type RpcMethodName = 'createCard' | 'addWordToCard' | 'getCards'
+type RpcMethodName =
+  | 'createCard'
+  | 'updateCardText'
+  | 'addWordToCard'
+  | 'getCards'
 
 const rpcMethods: Record<
   RpcMethodName,
@@ -17,6 +21,10 @@ const rpcMethods: Record<
 > = {
   createCard: {
     rpcMethod: createCard,
+    rpcMethodParamsSchema: {},
+  },
+  updateCardText: {
+    rpcMethod: updateCardText,
     rpcMethodParamsSchema: {},
   },
   addWordToCard: {
@@ -51,31 +59,31 @@ async function createCard(request: any, response: any) {
   }
 }
 
+async function updateCardText(request: any, response: any) {
+  const { cardId, cardText } = request.body.params
+
+  teacherHasAccessRightToCard(request, response)
+
+  const sql = SQL`
+    UPDATE card
+    SET front_text = ${cardText}
+    WHERE id = ${cardId}
+    RETURNING *;
+  `
+
+  try {
+    sendSuccessResponse(response, (await query(sql)).rows[0])
+  } catch (error: any) {
+    console.log(error)
+    sendErrorResponse(response, Codes.RpcMethodInvocationError, error.message)
+  }
+}
+
 async function addWordToCard(request: any, response: any) {
-  const teacherUsername = request.session.userInfo.username
   const { card_id, word_id, word_order } = request.body.params
 
   try {
-    // Check if the teacher has access right to the card
-    const accessCheckSql = SQL`
-      SELECT 1
-      FROM teacher_course
-      INNER JOIN course ON course.id = teacher_course.course_id
-      INNER JOIN lesson ON lesson.course_id = course.id
-      INNER JOIN card ON card.lesson_id = lesson.id
-      WHERE teacher_course.teacher_username = ${teacherUsername}
-      AND card.id = ${card_id};
-    `
-
-    if ((await query(accessCheckSql)).rows.length === 0) {
-      // Teacher does not have access rights, send error response
-      sendErrorResponse(
-        response,
-        Codes.Teach.TeacherPrivilegeMissing,
-        'Teacher does not have access rights to the card.',
-      )
-      return
-    }
+    teacherHasAccessRightToCard(request, response)
 
     // Insert the word into the card_word table
     const insertSql = SQL`
@@ -83,11 +91,36 @@ async function addWordToCard(request: any, response: any) {
       VALUES (${card_id}, ${word_id}, ${word_order})
       RETURNING *;
     `
-
     sendSuccessResponse(response, (await query(insertSql)).rows[0])
   } catch (error: any) {
     console.log(error)
     sendErrorResponse(response, Codes.RpcMethodInvocationError, error.message)
+  }
+}
+
+async function teacherHasAccessRightToCard(request: any, response: any) {
+  const teacherUsername = request.session.userInfo.username
+  const { cardId } = request.body.params
+
+  // Check if the teacher has access right to the card
+  const accessCheckSql = SQL`
+      SELECT 1
+      FROM teacher_course
+      INNER JOIN course ON course.id = teacher_course.course_id
+      INNER JOIN lesson ON lesson.course_id = course.id
+      INNER JOIN card ON card.lesson_id = lesson.id
+      WHERE teacher_course.teacher_username = ${teacherUsername}
+      AND card.id = ${cardId};
+    `
+
+  if ((await query(accessCheckSql)).rows.length === 0) {
+    // Teacher does not have access rights, send error response
+    sendErrorResponse(
+      response,
+      Codes.Teach.TeacherPrivilegeMissing,
+      'Teacher does not have access rights to the card.',
+    )
+    return
   }
 }
 
