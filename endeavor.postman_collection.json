@@ -681,7 +681,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 1,\n  \"method\": \"addWordToCard\",\n  \"params\": {\n    \"card_id\": 11,\n    \"word_id\": 9,\n    \"word_order\": 4\n  }\n}",
+							"raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 1,\n  \"method\": \"addWordToCard\",\n  \"params\": {\n    \"cardId\": 11,\n    \"wordId\": 8,\n    \"wordOrder\": 5\n  }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
