@@ -80,7 +80,7 @@ async function updateCardText(request: any, response: any) {
 }
 
 async function addWordToCard(request: any, response: any) {
-  const { card_id, word_id, word_order } = request.body.params
+  const { cardId, wordId, wordOrder } = request.body.params
 
   try {
     teacherHasAccessRightToCard(request, response)
@@ -88,7 +88,7 @@ async function addWordToCard(request: any, response: any) {
     // Insert the word into the card_word table
     const insertSql = SQL`
       INSERT INTO card_word (card_id, word_id, word_order)
-      VALUES (${card_id}, ${word_id}, ${word_order})
+      VALUES (${cardId}, ${wordId}, ${wordOrder})
       RETURNING *;
     `
     sendSuccessResponse(response, (await query(insertSql)).rows[0])

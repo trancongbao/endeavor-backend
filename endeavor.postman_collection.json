@@ -592,6 +592,43 @@
 					"response": []
 				},
 				{
+					"name": "updateCardText",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6IkFETUlOIiwidXNlcm5hbWUiOiJ1c2VybmFtZSIsInN1cm5hbWUiOiJzdXJuYW1lIiwiZ2l2ZW5fbmFtZSI6ImdpdmVuX25hbWUiLCJlbWFpbCI6ImVtYWlsIiwicGhvbmUiOiJwaG9uZSIsImRhdGVfb2ZfYmlydGgiOiIxOTg4LTA3LTA2VDE3OjAwOjAwLjAwMFoiLCJhZGRyZXNzIjoiYWRkcmVzcyIsImF2YXRhciI6ImF2YXRhciIsImlhdCI6MTY5Nzk2MDkxMCwiZXhwIjoxNjk3OTcxNzEwfQ.IHaZZFZtPeSri77CIBSgvX1Tl81R_gbN1kUfeBXDceY"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"method\": \"updateCardText\",\n  \"params\": {\n    \"courseId\": 1,\n    \"lessonId\": 1,\n    \"cardId\": 1,\n    \"cardText\": \"updateCardText2: #There are# schools #all around the world#.\"\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/teach",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"teach"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "searchWord",
 					"request": {
 						"method": "POST",
@@ -644,7 +681,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 1,\n  \"method\": \"addWordToCard\",\n  \"params\": {\n    \"card_id\": 11,\n    \"word_id\": 10,\n    \"word_order\": 3\n  }\n}",
+							"raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"id\": 1,\n  \"method\": \"addWordToCard\",\n  \"params\": {\n    \"card_id\": 11,\n    \"word_id\": 9,\n    \"word_order\": 4\n  }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -755,7 +792,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"method\": \"getCards\",\n  \"params\": {\n    \"courseId\": 1,\n    \"lessonId\": 2\n  }\n}",
+							"raw": "{\n  \"method\": \"getCards\",\n  \"params\": {\n    \"deckId\": 1,\n    \"subdeckId\": 1\n  }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
